@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="xushun" />
+
+
+    
+    
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="mimimomo的博客">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:site_name" content="mimimomo的博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mimimomo的博客">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="mimimomo的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <style> .article { opacity: 0;} </style>
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>mimimomo的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: true,
+        isPost: false,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">xushun</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">xushun</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">xushun</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap">
+  
+    <article id="post-应用程序集成---自定义块：最佳实践" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/06/应用程序集成---自定义块：最佳实践/" class="article-date">
+      <time datetime="2016-12-06T05:14:15.000Z" itemprop="datePublished">2016-12-06</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Custom Blocks: Best Practices</p>
+<blockquote>
+<p>原文：<a href="https://developers.google.com/blockly/guides/app-integration/best-practices" target="_blank" rel="external">https://developers.google.com/blockly/guides/app-integration/best-practices</a></p>
+</blockquote>
+<p>多年来，Blockly和Blockly Games团队学到了许多适用于那些开发基于Blockly的应用程序的课程。以下是我们所犯错误的集合，或者他人通常犯的错误。</p>
+<p>这些是我们使用Blockly的视觉风格学到的一般教训，可能不适用于所有用例或设计。可能存在其他解决方案。这也不是用户可能遇到的问题和如何避免他们的问题的详尽列表。每个案例都有点不同，可能有自己的权衡。</p>
+<p>##1. 边框样式</p>
+<hr>
+<p>在21世纪初，“Aqua”的外观是主流的，每个屏幕上的对象都装饰着突出和阴影。在2010年的“材料设计”外观是流行的，每个屏幕对象简化为一个干净，平坦，无边框的形状。大多数块编程环境在每个块周围都有突出显示和阴影，所以当今天的平面设计师看到这些时，它们总是消除这些过时的装饰。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-bd7a4d3948ed3bbd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>从上面的五个块（来自scriptr.io）的示例中可以看出，这些“过时的装饰”对于区分相同颜色的连接块是至关重要的。</p>
+<blockquote>
+<p>建议：如果美化你的 Blockly，（原文：<em>If reskinning Blockly, don’t let today’s fashions break your app.</em> 感觉是谷歌打字错了,或者其他语言吧）不要让今天的方式打破你的应用程序。</p>
+</blockquote>
+<p>##2. 嵌套子堆栈</p>
+<hr>
+<p>“C”形块在内侧顶部上总是具有连接器，但是一些环境在内侧底部具有连接器（例如，Wonder Workshop），而其他环境则不具有连接器（例如Blockly和Scratch）。由于大多数语句块都有顶部和底部连接器，一些用户不会立即看到该语句将适合没有底部连接器的“C”。<br><img src="http://upload-images.jianshu.io/upload_images/2433593-63d2e530417606fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>一旦用户确定一个语句块适合在’C’内，他们然后需要找出更多的一个语句也适合。一些环境将第一个语句的低级连接嵌套到“C”的底部（例如Wonder Workshop和Scratch），而其他语言留下一个小间隙（例如Blockly）。嵌套嵌套没有暗示更多的块可以堆叠。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-0ed2260de6c57dea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这两个问题彼此互相影响很大。如果内部底层连接器存在（Wonder Workshop），则初始语句的连接变得更加明显，但是以发现堆栈的能力为代价</p>
+<p>如果没有内部底部连接器存在（阻塞），则初始语句的连接不明显，但堆叠是可发现的。没有内部底部连接器和嵌套语句的底部连接器（Scratch）在使用Blockly测试时遇到了最糟糕的视觉效果（// 原文：discoverability 。翻译的可能不恰当）。</p>
+<p>我们的经验是，初始语句的连接对用户来说是一个较小的挑战，而不是发现堆栈。一旦发现，前者从来不被遗忘，而后者需要提示。</p>
+<p>Blockly尝试了Wonder Workshop和Scratch方法，直到有一天出现一个渲染错误，这增加了小的差距。我们看到由于这个错误（现在是我们感到自豪的“功能”）的Blockly用户学习中有明显的改善。</p>
+<blockquote>
+<p>建议：如果reskinning Blockly，保留现有的堆叠UI。</p>
+</blockquote>
+<p>##3.对称连接</p>
+<hr>
+<p>Blockly有两种不同的连接类型：水平拼图形状和垂直堆叠凹槽。良好的用户界面应努力使设计元素的数量最小化。因此，许多设计者试图使两种连接类型看起来相同（如下所示）。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-ca6d80fcbf3c53fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>结果造成新用户之间的混乱，因为他们搜索旋转块的方式，以便它们可以适应不兼容的连接。阻止使编程元素视觉和有形，所以人们必须注意不经意地建议不支持的用户交互。<br>因此，Blockly使用紧配合的拼图形状用于值连接，以及用于语句堆叠的视觉上不同的对齐凹口。</p>
+<blockquote>
+<p>建议：如果reskinning Blockly，确保水平和垂直连接看起来不同。</p>
+</blockquote>
+<p>##4.变量和函数名称</p>
+<hr>
+<p>新手程序员不希望location_X和location_x是不同的变量。因此，Blockly通过使变量和函数不区分大小写遵循BASIC和HTML的规范。 Scratch使用更微妙的方法（如右侧所示），并且对变量名称区分大小写，但不对等式检查。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-7f63c3e49e7957b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>此外，Blockly不要求变量和函数符合典型的[_A-Za-z] [_A-Za-z0-9] *方案。如果想要命名一个变量列表的邮政编码或רשימתמיקודים完全没关系。</p>
+<blockquote>
+<p>建议：忽略大小写，允许任何名称。</p>
+</blockquote>
+<p>##5.全局变量</p>
+<hr>
+<p>新手程序员也很难理解范围。因此，Blockly通过使所有变量为全局跟随Scratch的线索。全局变量的唯一缺点是递归比较难（必须将变量推入和弹出到列表中），但这是一个超出Blockly目标用户范围的编程技术。</p>
+<p>建议：范围超出范围，留待以后使用。</p>
+<p>##6. 说明</p>
+<hr>
+<p>Blockly Games专门设计为自学，不需要教师或课程计划。为了做到这一点，Blockly游戏的第一个版本在每个级别有说明。大多数学生不会读他们。我们将它们缩减为一个句子，增加字体大小，并在黄色气泡中突出显示。大多数学生不会读他们。我们使用说明创建了模态弹出窗口。大多数学生本能地关闭弹出窗口而没有阅读它们，然后就没有然后了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-2e47a594fcb7c765.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>最后，我们创建了无法关闭的弹出窗口。它们被编程以监视学生的行为，并且仅在学生已经执行禁止的动作时闭合自己。这些上下文感知弹出窗口是有挑战性的程序，但相当有效。对他们来说也是重要的，在视野中不干扰工作空间。</p>
+<blockquote>
+<p>建议：说明书应该短而持久，但不要令人讨厌。</p>
+</blockquote>
+<p>##7.代码所有权</p>
+<hr>
+<p>设计用于教授特定概念的练习通常提供部分解决方案，学生需要修改以达到期望的效果。在Blockly中创建了一类不可编辑，不可移动，不可删除的块来支持它。然而，学生讨厌这些填空题练习。他们对解决方案没有主人翁感。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-bcc1485c9a07c33c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>设计教授相同概念的自由形式练习更具挑战性。已经证明成功的一种技术是使用学生自己的解决方案作为下一次练习的起点。</p>
+<p>建议：不要为用户编写代码。</p>
+<p>##8.工作区布局</p>
+<hr>
+<p>有两种合理的方法从左到右布局屏幕。一种方法是从左侧的工具栏开始，中间的工作区，右侧的输出可视化。此布局由Scratch的版本1以及Made with Code使用。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-d775f34e7054a88f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>另一种方式从左侧的输出可视化，中间的工具栏和右侧的工作区开始。此布局由Scratch的版本2以及大多数Blockly应用程序使用。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-d4f106e3c639d9ba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>在任一情况下，工作空间应该伸展到占用可用的屏幕大小 - 用户需要尽可能多的空间来编程，因为他们可以得到。从上面的截图中可以看出，第一个布局在宽屏幕上表现不佳，因为用户的代码和输出可视化是分开的。而第二布局允许用于较大程序的额外空间，同时仍然保持所有三个部分靠近在一起。</p>
+<p>对于用户来说，首先考虑他们试图解决的问题，然后查看提供的工具，然后才开始编程也是合乎逻辑的。</p>
+<p>当然，整个指令需要翻译为阿拉伯语和希伯来语翻译。</p>
+<p>在一些情况下，例如当使用少量简单块时，工具箱在工作空间上方或下方可能是有意义的。在这些情况下，在工具箱中阻止支持水平滚动，但应谨慎使用。</p>
+<p>建议：将程序可视化放在工具栏旁边。</p>
+<p>##9.谢幕的策略</p>
+<hr>
+<p>基于块的编程通常是编程的起点。在教授计算机编程的情况下，它是一种网关药物，让学生上瘾，在他们去学习更难的东西之前。这个基于块的编程周期应该持续多长时间给学生激烈的争论，但如果你的目标是教程序，它应该是暂时的.</p>
+<p>鉴于此，用于教学编程的基于块的编程环境必须具有适合于他们的学生的偏离坡道。 Blockly Games有四种策略：</p>
+<ol>
+<li>块上的所有文本（例如“if”，“while”）是小写以匹配基于文本的编程语言。</li>
+<li>学生代码的JavaScript版本始终显示在每个级别之后，以提高熟悉程度。</li>
+<li>在倒数第二个游戏中，块文本被替换为实际的JavaScript（如右所示）。此时学生正在使用JavaScript进行编程。</li>
+<li>在终极游戏中，块编辑器被替换为文本编辑器。</li>
+</ol>
+<p>基于块的编程环境用于教学编程需要有一个具体的计划，以毕业他们的学生。一个坚实的退出策略也将大大有助于那些认为基于块的编程不是“真正的编程”的人。</p>
+<blockquote>
+<p>建议：适当考虑用户的目标和设计。</p>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-配置块---工具箱" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/06/配置块---工具箱/" class="article-date">
+      <time datetime="2016-12-06T05:14:15.000Z" itemprop="datePublished">2016-12-06</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Configure Blockly - Toolbox</p>
+<blockquote>
+<p>原文链接：<a href="https://developers.google.com/blockly/guides/configure/android/toolbox" target="_blank" rel="external">https://developers.google.com/blockly/guides/configure/android/toolbox</a></p>
+</blockquote>
+<p>工具箱是从用户可以创建新块的侧面菜单。工具箱的结构使用XML指定，可以是节点树或字符串表示形式。如果您不喜欢手动输入XML，我们建议您查看Blockly开发人员工具<a href="https://developers.google.com/blockly/guides/create-custom-blocks/blockly-developer-tools" target="_blank" rel="external">Blockly Developer Tools</a>。使用它，您可以构造一个工具箱，并使用可视化界面自动生成其工具箱XML。此XML资产路径在构造时传递给<code>BlocklyController</code>。如果你的activity 继承了<code>AbstractBlocklyActivity</code>，这是使用<code>getToolboxContentsXmlPath（）</code>返回的asset路径自动完成的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@Override protected String getToolboxContentsXmlPath() &#123;</div><div class="line">    return &quot;default/toolbox.xml&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里是一个最小的例子，使用节点树：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;toolbox&gt;</div><div class="line">   &lt;block type = &quot;controls_if&quot; &gt; &lt;/block&gt;</div><div class="line">   &lt;block type=&quot;controls_whileUntil&quot;&gt;&lt;/block &gt; </div><div class="line">&lt;/toolbox&gt;</div></pre></td></tr></table></figure></p>
+<p>此工具箱加载这些块：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-dd574a9cac481684.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>如果存在少量的块，则可以在没有任何类别的情况下显示它们（如在上面的最小示例中）。在这种简单模式下，所有可用的块都显示在工具箱中。</p>
+<p>##分类</p>
+<hr>
+<p>工具箱中的块可以按类别组织。这里有两个类别（’控制’和’逻辑’），每个包含三个块：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;toolbox&gt;</div><div class="line">  &lt;category name=&quot;Control&quot;&gt;</div><div class="line">    &lt;block type=&quot;controls_if&quot;&gt;&lt;/block&gt;</div><div class="line">    &lt;block type=&quot;controls_whileUntil&quot;&gt;&lt;/block&gt;</div><div class="line">    &lt;block type=&quot;controls_for&quot;&gt;&lt;/block&gt;</div><div class="line">  &lt;/category&gt;</div><div class="line">  &lt;category name=&quot;Logic&quot;&gt;</div><div class="line">    &lt;block type=&quot;logic_compare&quot;&gt;&lt;/block&gt;</div><div class="line">    &lt;block type=&quot;logic_operation&quot;&gt;&lt;/block&gt;</div><div class="line">    &lt;block type=&quot;logic_boolean&quot;&gt;&lt;/block&gt;</div><div class="line">  &lt;/category&gt;</div><div class="line">&lt;/toolbox&gt;</div></pre></td></tr></table></figure></p>
+<p>下面是生成的工具箱，点击“Logic”类别，以便可以看到弹出窗口中的三个逻辑块：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-25f3c51c23f84fda.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>可以使用可选的颜色属性为每个类别分配颜色。注意英国的拼写。颜色是定义色调的数字（0-360）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;toolbox&gt;</div><div class="line">  &lt;category name=&quot;Logic&quot; colour=&quot;210&quot;&gt;...&lt;/category&gt;</div><div class="line">  &lt;category name=&quot;Loops&quot; colour=&quot;120&quot;&gt;...&lt;/category&gt;</div><div class="line">  &lt;category name=&quot;Math&quot; colour=&quot;230&quot;&gt;...&lt;/category&gt;</div><div class="line">  &lt;category name=&quot;Colour&quot; colour=&quot;20&quot;&gt;...&lt;/category&gt;</div><div class="line">&lt;/toolbox&gt;</div></pre></td></tr></table></figure></p>
+<p>此颜色在块后面的背景上显示为浅色。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-c1afcaac0f426b81.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>标签颜色正在等待处理（问题<a href="https://github.com/google/blockly-android/issues/296" target="_blank" rel="external">#296</a>）</p>
+<p>##块组</p>
+<hr>
+<p>XML可以包含定制块或块组。这里有四个块：</p>
+<ol>
+<li>一个简单的logic_boolean块：<br><img src="http://upload-images.jianshu.io/upload_images/2433593-edf80fcae329bfef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>已修改为显示数字42而不是默认值0的math_number块：<br><img src="http://upload-images.jianshu.io/upload_images/2433593-4ee2315e149b09e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>一个控制块，有三个math_number块连接到它：<br><img src="http://upload-images.jianshu.io/upload_images/2433593-91d7afad53ffd567.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>一个math_arithmetic块，它有两个math_number个阴影块连接到它：<br><img src="http://upload-images.jianshu.io/upload_images/2433593-712930d6039f37e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+</ol>
+<p>下面是在工具箱中生成这四个块的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">&lt;toolbox&gt;</div><div class="line">  &lt;block type=&quot;logic_boolean&quot;&gt;&lt;/block&gt;</div><div class="line"></div><div class="line">  &lt;block type=&quot;math_number&quot;&gt;</div><div class="line">    &lt;field name=&quot;NUM&quot;&gt;42&lt;/field&gt;</div><div class="line">  &lt;/block&gt;</div><div class="line"></div><div class="line">  &lt;block type=&quot;controls_for&quot;&gt;</div><div class="line">    &lt;value name=&quot;FROM&quot;&gt;</div><div class="line">      &lt;block type=&quot;math_number&quot;&gt;</div><div class="line">        &lt;field name=&quot;NUM&quot;&gt;1&lt;/field&gt;</div><div class="line">      &lt;/block&gt;</div><div class="line">    &lt;/value&gt;</div><div class="line">    &lt;value name=&quot;TO&quot;&gt;</div><div class="line">      &lt;block type=&quot;math_number&quot;&gt;</div><div class="line">        &lt;field name=&quot;NUM&quot;&gt;10&lt;/field&gt;</div><div class="line">      &lt;/block&gt;</div><div class="line">    &lt;/value&gt;</div><div class="line">    &lt;value name=&quot;BY&quot;&gt;</div><div class="line">      &lt;block type=&quot;math_number&quot;&gt;</div><div class="line">        &lt;field name=&quot;NUM&quot;&gt;1&lt;/field&gt;</div><div class="line">      &lt;/block&gt;</div><div class="line">    &lt;/value&gt;</div><div class="line">  &lt;/block&gt;</div><div class="line"></div><div class="line">  &lt;block type=&quot;math_arithmetic&quot;&gt;</div><div class="line">    &lt;field name=&quot;OP&quot;&gt;ADD&lt;/field&gt;</div><div class="line">    &lt;value name=&quot;A&quot;&gt;</div><div class="line">      &lt;shadow type=&quot;math_number&quot;&gt;</div><div class="line">        &lt;field name=&quot;NUM&quot;&gt;1&lt;/field&gt;</div><div class="line">      &lt;/shadow&gt;</div><div class="line">    &lt;/value&gt;</div><div class="line">    &lt;value name=&quot;B&quot;&gt;</div><div class="line">      &lt;shadow type=&quot;math_number&quot;&gt;</div><div class="line">        &lt;field name=&quot;NUM&quot;&gt;1&lt;/field&gt;</div><div class="line">      &lt;/shadow&gt;</div><div class="line">    &lt;/value&gt;</div><div class="line">  &lt;/block&gt;</div><div class="line">&lt;/toolbox&gt;</div></pre></td></tr></table></figure></p>
+<p>这些自定义块或组的XML与Blockly的XML保存格式相同。因此，为这些块构建XML的最简单的方法是使用Code应用程序构建块，然后切换到XML选项卡并复制结果。 x，y和id属性被工具箱忽略，可能会被删除。<br>阴影块是执行几个功能的占位符块：</p>
+<ul>
+<li>它们指示其父块的默认值。</li>
+<li>它们允许用户直接输入值，而不需要提取数字或字符串块。</li>
+<li>与常规块不同，如果用户在其上放置一个块，它们将被替换。</li>
+<li>它们通知用户期望的值的类型。</li>
+</ul>
+<p>阴影块不能直接使用代码应用程序构建。相反，可以使用常规块，然后将XML中的<code>&lt;block ...&gt;</code>和<code>&lt;/ block&gt;</code>更改为<code>&lt;shadow ...&gt;</code>和<code>&lt;/ shadow&gt;</code>。</p>
+<p>##更改工具箱 </p>
+<hr>
+<p>基于<code>AbstractBlocklyActivity</code>的应用程序可以通过调用<code>this.reloadToolbox（）</code>随时更改工具箱中可用的块。这将触发对<code>getToolboxContentsXmlPath（）</code>的新调用，其中应用程序可以返回一个新值。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-配置块---添加自定义块" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/06/配置块---添加自定义块/" class="article-date">
+      <time datetime="2016-12-06T05:14:15.000Z" itemprop="datePublished">2016-12-06</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Configure Blockly  — Add Custom Blocks</p>
+<blockquote>
+<p>原文地址：<a href="https://developers.google.com/blockly/guides/configure/android/add-custom-blocks" target="_blank" rel="external">https://developers.google.com/blockly/guides/configure/android/add-custom-blocks</a></p>
+</blockquote>
+<p>#添加自定义块<br>块由三个组件组成：</p>
+<ul>
+<li>块定义对象：定义块的外观和行为，包括文本，颜色，字段和连接。</li>
+</ul>
+<ol>
+<li>工具箱引用：对工具箱XML中块类型的引用，因此用户可以将其添加到工作区。</li>
+<li>生成器函数：生成此块的代码字符串。它总是用JavaScript编写，即使目标语言不是JavaScript。</li>
+</ol>
+<p>虽然Blockly的Web版本也支持在JavaScript中以编程方式构建块定义对象，但Blockly for Android不支持此操作。</p>
+<p>##块定义</p>
+<hr>
+<p>创建新块定义的最简单的方法是使用Blockly开发工具。<a href="https://developers.google.com/blockly/guides/create-custom-blocks/blockly-developer-tools" target="_blank" rel="external">Blockly Developer Tools</a>.于Android版Blockly仅支持JSON格式的块定义，因此将工厂的“语言代码”设置为JSON.有关此格式的详细信息，请点击此处<a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks#json_definitions" target="_blank" rel="external">here</a>。当使用<code>AbstractBlocklyActivity</code>时，块定义文件由<code>getBlockDefinitionsJsonPaths（）</code>提供，它返回应用程序资产路径的列表。可以通过调用<code>reloadBlockDefinitions（）</code>重新加载块定义。使用原始<code>BlocklyController</code>时，通过<code>BlocklyController.addBlockDefinitions（..）</code>方法之一添加块定义。<br>可以加载多个.json文件，但应确保块类型ID是唯一的。</p>
+<p>##添加工具箱参考</p>
+<hr>
+<p>一旦系统知道你的新块，你也需要让你的用户知道。工具箱向用户显示可用的块。 Blockly使用与Web上的Blockly相同的XML工具箱定义文件，这里详述<a href="https://developers.google.com/blockly/guides/configure/android/toolbox" target="_blank" rel="external">here</a>。</p>
+<p><code>abstractBlocklyActivity</code>用<code>getToolboxContentsXmlPath（）</code>提供的.xml资源文件的内容填充工具箱，<code>reloadToolbox（）</code>将重新加载工具箱（再次调用<code>getToolboxContentsXmlPath（）</code>）。</p>
+<p>一般来说，大多数块应该包含在工具箱中，但有些可以省略。这可以用于支持已弃用的块，教授单个概念或隐藏当前无法使用的块。有关更多详细信息，请参阅填充工具箱<a href="https://developers.google.com/blockly/guides/configure/android/toolbox" target="_blank" rel="external">Populate the Toolbox</a>。</p>
+<p>##添加生成器函数</p>
+<hr>
+<p>最后，要将块转换为代码，请将块类型与JavaScript生成器函数配对。<br>有关详细信息，请参阅使用自定义生成器<a href="https://developers.google.com/blockly/guides/configure/android/custom-generators" target="_blank" rel="external">Use Custom Generators</a>。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-配置块---自定义活动布局" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/06/配置块---自定义活动布局/" class="article-date">
+      <time datetime="2016-12-06T05:14:15.000Z" itemprop="datePublished">2016-12-06</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Configure Blockly  — Customize the Activity Layout</p>
+<p>#自定义活动布局<br>默认情况下，<a href="https://github.com/google/blockly-android/blob/master/blocklylib-core/src/main/java/com/google/blockly/android/AbstractBlocklyActivity.java" target="_blank" rel="external">AbstractBlocklyActivity
+</a>用一个大工作区填充屏幕。此工作空间由<a href="https://github.com/google/blockly-android/blob/master/blocklylib-core/src/main/java/com/google/blockly/android/ui/BlocklyUnifiedWorkspace.java" target="_blank" rel="external">BlocklyUnifiedWorkspace
+</a>（一个将工作区，工具箱和回收站组合在一起的ViewGroup）定义。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-ca5289b4b6e9487b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>此视图通过<code>onCreateContentView</code>加载到activity中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">protected View onCreateContentView(int containerId) &#123;</div><div class="line">    return getLayoutInflater().inflate(R.layout.blockly_unified_workspace, null);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>应用程序可以重载此方法以使用自己的视图。有两个例子可以在<strong><code>SplitActivity</code></strong>和<strong><code>TurtleActivity</code></strong>中找到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">protected View onCreateContentView(int parentId) &#123;</div><div class="line">    View root = getLayoutInflater().inflate(R.layout.split_content, null);</div><div class="line">    mGeneratedTextView = (TextView) root.findViewById(R.id.generated_code);</div><div class="line">    return root;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在这两种情况下，修订的内容布局只包括执行环境或代码视图旁边的<code>blockly_unified_workspace.xml</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;include layout=&quot;@layout/blockly_unified_workspace&quot; /&gt;</div></pre></td></tr></table></figure></p>
+<p>##直接包含片段</p>
+<hr>
+<p>虽然<code>BlocklyUnifiedWorkspace</code>使得在Blockly工作空间旁边添加一些额外的UI变得容易，但是通过直接包括三个Blockly片段可以实现更高级的布局。<a href="https://github.com/google/blockly-android/blob/master/blocklylib-core/src/main/java/com/google/blockly/android/AbstractBlocklyActivity.java" target="_blank" rel="external">AbstractBlocklyActivity
+</a> 将查找以下片段ID：</p>
+<ul>
+<li><code>blockly_workspace</code>：定义主工作区域的<a href="https://github.com/google/blockly-android/blob/master/blocklylib-core/src/main/java/com/google/blockly/android/WorkspaceFragment.java" target="_blank" rel="external">WorkspaceFragment
+</a>。</li>
+<li><code>blockly_toolbox：</code><a href="https://github.com/google/blockly-android/blob/master/blocklylib-core/src/main/java/com/google/blockly/android/ToolboxFragment.java" target="_blank" rel="external">ToolboxFragment
+</a>，用户可以从中拖动新的块到工作区。虽然技术上是可选的，但这是向工作区添加块的最常见方法。</li>
+<li><code>blockly_trash</code>：<a href="https://github.com/google/blockly-android/blob/master/blocklylib-core/src/main/java/com/google/blockly/android/TrashFragment.java" target="_blank" rel="external">TrashFragment
+</a>列出所有最近删除的块。</li>
+</ul>
+<p>活动可以覆盖onCreateContentView来构建或加载任何布局，这些片段放置在应用程序的任何位置。但是，在外部拖动块不受支持和不推荐开发（under active development）。</p>
+<p>有关片段配置选项/ XML布局属性的详细信息，请检查上述每个片段的JavcDoc文档。<br>有关示例，请参见<a href="https://github.com/google/blockly-android/blob/master/blocklylib-core/src/main/res/layout/blockly_unified_workspace_contents.xml" target="_blank" rel="external">blockly_unified_workspace_contents.xml
+</a>。</p>
+<p>##控制按钮</p>
+<hr>
+<p>除了片段，除了片段，AbstractBlocklyActivity寻找四个视图id用作按钮。寻找四个视图id用作按钮。</p>
+<ul>
+<li>blockly_zoom_in_button：放大（放大）工作区视图。</li>
+<li>blockly_zoom_out_button：缩小（缩小）工作空间视图。</li>
+<li>blockly_center_view_button：重置工作空间视图。</li>
+<li>blockly_trash_icon：打开或关闭垃圾桶列表（如果存在并可关闭）。它也充当删除块的放置目标。<br>在<a href="https://github.com/google/blockly-android/blob/master/blocklylib-core/src/main/java/com/google/blockly/android/ui/BlocklyUnifiedWorkspace.java" target="_blank" rel="external">BlocklyUnifiedWorkspace
+</a>中，这些按钮堆叠在工作空间的右侧（或从右到左语言的左侧）。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-de7183eca5cc2d8c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
+  
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 xushun
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

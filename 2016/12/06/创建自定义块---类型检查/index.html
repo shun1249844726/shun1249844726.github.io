@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="xushun" />
+
+
+
+<meta name="description" content="Type Checks&amp;lt;原文地址：https://developers.google.com/blockly/guides/create-custom-blocks/type-checks
+Blockly建模动态类型语言（如JavaScript或Python）。它缺少静态类型语言（如Java或C ++）的严格规则。更具体地说，任何值都可以赋给任何变量，在变量定义中没有int，bool或flo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mimimomo的博客">
+<meta property="og:url" content="http://yoursite.com/2016/12/06/创建自定义块---类型检查/index.html">
+<meta property="og:site_name" content="mimimomo的博客">
+<meta property="og:description" content="Type Checks&amp;lt;原文地址：https://developers.google.com/blockly/guides/create-custom-blocks/type-checks
+Blockly建模动态类型语言（如JavaScript或Python）。它缺少静态类型语言（如Java或C ++）的严格规则。更具体地说，任何值都可以赋给任何变量，在变量定义中没有int，bool或flo">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-ab2461633ade1543.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-d987728b5f3bb201.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-4248d29804ffcdbd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-6433533aeebb3742.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-50cc9da3efb2e589.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-ef1d4b9f438bfb09.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-9a6d9f5fad40cd3f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2016-12-06T05:14:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mimimomo的博客">
+<meta name="twitter:description" content="Type Checks&amp;lt;原文地址：https://developers.google.com/blockly/guides/create-custom-blocks/type-checks
+Blockly建模动态类型语言（如JavaScript或Python）。它缺少静态类型语言（如Java或C ++）的严格规则。更具体地说，任何值都可以赋给任何变量，在变量定义中没有int，bool或flo">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2433593-ab2461633ade1543.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="mimimomo的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>mimimomo的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">xushun</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">xushun</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">xushun</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-创建自定义块---类型检查" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/06/创建自定义块---类型检查/" class="article-date">
+      <time datetime="2016-12-06T05:14:15.000Z" itemprop="datePublished">2016-12-06</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Type Checks<br>&lt;原文地址：<a href="https://developers.google.com/blockly/guides/create-custom-blocks/type-checks" target="_blank" rel="external">https://developers.google.com/blockly/guides/create-custom-blocks/type-checks</a></p>
+<p>Blockly建模动态类型语言（如JavaScript或Python）。它缺少静态类型语言（如Java或C ++）的严格规则。更具体地说，任何值都可以赋给任何变量，在变量定义中没有int，bool或float。</p>
+<p>然而，Blockly确实有能力防止一些没联系(non-sensical combinations )组合的构建。以下三个块没有业务相互连接：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-ab2461633ade1543.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>每个Blockly的连接类型（值输入/输出，下一个/上一个语句）都可以用类型信息标记，以使明显无效的连接将拒绝连接。这给用户即时的反馈，并避免许多简单的错误。</p>
+<p>##值输入和输出</p>
+<hr>
+<p>让我们从一个数字块开始。当指定输出时，也可以设置类型字符串。因为这个块应该返回一个数字，让我们将输出类型设置为字符串’Number’：</p>
+<blockquote>
+<p><strong>json</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;  </div><div class="line">    &quot;type&quot;: &quot;math_number&quot;,  </div><div class="line">    // ...  </div><div class="line">    &quot;output&quot;: &quot;Number&quot;,</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>js</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Blockly.Blocks[&apos;math_number&apos;] = &#123;</div><div class="line">  init: function() &#123;</div><div class="line">    // ...</div><div class="line">    this.setOutput(true, &apos;Number&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-d987728b5f3bb201.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>更复杂的块是确定数字是否为偶数的数学块。这个块有一个期望一个数字的输入，和一个返回一个布尔的输出。这里是指定这样的代码：</p>
+<blockquote>
+<p><strong>json</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;math_number_property&quot;,</div><div class="line">  // ...</div><div class="line">  &quot;args0&quot;: [</div><div class="line">      // ...</div><div class="line">      &#123;</div><div class="line">        &quot;type&quot;: &quot;input_value&quot;,</div><div class="line">        &quot;name&quot;: &quot;NUMBER_TO_CHECK&quot;,</div><div class="line">        &quot;check&quot;: &quot;Number&quot;</div><div class="line">      &#125;</div><div class="line">  ],</div><div class="line">  &quot;output&quot;: &quot;Boolean&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>js</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Blockly.Blocks[&apos;math_number_property&apos;] = &#123;</div><div class="line">  init: function() &#123;</div><div class="line">    // ...</div><div class="line">    this.appendValueInput(&apos;NUMBER_TO_CHECK&apos;).setCheck(&apos;Number&apos;);</div><div class="line">    this.setOutput(true, &apos;Boolean&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-4248d29804ffcdbd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>当数字块连接到此数学块时，两个连接的类型都为“Number”，因此连接成功。而如果一个人试图将一个文本块（输出类型为’String’）插入数学块，那么这两种类型将不匹配，并且连接将拒绝连接。</p>
+<p>“ength of”类似，除了它需要能够接受文本块或列表块。因此，不是一个字符串，它的输入类型被设置为两个选项的数组：</p>
+<blockquote>
+<p><strong>json</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;text_length&quot;,</div><div class="line">  // ...</div><div class="line">  &quot;args0&quot;: [</div><div class="line">      // ...</div><div class="line">      &#123;</div><div class="line">        &quot;type&quot;: &quot;input_value&quot;,</div><div class="line">        &quot;name&quot;: &quot;VALUE&quot;,</div><div class="line">        &quot;check&quot;: [&quot;String&quot;, &quot;Array&quot;]</div><div class="line">      &#125;</div><div class="line">  ],</div><div class="line">  &quot;output&quot;: &quot;Number&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>js</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Blockly.Blocks[&apos;text_length&apos;] = &#123;</div><div class="line">  init: function() &#123;</div><div class="line">    // ...</div><div class="line">    this.appendValueInput(&apos;VALUE&apos;).setCheck([&apos;String&apos;, &apos;Array&apos;]);</div><div class="line">    this.setOutput(true, &apos;Number&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-6433533aeebb3742.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>块可以想象地返回两种或更多种类型中的一种。虽然在Blockly中没有当前的例子，但是通过将输出类型设置为类型数组来支持。如果输入中的任何单个类型与输出中的类型匹配，则可以连接块。</p>
+<p>变量是可以保存任何类型的值块的示例。因此，它们的类型设置为null，表示通配符：</p>
+<blockquote>
+<p><strong>json</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;variable_get&quot;,</div><div class="line">  // ...</div><div class="line">  &quot;output&quot;: null</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>js</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Blockly.Blocks[&apos;variable_get&apos;] = &#123;</div><div class="line">  init: function() &#123;</div><div class="line">    // ...</div><div class="line">    // Second parameter for type is optional, and null is the default.</div><div class="line">    this.setOutput(true);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-50cc9da3efb2e589.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>允许将块插入任何输入，而不管输入的类型。</p>
+<p>请注意，Blockly（’Number’，’Boolean’，’String’，’Array’，’Color’）中使用的类型字符串是完全任意的。任何字符串都是可接受的，并且新的字符串可以是专门的。只是确保输出和输入之间的一致性。</p>
+<p>##语句堆栈</p>
+<hr>
+<p>以与输入和输出的水平连接可以类型相同的方式，垂直语句堆栈也可以具有类型信息。大多数编码应用程序不会使用此功能，因为任何语句通常可以遵循任何其他语句。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-ef1d4b9f438bfb09.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>类型语句连接的一个罕见示例可以在Blockly开发工具的Block Factory选项卡中看到。注意，字段块可以不被堆叠在输入块应该去的地方，并且输入块可以不被堆叠在字段块应该去的地方。</p>
+<p>有三个地方定义了类型化语句：一个块的上一个和下一个连接，以及一个语句输入的连接。它们定义块的顶部和底部的堆叠槽口，它们只能连接到其槽口未设置类型或其槽口包含至少一个匹配类型的块。</p>
+<p>以下示例演示“Mouse”和“Rat”类型，其中可以将任一类型的块添加到语句输入RODENTS。然而，这个玩具例子不支持啮齿动物列表中的老鼠和鼠。</p>
+<blockquote>
+<p><strong>json</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;append_mouse&quot;,</div><div class="line">  &quot;message0&quot;: &quot;Mouse&quot;,</div><div class="line">  &quot;previousStatement&quot;: &quot;Mouse&quot;,</div><div class="line">  &quot;nextStatement&quot;: &quot;Mouse&quot;</div><div class="line">&#125;,</div><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;rodent_list&quot;,</div><div class="line">  &quot;message0&quot;: &quot;Rodents %1&quot;,</div><div class="line">  &quot;args0&quot;: [</div><div class="line">      &#123;</div><div class="line">        &quot;type&quot;: &quot;input_statement&quot;,</div><div class="line">        &quot;name&quot;: &quot;RODENTS&quot;,</div><div class="line">        &quot;check&quot;: [&quot;Mouse&quot;, &quot;Rat&quot;]</div><div class="line">      &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>js</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Blockly.Blocks[&apos;append_mouse&apos;] = &#123;</div><div class="line">  init: function() &#123;</div><div class="line">    this.appendDummyInput().appendField(&apos;Mouse&apos;);</div><div class="line">    this.setPreviousStatement(true, &apos;Mouse&apos;);</div><div class="line">    this.setNextStatement(true, &apos;Mouse&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">Blockly.Blocks[&apos;rodent_list&apos;] = &#123;</div><div class="line">  init: function() &#123;</div><div class="line">    this.appendDummyInput().appendField(&apos;Rodents&apos;);</div><div class="line">    this.appendStatementInput(&apos;RODENTS&apos;)</div><div class="line">        .setCheck([&apos;Mouse&apos;, &apos;Rat&apos;]);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-9a6d9f5fad40cd3f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/12/06/创建自定义块---类型检查/"></a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">xushun</a></p>
+        <p><span>发布时间:</span>2016-12-06, 13:14:15</p>
+        <p><span>最后更新:</span>2016-12-06, 13:14:15</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/12/06/创建自定义块---类型检查/" title="">http://yoursite.com/2016/12/06/创建自定义块---类型检查/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/12/06/创建自定义块---类型检查/　　作者: xushun" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/12/06/创建自定义块---样式指南/">
+                    
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/12/06/创建自定义块---缓存参数/">
+                    
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"　| mimimomo的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/12/06/创建自定义块---样式指南/" title="上一篇: ">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/12/06/创建自定义块---缓存参数/" title="下一篇: ">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---生成代码/">创建自定义块---生成代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/Overview/">Overview</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/Contents／目录/">Contents／目录</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/修改块---android---代码样式/">修改块---android---代码样式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/修改块---单元测试/">修改块---单元测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/修改块---blockly的未来/">修改块---blockly的未来</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/修改块---贡献/">修改块---贡献</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---块范例/">创建自定义块---块范例</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---块开发工具/">创建自定义块---块开发工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---定义块/">创建自定义块---定义块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---概述/">创建自定义块---概述</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/Get-Started---Android/">Get-Started---Android</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---样式指南/">创建自定义块---样式指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---类型检查/">创建自定义块---类型检查</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---缓存参数/">创建自定义块---缓存参数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---运算符优先级/">创建自定义块---运算符优先级</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/应用程序集成---生成和运行Javascript/">应用程序集成---生成和运行Javascript</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/百度/">百度</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/配置块---使用自定义JavaScript生成器/">配置块---使用自定义JavaScript生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/应用程序集成---自定义块：最佳实践/">应用程序集成---自定义块：最佳实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/配置块---工具箱/">配置块---工具箱</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/配置块---添加自定义块/">配置块---添加自定义块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/配置块---自定义活动布局/">配置块---自定义活动布局</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 xushun
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

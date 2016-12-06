@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="xushun" />
+
+
+
+<meta name="description" content="Create Custom Blocks - Define Blocks
+
+原文链接：https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks
+
+块定义描述块的外观和行为，包括文本，颜色，形状，以及可以连接到的其他块。一旦定义了自定义块，每个平台都会以不同的方式加载这些定义，详细信息请参见web和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mimimomo的博客">
+<meta property="og:url" content="http://yoursite.com/2016/12/06/创建自定义块---定义块/index.html">
+<meta property="og:site_name" content="mimimomo的博客">
+<meta property="og:description" content="Create Custom Blocks - Define Blocks
+
+原文链接：https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks
+
+块定义描述块的外观和行为，包括文本，颜色，形状，以及可以连接到的其他块。一旦定义了自定义块，每个平台都会以不同的方式加载这些定义，详细信息请参见web和">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-c065c4b1f2b72366.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-e90f4260fb6a1ba4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-aa10d9ad38f20f41.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-b5d8d0f0bb68f191.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-70998b995e30f98a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-33928ff370b13cf9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-b87309432d1e84c7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-df282b838e1b5e2b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-d0aad04dcde8a03a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-4dd8e843dc0273a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-9de6f84bcf1cb510.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-39161bf54fb15218.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-a9a41e1f9dabcd72.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-aeffedd66e2efafe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-107fb1900a58b36b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-fb854d40f2e7ad53.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-3e3edfbc6467b233.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-b2ff02cb43464738.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-6267f847eca34acc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-8f3c37091ed6683a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-f84ddaf06a40a5a4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-47832becc9603638.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-12ec9ff45e3f7a85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-aac5672f2b59c97f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-3012ef603a4f1440.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-4cf102b2c0d82142.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-ba321031a2e22b23.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-ff251fd25c432dbe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2016-12-06T05:14:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mimimomo的博客">
+<meta name="twitter:description" content="Create Custom Blocks - Define Blocks
+
+原文链接：https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks
+
+块定义描述块的外观和行为，包括文本，颜色，形状，以及可以连接到的其他块。一旦定义了自定义块，每个平台都会以不同的方式加载这些定义，详细信息请参见web和">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2433593-c065c4b1f2b72366.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="mimimomo的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>mimimomo的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">xushun</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">xushun</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">xushun</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-创建自定义块---定义块" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/06/创建自定义块---定义块/" class="article-date">
+      <time datetime="2016-12-06T05:14:15.000Z" itemprop="datePublished">2016-12-06</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Create Custom Blocks - Define Blocks</p>
+<blockquote>
+<p>原文链接：<a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks" target="_blank" rel="external">https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks</a></p>
+</blockquote>
+<p>块定义描述块的外观和行为，包括文本，颜色，形状，以及可以连接到的其他块。一旦定义了自定义块，每个平台都会以不同的方式加载这些定义，详细信息请参见<a href="https://developers.google.com/blockly/guides/configure/web/custom-blocks" target="_blank" rel="external">web</a>和<a href="https://developers.google.com/blockly/guides/configure/android/add-custom-blocks" target="_blank" rel="external">Android</a>特定的配置指南。</p>
+<blockquote>
+<p>注意：大多数块可以使用<a href="https://developers.google.com/blockly/guides/create-custom-blocks/blockly-developer-tools" target="_blank" rel="external">Blockly Developer Tools</a>定义，而不是手动创建下面的代码。</p>
+</blockquote>
+<p>##JSON格式与JavaScript API</p>
+<hr>
+<p>Blockly有两种定义块的方法。 JSON格式是跨平台的，因此相同的代码可用于定义网络，Android和iOS上的块。此外，JSON格式旨在简化为不同字排序的语言开发时的国际化过程。 JSON格式是定义块的首选方法。<br>但是，JSON格式无法定义高级功能，例如mutator或验证器。使用这些更复杂的功能的Web上的块需要使用JavaScript API进行定义。正在为其他平台开发单独的API，但目前不可用。</p>
+<blockquote>
+<p><strong>JS</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Blockly.Blocks[&apos;string_length&apos;] = &#123;</div><div class="line"> init: function() &#123;</div><div class="line">   this.appendValueInput(&apos;VALUE&apos;)</div><div class="line">       .setCheck(&apos;String&apos;)</div><div class="line">       .appendField(&apos;length of&apos;);</div><div class="line">   this.setOutput(true, &apos;Number&apos;);</div><div class="line">   this.setColour(160);</div><div class="line">   this.setTooltip(&apos;Returns number of letters in the provided text.&apos;);</div><div class="line">   this.setHelpUrl(&apos;http://www.w3schools.com/jsref/jsref_length_string.asp&apos;);</div><div class="line"> &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>JSON<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"> &quot;type&quot;: &quot;string_length&quot;,</div><div class="line"> &quot;message0&quot;: &apos;length of %1&apos;,</div><div class="line"> &quot;args0&quot;: [</div><div class="line">   &#123;</div><div class="line">     &quot;type&quot;: &quot;input_value&quot;,</div><div class="line">     &quot;name&quot;: &quot;VALUE&quot;,</div><div class="line">     &quot;check&quot;: &quot;String&quot;</div><div class="line">   &#125;</div><div class="line"> ],</div><div class="line"> &quot;output&quot;: &quot;Number&quot;,</div><div class="line"> &quot;colour&quot;: 160,</div><div class="line"> &quot;tooltip&quot;: &quot;Returns number of letters in the provided text.&quot;,</div><div class="line"> &quot;helpUrl&quot;: &quot;http://www.w3schools.com/jsref/jsref_length_string.asp&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>两个示例加载相同的“string_length”块。<br><img src="http://upload-images.jianshu.io/upload_images/2433593-c065c4b1f2b72366.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="">在Web上，使用initJson函数加载JSON格式。这也允许在Blockly网页中混合两种格式。最好尽可能使用JSON定义块，并且仅对JSON不支持的块定义的一部分使用JavaScript。面是一个块的示例，该块主要使用JSON定义，但使用JavaScript API扩展以包含动态工具提示。</p>
+<blockquote>
+<p><strong>JavaScript</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var mathChangeJson = &#123;</div><div class="line"> &quot;message0&quot;: &quot;change %1 by %2&quot;,</div><div class="line"> &quot;args0&quot;: [</div><div class="line">   &#123;&quot;type&quot;: &quot;field_variable&quot;, &quot;name&quot;: &quot;VAR&quot;, &quot;variable&quot;: &quot;item&quot;&#125;,</div><div class="line">   &#123;&quot;type&quot;: &quot;input_value&quot;, &quot;name&quot;: &quot;DELTA&quot;, &quot;check&quot;: &quot;Number&quot;&#125;</div><div class="line"> ],</div><div class="line"> &quot;previousStatement&quot;: null,</div><div class="line"> &quot;nextStatement&quot;: null,</div><div class="line"> &quot;colour&quot;: 230</div><div class="line">&#125;;</div><div class="line">​</div><div class="line">Blockly.Blocks[&apos;math_change&apos;] = &#123;</div><div class="line"> init: function() &#123;</div><div class="line">   this.jsonInit(mathChangeJson);</div><div class="line">   // Assign &apos;this&apos; to a variable for use in the tooltip closure below.</div><div class="line">   var thisBlock = this;</div><div class="line">   this.setTooltip(function() &#123;</div><div class="line">     return &apos;Add a number to variable &quot;%1&quot;.&apos;.replace(&apos;%1&apos;,</div><div class="line">         thisBlock.getFieldValue(&apos;VAR&apos;));</div><div class="line">   &#125;);</div><div class="line"> &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>##块颜色</p>
+<hr>
+<blockquote>
+<p>JSON<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"> // ...,</div><div class="line"> &quot;colour&quot;: 160,</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>JavaScript<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">init: function() &#123;</div><div class="line"> // ...</div><div class="line"> this.setColour(160);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Blockly使用色相饱和度值<a href="https://en.wikipedia.org/wiki/HSL_and_HSV" target="_blank" rel="external">Hue-Saturation-Value</a>（HSV）颜色模型。饱和度和值硬编码为Blockly，而Hue在每个块上定义。这确保开发人员有自由从各种各样的颜色中作出选择，同时仍然保证所有的块将在视觉上搭配在一起。它还允许通过简单地调整两个硬编码的饱和度和值常数来使整个Blockly外观和感觉变得更亮（对于儿童）或更令人暗（对于商业）。<img src="http://upload-images.jianshu.io/upload_images/2433593-e90f4260fb6a1ba4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="">要找到一个好的颜色，请访问此HSV选取器<a href="http://www.rapidtables.com/web/color/color-picker.htm" target="_blank" rel="external">HSV picker</a>，输入Blockly的饱和度和值常数（默认值分别为45％和65％），然后根据需要滑动色相。将此Hue值用作this.setColour函数的参数。注意英国的拼写。未能设置颜色会导致黑色块。</p>
+<p>##语句连接</p>
+<hr>
+<p>用户可以使用<code>nextStatement</code>和<code>prevStatement</code>连接器创建块序列。在Blockly的标准布局中，这些连接在顶部和底部，垂直堆叠的块。<br>具有先前连接器的块不能具有输出连接器<a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks#block_output" target="_blank" rel="external">output connector</a>，反之亦然。术语语句块是指没有值输出的块。语句块通常具有前一个连接和下一个连接。<br>nextStatement<br>和prevStatement<br>连接可以打字，但标准块不使用此功能。</p>
+<p>####下一个连接<br>在块的底部创建一个点，以便其他语句可以堆叠在其下面。具有下一个连接但没有先前连接的块通常表示一个事件，并且可以配置为使用帽子<a href="https://developers.google.com/blockly/guides/create-custom-blocks/block-paradigms#event_driven_program" target="_blank" rel="external">a hat</a>进行渲染。<br><img src="http://upload-images.jianshu.io/upload_images/2433593-aa10d9ad38f20f41.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p><strong>JSON</strong><br>Untyped:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123; </div><div class="line">   ...,  </div><div class="line"> &quot;nextStatement&quot;: null,</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>Typed(rare)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;  </div><div class="line"> &quot;nextStatement&quot;: &quot;Action&quot;,  </div><div class="line"> ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>JavaScript</strong>Untyped<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">this.setNextStatement(true);  // false implies no next connector, the default</div></pre></td></tr></table></figure></p>
+<p>Typed(rare)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">this.setNextStatement(true, &apos;Action&apos;);</div></pre></td></tr></table></figure></p>
+<p>####上一个连接<br>在块的顶部创建一个缺口，以便它可以作为堆栈语句连接。具有先前连接的块不能具有输出连接。<br><img src="http://upload-images.jianshu.io/upload_images/2433593-b5d8d0f0bb68f191.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p><strong>JSON</strong><br>Untyped:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123; </div><div class="line">   ...,  </div><div class="line"> &quot;prevStatement&quot;: null,</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>Typed(rare)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;  </div><div class="line"> &quot;prevStatement&quot;: &quot;Action&quot;,  </div><div class="line"> ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>JavaScript</strong><br>Untyped<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">this.setPreviousStatement(true);  // false implies no previous connector, the default</div></pre></td></tr></table></figure></p>
+<p>Typed (rare):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">this.setPreviousStatement(true, &apos;Action&apos;);</div></pre></td></tr></table></figure></p>
+<p>##块输出</p>
+<p>块可以具有单个输出，在前缘上表示为公头连接器。输出连接到值输入。具有输出的块通常称为值块。<br><img src="http://upload-images.jianshu.io/upload_images/2433593-70998b995e30f98a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p><strong>JSON</strong>Untyped<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"> // ...,</div><div class="line"> &quot;output&quot;: null,</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>Typed<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"> // ...,</div><div class="line"> &quot;output&quot;: &quot;Number&quot;,</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>JavaScript</strong><br>Untyped<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">init: function() &#123;</div><div class="line"> // ..</div><div class="line"> this.setOutput(true);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Typed<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">init: function() &#123;</div><div class="line"> // ...</div><div class="line"> this.setOutput(true, &apos;Number&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>具有输出连接器的块也不能具有先前的语句缺口。<br>块输入</p>
+<p>块具有一个或多个输入，其中每个输入是可以在连接中结束的标签和字段的序列。有三种类型的输入，匹配连接类型：<br>值输入：连接到值块的输出连接<a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks#block_output" target="_blank" rel="external">output connection</a>。 math_arithmetic块（加法，减法）是具有两个值输入的块的示例。</p>
+<p>语句输入：连接到语句块的先前连接<a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks#previous_connection" target="_blank" rel="external">previous connection</a>。 while循环的嵌套部分是语句输入的示例。</p>
+<p>虚拟输入：没有块连接。当块配置为使用外部值输入时，其行为类似于换行。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-33928ff370b13cf9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="">JSON格式和JavaScript API使用稍微不同的模型来描述其输入。<br>JSON中的输入和字段<br>JSON定义的块被构造为内插消息字符串（message0，message1，…）的序列，其中每个内插令牌（％1，％2，…）是字段或输入端呈现，在消息内）在匹配的JSON argsN数组。这种格式旨在使国际化容易。</p>
+<blockquote>
+<p><strong>JSON</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"> &quot;message0&quot;: &quot;set %1 to %2&quot;,</div><div class="line"> &quot;args0&quot;: [</div><div class="line">   &#123;</div><div class="line">     &quot;type&quot;: &quot;field_variable&quot;,</div><div class="line">     &quot;name&quot;: &quot;VAR&quot;,</div><div class="line">     &quot;variable&quot;: &quot;item&quot;</div><div class="line">   &#125;,</div><div class="line">   &#123;</div><div class="line">     &quot;type&quot;: &quot;input_value&quot;,</div><div class="line">     &quot;name&quot;: &quot;VALUE&quot;</div><div class="line">   &#125;</div><div class="line"> ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-b87309432d1e84c7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="">内插令牌必须完全匹配args0数组：没有重复，没有省略。令牌可以以任何顺序存在，这允许不同的语言改变块的布局。<br>插值令牌的任一边的文本被空白修剪。使用字符％<br>（例如，当引用百分比时）的文本应使用%%<br>，以便它不会被解释为插值令牌。<br>参数和参数类型的顺序定义块的形状。更改这些字符串之一可以完全更改块的布局。这在具有与英语不同的词序的语言中尤其重要。考虑一种假设的语言，其中“设置％1到％2”（如上面的例子中所使用的）需要颠倒表示“在％1中放置％2”<br>更改此一个字符串（并保持JSON的其余部分不变）结果显示如下块：<br><img src="http://upload-images.jianshu.io/upload_images/2433593-df282b838e1b5e2b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>Blockly自动更改字段的顺序，创建虚拟输入，并从外部输入切换到内部输入。<br><strong>Args</strong><br>每个消息字符串与相同数字的args数组配对。例如，message0与args0一起传递。插值令牌（％1，％2，…）引用args数组的项。每个对象都有一个类型字符串。每个对象都有一个类型字符串。其余参数根据类型而异：<br><a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks#fields" target="_blank" rel="external"><strong>Fields</strong></a></p>
+<p><a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks#text_field" target="_blank" rel="external">field_input
+</a></p>
+<p><a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks#drop-down_field" target="_blank" rel="external">field_dropdown
+</a></p>
+<p><a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks#checkbox_picker" target="_blank" rel="external">field_checkbox
+</a></p>
+<p><a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks#colour_picker_field" target="_blank" rel="external">field_colour
+</a></p>
+<p><a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks#number_field" target="_blank" rel="external">field_number
+</a></p>
+<p><a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks#angle_field" target="_blank" rel="external">field_angle
+</a></p>
+<p><a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks#variable_field" target="_blank" rel="external">field_variable
+</a></p>
+<p><a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks#date_field" target="_blank" rel="external">field_date
+</a></p>
+<p><a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks#label" target="_blank" rel="external">field_label
+</a></p>
+<p><a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks#image" target="_blank" rel="external">field_image
+</a></p>
+<p><a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks#block_inputs" target="_blank" rel="external"><strong>Inputs</strong></a></p>
+<p>input_value</p>
+<p>input_statement</p>
+<p>input_dummy</p>
+<p>每个对象也可以有一个alt字段。在Blockly不能识别对象的类型的情况下，alt对象在其位置被使用。例如，如果名为field_time的新字段添加到Blockly，使用此字段的块可以使用alt为旧版本的Blockly定义field_input fallback：</p>
+<blockquote>
+<p><strong>JSON</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;message0&quot;: &quot;sound alarm at %1&quot;,</div><div class="line">  &quot;args0&quot;: [</div><div class="line">    &#123;</div><div class="line">      &quot;type&quot;: &quot;field_time&quot;,</div><div class="line">      &quot;name&quot;: &quot;TEMPO&quot;,</div><div class="line">      &quot;hour&quot;: 9,</div><div class="line">      &quot;minutes&quot;: 0,</div><div class="line">      &quot;alt&quot;:</div><div class="line">        &#123;</div><div class="line">          &quot;type&quot;: &quot;field_input&quot;,</div><div class="line">          &quot;name&quot;: &quot;TEMPOTEXT&quot;,</div><div class="line">          &quot;text&quot;: &quot;9:00&quot;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>alt对象可以具有其自己的alt对象，从而允许链接。最终，如果Blockly不能在args0数组中创建一个对象（在尝试任何alt对象之后），那么该对象被简单地跳过。<br>如果消息字符串以不包含在输入中的文本或字段结尾，则虚拟输入将自动添加到块的末尾。因此，如果块上的最后一个输入是虚拟输入，则它可以从args数组中省略，并且不需要对消息进行插值。自动添加尾部虚拟输入允许翻译者更改消息，而无需修改JSON的其余部分。请参见本页前面的“设置％1到％2”（无虚拟输入）和“在％1中放置％2”（添加虚拟输入）的示例。</p>
+<p><strong>lastDummyAlign0</strong><br>在极少数情况下，自动创建的尾随虚拟输入需要与“RIGHT”或“CENTER”对齐。如果未指定，则默认值为“LEFT”。</p>
+<p>在下面的示例中，message0是“send email to %1 subject %2 secure %3”，Blockly自动为第三行添加一个虚拟输入。将lastDummyAlign0设置为“RIGHT”会强制此行对齐。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-d0aad04dcde8a03a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>当设计RTL（阿拉伯语和希伯来语）的块时，左右相反。因此，“右”将字段向左对齐。</p>
+<p><strong>message1，args1，lastDummyAlign1</strong><br>一些块自然地分成两个或更多个单独的部分。考虑这个具有两行的重复块：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-4dd8e843dc0273a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>如果使用单个消息描述此块，则message0属性将为“repeat %1 times %2 do %3”。这个字符串对于翻译者来说很尴尬，很难解释％2替换是什么意思。 ％2虚拟输入在某些语言中甚至可能不需要。并且可能存在希望共享第二行的文本的多个块。一个更好的方法是JSON使用多个消息和args属性：</p>
+<blockquote>
+<p><strong>JSON</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;controls_repeat_ext&quot;,</div><div class="line">  &quot;message0&quot;: &quot;repeat %1 times&quot;,</div><div class="line">  &quot;args0&quot;: [</div><div class="line">    &#123;&quot;type&quot;: &quot;input_value&quot;, &quot;name&quot;: &quot;TIMES&quot;, &quot;check&quot;: &quot;Number&quot;&#125;</div><div class="line">  ],</div><div class="line">  &quot;message1&quot;: &quot;do %1&quot;,</div><div class="line">  &quot;args1&quot;: [</div><div class="line">    &#123;&quot;type&quot;: &quot;input_statement&quot;, &quot;name&quot;: &quot;DO&quot;&#125;</div><div class="line">  ],</div><div class="line">  &quot;previousStatement&quot;: null,</div><div class="line">  &quot;nextStatement&quot;: null,</div><div class="line">  &quot;colour&quot;: 120</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>任何数量的message，args和lastDummyAlign属性都可以以JSON格式定义，从0开始并按顺序递增。请注意，块工厂不能将消息拆分为多个部分，但手动这样做是直接的。</p>
+<p>####JavaScript中的输入和字段<br>JavaScript API包含每个输入类型的附加方法“</p>
+<blockquote>
+<p><strong>JavaScript</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">this.appendDummyInput()</div><div class="line">    .appendField(&apos;for each&apos;)</div><div class="line">    .appendField(&apos;item&apos;)</div><div class="line">    .appendField(new Blockly.FieldVariable());</div><div class="line">this.appendValueInput(&apos;LIST&apos;)</div><div class="line">    .setCheck(&apos;Array&apos;)</div><div class="line">    .setAlign(Blockly.ALIGN_RIGHT)</div><div class="line">    .appendField(&apos;in list&apos;);</div><div class="line">this.appendStatementInput(&apos;DO&apos;)</div><div class="line">    .appendField(&apos;do&apos;);</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-9de6f84bcf1cb510.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>每个方法可以采用标识符字符串，由代码生成器使用。虚拟输入很少需要引用，并且标识符通常未设置。</p>
+<p>如上所述，每个方法通过方法链接返回用于配置的输入对象。有三个功能用于配置输入。</p>
+<h5 id="setCheck"><a href="#setCheck" class="headerlink" title="setCheck"></a>setCheck</h5><blockquote>
+<p><strong><strong>JavaScript</strong></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">input.setCheck(&apos;Number&apos;);</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>此可选功能用于连接输入的类型检查。如果给定一个参数null，默认值，那么这个输入可以连接到任何块。有关详细信息，请参阅类型检查<a href="https://developers.google.com/blockly/guides/create-custom-blocks/type-checks" target="_blank" rel="external">Type Checks</a>。</p>
+<h5 id="setAlign"><a href="#setAlign" class="headerlink" title="setAlign"></a>setAlign</h5><blockquote>
+<p><strong>JavaScript</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">input.setAlign(Blockly.ALIGN_RIGHT);</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>此可选功能用于对齐字段（见下文）。有三个自描述值可以作为参数传递给此函数：Blockly.ALIGN_LEFT，Blockly.ALIGN_RIGHT和Blockly.ALIGN_CENTRE。注意英语拼写的“centre”。左对齐是默认值。当设计RTL（阿拉伯语和希伯来语）的块时，左右相反。因此Blockly.ALIGN_RIGHT将字段向左对齐。</p>
+<h4 id="appendField"><a href="#appendField" class="headerlink" title="appendField"></a>appendField</h4><p>一旦输入已经创建并且通过appendInput附加到块，可以可选地向输入附加任意数量的字段<a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks#fields" target="_blank" rel="external">fields</a>。这些字段通常用作标签来描述每个输入的用途。</p>
+<blockquote>
+<p>JavaScript<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">input.appendField(&apos;hello&apos;);</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-39161bf54fb15218.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>最简单的字段元素是文本。 Blockly的惯例是使用所有小写文本，除了专有名称（例如Google，SQL）。</p>
+<p>输入行可以包含任意数量的字段元素。多个appendField调用可以链接在一起，以有效地将多个字段添加到同一输入行。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-a9a41e1f9dabcd72.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><code>appendField（&#39;hello&#39;</code>）调用实际上是一个使用显式FieldLabel构造函数的快捷方式：<code>appendField（new Blockly.FieldLabel（&#39;hello&#39;））</code>。唯一需要使用构造函数的时间是指定一个类名，以便可以使用CSS规则对文本进行样式化。</p>
+<p>####Inline vs. External<br>块输入可以呈现为外部或内部.</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-aeffedd66e2efafe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>块定义可以指定一个可选的布尔值，控制输入是否为内联。如果为false，则任何值输入都将是外部的（例如左块）。如果为true，则任何值输入都将是内联的（例如上面的右框）.</p>
+<blockquote>
+<p><strong>JSON</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  // ...,</div><div class="line">  &quot;inputsInline&quot;: true</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>JavaScript<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">init: function() &#123; </div><div class="line">   // ...  this.setInputsInline(true);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果没有定义，Blockly将使用一些启发式来猜测哪种模式是最好的。假设Blockly做出正确的选择，留下这个字段未定义是优选的，因为不同的语言翻译可以自动具有不同的模式。请参见本页前面的“set %1 to %2”（外部输入）和“put %2 in %1”（内联输入）的JSON示例。</p>
+<p>##Fields 字段</p>
+<hr>
+<p>字段定义块中的UI元素。这些包括字符串标签，图像和字符数据<a href="https://en.wikipedia.org/wiki/Literal_(computer_programming" target="_blank" rel="external">literal</a>)（例如字符串和数字）的输入。最简单的示例是math_number块，可以是field_input（web）或field_number（Android）键入数字。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-107fb1900a58b36b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>大多数字段都有一个名称字符串，用于在代码生成期间引用它们.</p>
+<p>####Lable<br>标签字符串为其他字段和输入提供上下文。他们是如此常见和内在的翻译，他们有自己的符号。</p>
+<blockquote>
+<p><strong>JSON</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;example_label&quot;,</div><div class="line">  &quot;message0&quot;: &quot;a label %1 and another label&quot;,</div><div class="line">  &quot;args0&quot;: [</div><div class="line">    &#123;</div><div class="line">      &quot;type&quot;: &quot;input_dummy&quot;</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>插值参数之间的任何消息文本都将成为标签字符串。或者，可以明确地将标签内插为对象或文本。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;example_label&quot;,</div><div class="line">  &quot;message0&quot;: &quot;%1 %2 %3&quot;,</div><div class="line">  &quot;args0&quot;: [</div><div class="line">    &#123;</div><div class="line">      &quot;type&quot;: &quot;field_label&quot;,</div><div class="line">      &quot;text&quot;: &quot;a label&quot;</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">      &quot;type&quot;: &quot;input_dummy&quot;</div><div class="line">    &#125;,</div><div class="line">    &quot;and another label&quot;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>JavaScript</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Blockly.Blocks[&apos;example_label&apos;] = &#123;</div><div class="line">  init: function() &#123;</div><div class="line">    this.appendDummyInput()</div><div class="line">        .appendField(new Blockly.FieldLabel(&apos;a label&apos;));</div><div class="line">    this.appendDummyInput()</div><div class="line">        .appendField(&apos;and another label&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-fb854d40f2e7ad53.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>当明确添加时，作者可以包括CSS样式名称以在Blockly for Web上自定义视图。</p>
+<blockquote>
+<p><strong>JSON</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;example_styled_label&quot;,</div><div class="line">  &quot;message0&quot;: &quot;%1&quot;,</div><div class="line">  &quot;args0&quot;: [</div><div class="line">    &#123;</div><div class="line">      &quot;type&quot;: &quot;field_label&quot;,</div><div class="line">      &quot;text&quot;: &quot;Styled label&quot;,</div><div class="line">      &quot;class&quot;: &quot;style-name&quot;</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>JavaScript</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Blockly.Blocks[&apos;example_styled_label&apos;] = &#123;</div><div class="line">  init: function() &#123;</div><div class="line">    this.appendDummyInput()</div><div class="line">        .appendField(new Blockly.FieldLabel(&apos;Styled label&apos;, &apos;style-name&apos;));</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-3e3edfbc6467b233.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>####Image图片<br>像标签一样，图像通常是静态指示符，而不是输入字段。</p>
+<blockquote>
+<p><strong>JSON</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;example_image&quot;,</div><div class="line">  &quot;message0&quot;: &quot;image: %1&quot;,</div><div class="line">  &quot;args0&quot;: [</div><div class="line">    &#123;</div><div class="line">      &quot;type&quot;: &quot;field_image&quot;,</div><div class="line">      &quot;src&quot;: &quot;https://www.gstatic.com/codesite/ph/images/star_on.gif&quot;,</div><div class="line">      &quot;width&quot;: 15,</div><div class="line">      &quot;height&quot;: 15,</div><div class="line">      &quot;alt&quot;: &quot;*&quot;</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>JavaScript</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">```Blockly.Blocks[&apos;example_labels&apos;] = &#123;</div><div class="line">  init: function() &#123;</div><div class="line">    this.appendDummyInput()</div><div class="line">        .appendField(&quot;image:&quot;)</div><div class="line">        .appendField(new Blockly.FieldImage(&quot;https://www.gstatic.com/codesite/ph/images/star_on.gif&quot;, 15, 15, &quot;*&quot;));</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-b2ff02cb43464738.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>使用图像URL和所需的高度和宽度创建FieldImage对象。图像将缩放到指定的尺寸，同时保留宽高比。该块将根据需要扩展以容纳图像。可选的第四个参数指定在块被折叠时使用的替代文本。<br>图片网址可以是相对的。在Web上，配置<code>Blockly.pathToBlockly</code>以指定Blockly的根目录。在Android上，相对网址被视为<br>[asset path]<br>（<a href="https://developer.android.com/reference/android/content/res/AssetManager.html#open（java.lang.String）。" target="_blank" rel="external">https://developer.android.com/reference/android/content/res/AssetManager.html#open（java.lang.String）。</a></p>
+<h4 id="文本域Text-Field"><a href="#文本域Text-Field" class="headerlink" title="文本域Text Field"></a>文本域Text Field</h4><p>文本输入允许用户输入文本。</p>
+<blockquote>
+<p><strong>Json</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;example_textinput&quot;,</div><div class="line">  &quot;message0&quot;: &quot;text input: %1&quot;,</div><div class="line">  &quot;args0&quot;: [</div><div class="line">    &#123;</div><div class="line">      &quot;type&quot;: &quot;field_input&quot;,</div><div class="line">      &quot;name&quot;: &quot;FIELDNAME&quot;,</div><div class="line">      &quot;text&quot;: &quot;default text&quot;</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>JavaScript</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Blockly.Blocks[&apos;example_textinput&apos;] = &#123;</div><div class="line">  init: function() &#123;</div><div class="line">    this.appendDummyInput()</div><div class="line">        .appendField(&quot;text input:&quot;);</div><div class="line">        .appendField(new Blockly.FieldTextInput(&apos;default text&apos;),</div><div class="line">                     &apos;FIELDNAME&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-6267f847eca34acc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>可选地，JavaScript FieldTextInput构造函数还可以接受第二个参数，该参数将成为验证函数或更改处理程序。有关重写用户输入的位置的示例，请参阅<code>math_number</code>。</p>
+<p>默认情况下，文本输入是拼写检查，但可以选择关闭：</p>
+<blockquote>
+<p><strong>Json</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;example_nospellcheck&quot;,</div><div class="line">  &quot;message0&quot;: &quot;no spell check: %1&quot;,</div><div class="line">  &quot;args0&quot;: [</div><div class="line">    &#123;</div><div class="line">      &quot;type&quot;: &quot;field_input&quot;,</div><div class="line">      &quot;name&quot;: &quot;FIELDNAME&quot;,</div><div class="line">      &quot;text&quot;: &quot;default text&quot;,</div><div class="line">      &quot;spellcheck&quot;: false</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>JavaScript</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Blockly.Blocks[&apos;example_nospellcheck&apos;] = &#123;</div><div class="line">  init: function() &#123;</div><div class="line">    var textInput = new Blockly.FieldTextInput(&apos;default text&apos;);</div><div class="line">    textInput.setSpellcheck(false);</div><div class="line">    this.appendDummyInput()</div><div class="line">        .appendField(&quot;text input:&quot;);</div><div class="line">        .appendField(textInput, &apos;FIELDNAME&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>####下拉字段Drop-down Field</p>
+<blockquote>
+<p><strong>Json</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;example_dropdown&quot;,</div><div class="line">  &quot;message0&quot;: &quot;drop down: %1&quot;,</div><div class="line">  &quot;args0&quot;: [</div><div class="line">    &#123;</div><div class="line">      &quot;type&quot;: &quot;field_dropdown&quot;,</div><div class="line">      &quot;name&quot;: &quot;FIELDNAME&quot;,</div><div class="line">      &quot;options&quot;: [</div><div class="line">        [ &quot;first item&quot;, &quot;ITEM1&quot; ],</div><div class="line">        [ &quot;second item&quot;, &quot;ITEM2&quot; ]</div><div class="line">      ]</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>js</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Blockly.Blocks[&apos;example_dropdown&apos;] = &#123;</div><div class="line">  init: function() &#123;</div><div class="line">    this.appendDummyInput()</div><div class="line">        .appendField(&apos;drop down:&apos;);</div><div class="line">        .appendField(new Blockly.FieldDropdown([</div><div class="line">                       [&apos;first item&apos;, &apos;ITEM1&apos;],</div><div class="line">                       [&apos;second item&apos;, &apos;ITEM2&apos;]</div><div class="line">                     ]),</div><div class="line">                     &apos;FIELDNAME&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-8f3c37091ed6683a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>下拉字段的项目列表由两部分列表的列表指定。每个内部列表的第一项是人类可读的名称;第二个是项目标识符字符串。<br>在Blockly for Web中，如果所有人类可读的字符串共享一些前缀或后缀，那么这些字符串将在下拉之前或之后作为标签提取。这允许前缀/后缀标签位置适应语言约定。此功能将在不久的将来移植到Android。</p>
+<blockquote>
+<p>注意：有关详细信息，请参阅下拉菜单<a href="https://developers.google.com/blockly/guides/create-custom-blocks/dropdown-menus" target="_blank" rel="external">Drop-Down Menus</a>。</p>
+</blockquote>
+<p>####复选框字段 Checkbox Field<br>复选框字段提供布尔输入。</p>
+<blockquote>
+<p><strong>Json</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;example_checkbox&quot;,</div><div class="line">  &quot;message0&quot;: &quot;checkbox: %1&quot;,</div><div class="line">  &quot;args0&quot;: [</div><div class="line">    &#123;</div><div class="line">      &quot;type&quot;: &quot;field_checkbox&quot;,</div><div class="line">      &quot;name&quot;: &quot;FIELDNAME&quot;,</div><div class="line">      &quot;checked&quot;: true</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>js</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Blockly.Blocks[&apos;example_checkbox&apos;] = &#123;</div><div class="line">  init: function() &#123;</div><div class="line">    this.appendDummyInput()</div><div class="line">        .appendField(&apos;checkbox:&apos;);</div><div class="line">        .appendField(new Blockly.FieldCheckbox(&apos;TRUE&apos;), &apos;FIELDNAME&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>可选地，FieldCheckbox构造函数还可以接受第二个参数，该参数将成为验证函数或更改处理程序。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-f84ddaf06a40a5a4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>####颜色选择器Colour Picker Field<br>颜色选择器允许用户从由编程器提供的一组不透明颜色中进行选择。</p>
+<blockquote>
+<p>注意：所有JavaScript和JSON Blockly API都使用英国的’color’拼写。 Android API使用美国拼写符合Android平台。</p>
+</blockquote>
+<p> ^_^</p>
+<blockquote>
+<p><strong>Json</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;example_colour&quot;,</div><div class="line">  &quot;message0&quot;: &quot;colour picker: %1&quot;,</div><div class="line">  &quot;args0&quot;: [</div><div class="line">    &#123;</div><div class="line">      &quot;type&quot;: &quot;field_colour&quot;,</div><div class="line">      &quot;name&quot;: &quot;FIELDNAME&quot;,</div><div class="line">      &quot;colour&quot;: &quot;#ff0000&quot;</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>js</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Blockly.Blocks[&apos;example_colour&apos;] = &#123;</div><div class="line">  init: function() &#123;</div><div class="line">    this.appendDummyInput()</div><div class="line">        .appendField(&apos;colour picker:&apos;);</div><div class="line">        .appendField(new Blockly.FieldColour(&apos;#ff0000&apos;), &apos;FIELDNAME&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-47832becc9603638.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>（可选）JavaScript FieldColour构造函数还可以接受第二个参数，该参数将成为验证函数或更改处理程序。<br>在Web Blockly中，可以全局设置所有颜色选择器中显示的颜色和列数的选择：</p>
+<blockquote>
+<p><strong>Js</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Blockly.FieldColour.COLOURS = [&apos;#f00&apos;,&apos;#0f0&apos;,&apos;#00f&apos;,&apos;#000&apos;,&apos;#888&apos;,&apos;#fff&apos;];</div><div class="line">Blockly.FieldColour.COLUMNS = 3;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-12ec9ff45e3f7a85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"></p>
+<p>或者，可以给个人颜色选择器一个自定义选择：</p>
+<blockquote>
+<p><strong>js</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var colour = new Blockly.FieldColour(&apos;#ff0000&apos;);</div><div class="line">colour.setColours([&apos;#f00&apos;,&apos;#0f0&apos;,&apos;#00f&apos;,&apos;#000&apos;,&apos;#888&apos;,&apos;#fff&apos;]).setColumns(3);</div><div class="line">input.appendField(colour, &apos;COLOUR&apos;);</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>对于颜色列表使用任何CSS兼容格式，包括<code>＃f00</code>，<code>＃ff0000</code>或<code>rgb（255，0，0）</code>。</p>
+<p>####变量字段Variable Field<br>另一个字段元素是变量选择菜单。该字段定义要使用的默认变量名（在本例中为“x”）。如果省略此名称，变量将是一个新的唯一变量（例如’i’，’j’，’k’…）。</p>
+<blockquote>
+<p><strong>Json</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;example_variable&quot;,</div><div class="line">  &quot;message0&quot;: &quot;variable: %1&quot;,</div><div class="line">  &quot;args0&quot;: [</div><div class="line">    &#123;</div><div class="line">      &quot;type&quot;: &quot;field_variable&quot;,</div><div class="line">      &quot;name&quot;: &quot;FIELDNAME&quot;,</div><div class="line">      &quot;variable&quot;: &quot;x&quot;</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>js</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Blockly.Blocks[&apos;example_variable&apos;] = &#123;</div><div class="line">  init: function() &#123;</div><div class="line">    this.appendDummyInput()</div><div class="line">        .appendField(&apos;variable:&apos;);</div><div class="line">        .appendField(new Blockly.FieldVariable(&apos;x&apos;), &apos;FIELDNAME&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-aac5672f2b59c97f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>####数字字段Number Field<br>数字字段提供数字输入和验证。在移动环境中，与正常的文本输入不同，这可以为屏幕上键盘产生数字键盘。</p>
+<blockquote>
+<p>警告：数字字段正在开发中。虽然Android和生成器正确支持数字字段，但是Web UI尚未实现。</p>
+<p>.&lt;</p>
+<p><strong>json</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;example_number&quot;,</div><div class="line">  &quot;message0&quot;: &quot;number: %1&quot;,</div><div class="line">  &quot;args0&quot;: [</div><div class="line">    &#123;</div><div class="line">      &quot;type&quot;: &quot;field_number&quot;,</div><div class="line">      &quot;name&quot;: &quot;FIELDNAME&quot;,</div><div class="line">      &quot;value&quot;: 100</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>js</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Blockly.Blocks[&apos;example_number&apos;] = &#123;</div><div class="line">  init: function() &#123;</div><div class="line">    this.appendDummyInput()</div><div class="line">        .appendField(&quot;number:&quot;);</div><div class="line">        .appendField(new Blockly.FieldNumber(&apos;100&apos;), &apos;FIELDNAME&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-3012ef603a4f1440.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>使用附加参数，数字输入可以以多种方式约束。该范围可以受最小<code>min</code>和<code>max</code>最大值的约束。设置精度<code>precision</code>（通常为10的幂）在值之间执行最小步长。也就是说，用户的值将舍入到最接近的精度倍数。最低有效数字位置是从精度推断的。可以通过选择整数精度来强制执行整数值。</p>
+<blockquote>
+<p><strong>Json</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;example_byte&quot;,</div><div class="line">  &quot;message0&quot;: &quot;%1&quot;,</div><div class="line">  &quot;args0&quot;: [</div><div class="line">    &#123;</div><div class="line">      &quot;type&quot;: &quot;field_number&quot;,</div><div class="line">      &quot;name&quot;: &quot;VALUE&quot;,</div><div class="line">      &quot;value&quot;: 0,</div><div class="line">      &quot;min&quot;: -128,</div><div class="line">      &quot;max&quot;: 127,</div><div class="line">      &quot;precision&quot;: 1</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>js</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Blockly.Blocks[&apos;example_byte&apos;] = &#123;</div><div class="line">  init: function() &#123;</div><div class="line">    this.appendDummyInput()</div><div class="line">        .appendField(new Blockly.FieldNumber(&apos;0&apos;, -128, 127, 1), &apos;FIELDNAME&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>一些约束的组合是无效的，应该避免。例如，精度为5的1到4的范围没有有效值。<br>（可选）JavaScript <code>FieldNumber</code>构造函数还可以接受第五个参数，该参数将成为验证函数或更改处理程序。</p>
+<p>####角度Angle Field<br>角度域提供了一个UI以图形方式选择一个角度。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-4cf102b2c0d82142.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>默认情况下，这是从0°（包括）到360°（排他）逆时针，0°到右边，和90°到顶部。超出范围的值被包装到此刻度上。可以使用键盘输入任意角度（即使是小数），但使用鼠标选择的角度将舍入为15°。</p>
+<blockquote>
+<p><strong>Json</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;example_angle&quot;,</div><div class="line">  &quot;message0&quot;: &quot;angle: %1&quot;,</div><div class="line">  &quot;args0&quot;: [</div><div class="line">    &#123;</div><div class="line">      &quot;type&quot;: &quot;field_angle&quot;,</div><div class="line">      &quot;name&quot;: &quot;FIELDNAME&quot;,</div><div class="line">      &quot;angle&quot;: &quot;90&quot;</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>js</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Blockly.Blocks[&apos;example_angle&apos;] = &#123;</div><div class="line">  init: function() &#123;</div><div class="line">    this.appendDummyInput()</div><div class="line">        .appendField(&apos;angle:&apos;);</div><div class="line">        .appendField(new Blockly.FieldAngle(90), &apos;FIELDNAME&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>（可选）JavaScript FieldAngleInput构造函数还可以接受第二个参数，该参数将成为验证函数或更改处理程序。</p>
+<p>在web版本中，数字到表示角度的范围和映射可以通过<a href="https://github.com/google/blockly/blob/develop/core/field_angle.js" target="_blank" rel="external">field_angle.js
+</a>中的常量来定制。在共享保存的工作区的Blockly的所有版本上，这样的自定义应该是相同的。</p>
+<blockquote>
+<p>注意：Android实现尚不是用户可编辑的字段：<a href="https://github.com/google/blockly-android/issues/317" target="_blank" rel="external">#317</a>。</p>
+</blockquote>
+<p>####Date Field日期字段</p>
+<blockquote>
+<p><strong>json</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;type&quot;: &quot;example_date&quot;,</div><div class="line">  &quot;message0&quot;: &quot;date: %1&quot;,</div><div class="line">  &quot;args0&quot;: [</div><div class="line">    &#123;</div><div class="line">      &quot;type&quot;: &quot;field_angle&quot;,</div><div class="line">      &quot;name&quot;: &quot;FIELDNAME&quot;,</div><div class="line">      &quot;date&quot;: &quot;2015-02-05&quot;</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>js</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Blockly.Blocks[&apos;example_date&apos;] = &#123;</div><div class="line">  init: function() &#123;</div><div class="line">    this.appendDummyInput()</div><div class="line">        .appendField(&apos;date:&apos;)</div><div class="line">        .appendField(new Blockly.FieldDate(&apos;2015-02-05&apos;), &apos;FIELDNAME&apos;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-ba321031a2e22b23.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="append-field-date"><br>FieldDate显示日历日期。如果没有指定日期，则使用特定日期或今天日期进行初始化。<br>（可选）JavaScript FieldDate构造函数还可以接受第二个参数，该参数将成为验证函数或更改处理程序。</p>
+<p>请注意，由于使用有限和占用空间大，<code>FieldDate</code>默认情况下不会编译为Blockly。将<code>goog.require（&#39;Blockly.FieldDate&#39;）</code>添加到您的项目以启用它。</p>
+<blockquote>
+<p>注意：Android实现尚不是用户可编辑的字段：<a href="https://github.com/google/blockly-android/issues/320" target="_blank" rel="external">#320</a>。</p>
+</blockquote>
+<p>##工具提示Tooltips</p>
+<hr>
+<p>当用户将鼠标悬停在块上时，工具提示提供即时帮助。如果文本很长，它将自动换行。</p>
+<blockquote>
+<p><strong>json</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  // ...,</div><div class="line">  &quot;tooltip&quot;: &quot;Tooltip text.&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>js</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">init: function() &#123;</div><div class="line">  this.setTooltip(&quot;Tooltip text.&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在JavaScript API中，工具提示也可以定义为函数，而不是静态字符串。这允许动态帮助。有关根据所选择的下拉选项进行更改的工具提示的示例，请参见<code>math_arithmetic</code>。<br><strong>js</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">Blockly.Blocks[&apos;math_arithmetic&apos;] = &#123;</div><div class="line">  init: function() &#123;</div><div class="line">    // ...</div><div class="line"></div><div class="line">    // Assign &apos;this&apos; to a variable for use in the tooltip closure below.</div><div class="line">    var thisBlock = this;</div><div class="line">    this.setTooltip(function() &#123;</div><div class="line">      var mode = thisBlock.getFieldValue(&apos;OP&apos;);</div><div class="line">      var TOOLTIPS = &#123;</div><div class="line">        &apos;ADD&apos;: Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_ADD,</div><div class="line">        &apos;MINUS&apos;: Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_MINUS,</div><div class="line">        &apos;MULTIPLY&apos;: Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_MULTIPLY,</div><div class="line">        &apos;DIVIDE&apos;: Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_DIVIDE,</div><div class="line">        &apos;POWER&apos;: Blockly.Msg.MATH_ARITHMETIC_TOOLTIP_POWER</div><div class="line">      &#125;;</div><div class="line">      return TOOLTIPS[mode];</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>使用JavaScript API，块可以指定函数，而不是返回工具提示字符串的静态字符串。这允许动态工具提示。有关示例，请参见math_arithmetic。</p>
+<p>##帮助网址Help URL</p>
+<hr>
+<p>块可以具有与其相关联的帮助页面。通过右键单击块并从上下文菜单中选择“帮助”，Blockly for Web的用户可以使用此功能。如果此值为null，则菜单将显示为灰色。</p>
+<blockquote>
+<p><strong>json</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  // ...,</div><div class="line">  &quot;helpUrl&quot;: &quot;https://en.wikipedia.org/wiki/For_loop&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>js</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">init: function() &#123;</div><div class="line">  // ...</div><div class="line">  this.setHelpUrl(&apos;https://en.wikipedia.org/wiki/For_loop&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用JavaScript API，块可以指定函数，而不是返回URL字符串的静态字符串，从而允许动态帮助。</p>
+<p>##更改验证器（仅限JavaScript）</p>
+<p>##Change Validator (JavaScript Only)</p>
+<hr>
+<p>块可以具有在对工作空间进行任何更改（包括与块不相关的那些）时调用的验证函数。这些主要用于设置块的警告文本或类似的用户通知在工作区之外。</p>
+<p>该函数在init函数外添加，直接到块定义对象</p>
+<blockquote>
+<p><strong>js</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Blockly.Blocks[&apos;block_type&apos;] = &#123;</div><div class="line">  init: function() &#123;</div><div class="line">    // ...</div><div class="line">  &#125;,</div><div class="line">  onchange: function(changeEvent) &#123;</div><div class="line">    if (this.getInput(&apos;NUM&apos;).connection.targetBlock()) &#123;</div><div class="line">      this.setWarningText(null);</div><div class="line">    &#125; else &#123;</div><div class="line">      this.setWarningText(&apos;Must have an input block.&apos;);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>系统调用函数，传入<a href="https://developers.google.com/blockly/guides/configure/web/events#blocklyeventscreate" target="_blank" rel="external">change event</a>事件。在函数内部，这指的是块实例。</p>
+<p>因为这个调用任何更改，如果使用，开发人员应该确保监听器运行快速。还应注意可能级联或循环回侦听器的工作空间的更改。(One should also be wary of changes to the workspace that might cascade or loop back to the listener.)</p>
+<p>有关示例，请参见<code>controls_flow_statements</code>，<code>logic_compare和</code>procedures_ifreturn`块。</p>
+<p>请注意，可编辑字段有自己的事件侦听器，用于输入验证和导致副作用。</p>
+<p>##改变对象属性的方法    （仅限JavaScript）Mutator (JavaScript Only)</p>
+<p>Mutator允许高级块改变形状，最明显的是由于用户打开对话框来添加，删除或重新排列组件。</p>
+<blockquote>
+<p><strong>js</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">init: function() &#123;</div><div class="line">  // ...</div><div class="line">  this.setMutator(new Blockly.Mutator([&apos;controls_if_elseif&apos;, &apos;controls_if_else&apos;]));</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-ff251fd25c432dbe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="controls-if"></p>
+<p>???</p>
+<blockquote>
+<p>注意：了解有关创建变异器的更多信息<a href="https://developers.google.com/blockly/guides/create-custom-blocks/mutators" target="_blank" rel="external">Creating Mutators</a>。</p>
+</blockquote>
+<p>##每块配置   Per-block configuration</p>
+<hr>
+<p>块实例具有多个属性，配置它们对用户的行为。这些可以用于约束工作空间以反映域的某些属性（例如，恰好有一个“开始”事件），或者聚焦用户的成果（例如，教程）。</p>
+<p>####可删除状态<br>默认情况下，用户可以删除可编辑工作区（不是readOnly）上的任何块。有时，使某些块永久固定是有用的。例如，教程框架代码。<br>···<br>block.setDeletable(false);<br>···</p>
+<p>任何块，包括那些标记为不可删除的块，可以以编程方式删除：</p>
+<blockquote>
+<p><strong>JavaScript (WEB)</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">block.dispose();</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>JAVA (android)</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">blocklyController.removeBlockTree(block);</div></pre></td></tr></table></figure></p>
+<p>####可编辑状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">block.setEditable(false);  // Web or Android</div></pre></td></tr></table></figure></p>
+<p>设置为false时，用户将无法更改块的字段（例如，下拉菜单和文本输入）。块在可编辑工作区上默认为可编辑。</p>
+<p>####可移动状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">block.setMovable(false);  // Web or Android</div></pre></td></tr></table></figure></p>
+<p>当设置为false时，用户将无法直接移动块。作为另一个块的子类的不可移动块可能不会与该块断开连接，但是如果父对象移动，它将与其父对象一起移动。</p>
+<p>块在可编辑工作区上默认为可移动</p>
+<p>任何块（甚至不可移动块）一旦位于工作空间上，都可以以编程方式移动。在JavaScript中，调用<code>block.moveBy（dx，dy）</code>。除非另有指定，工作空间上块的起始位置默认为（0，0）。</p>
+<p>####屏蔽数据（仅限web）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">this.data = &apos;16dcb3a4-bd39-11e4-8dfc-aa07a5b093db&apos;;  // Web only</div></pre></td></tr></table></figure></p>
+<p>数据是附加到块的可选且任意的字符串。当保存为XML时，数据字符串存储在<code>&lt;data&gt; &lt;/ data&gt;</code>标签中，以便它可以往回跳回一个块。使用数据字符串将块与外部资源或任何其他自定义目标相关联。</p>
+<p>注意，如果块被复制或复制/粘贴，数据字符串也被复制。不可删除的块不能复制或复制/粘贴。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/12/06/创建自定义块---定义块/"></a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">xushun</a></p>
+        <p><span>发布时间:</span>2016-12-06, 13:14:15</p>
+        <p><span>最后更新:</span>2016-12-06, 13:14:15</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/12/06/创建自定义块---定义块/" title="">http://yoursite.com/2016/12/06/创建自定义块---定义块/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/12/06/创建自定义块---定义块/　　作者: xushun" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/12/06/创建自定义块---块开发工具/">
+                    
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/12/06/创建自定义块---概述/">
+                    
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#setCheck"><span class="toc-number">1.</span> <span class="toc-text">setCheck</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#setAlign"><span class="toc-number">2.</span> <span class="toc-text">setAlign</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#appendField"><span class="toc-number"></span> <span class="toc-text">appendField</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文本域Text-Field"><span class="toc-number"></span> <span class="toc-text">文本域Text Field</span></a>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"　| mimimomo的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/12/06/创建自定义块---块开发工具/" title="上一篇: ">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/12/06/创建自定义块---概述/" title="下一篇: ">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---生成代码/">创建自定义块---生成代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/Overview/">Overview</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/Contents／目录/">Contents／目录</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/修改块---android---代码样式/">修改块---android---代码样式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/修改块---单元测试/">修改块---单元测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/修改块---blockly的未来/">修改块---blockly的未来</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/修改块---贡献/">修改块---贡献</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---块范例/">创建自定义块---块范例</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---块开发工具/">创建自定义块---块开发工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---定义块/">创建自定义块---定义块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---概述/">创建自定义块---概述</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/Get-Started---Android/">Get-Started---Android</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---样式指南/">创建自定义块---样式指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---类型检查/">创建自定义块---类型检查</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---缓存参数/">创建自定义块---缓存参数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---运算符优先级/">创建自定义块---运算符优先级</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/应用程序集成---生成和运行Javascript/">应用程序集成---生成和运行Javascript</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/百度/">百度</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/配置块---使用自定义JavaScript生成器/">配置块---使用自定义JavaScript生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/应用程序集成---自定义块：最佳实践/">应用程序集成---自定义块：最佳实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/配置块---工具箱/">配置块---工具箱</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/配置块---添加自定义块/">配置块---添加自定义块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/配置块---自定义活动布局/">配置块---自定义活动布局</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 xushun
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

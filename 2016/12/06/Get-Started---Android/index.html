@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="xushun" />
+
+
+
+<meta name="description" content="原文地址：https://developers.google.com/blockly/guides/get-started/android
+
+#开始本指南面向希望创建自己的应用程序并将Blockly作为代码编辑器的Android开发人员。假设他们熟悉Blockly的使用，并且基本了解使用Android Studio的Java和应用程序开发。
+主要步骤是：
+
+下载并构建库.Download and">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mimimomo的博客">
+<meta property="og:url" content="http://yoursite.com/2016/12/06/Get-Started---Android/index.html">
+<meta property="og:site_name" content="mimimomo的博客">
+<meta property="og:description" content="原文地址：https://developers.google.com/blockly/guides/get-started/android
+
+#开始本指南面向希望创建自己的应用程序并将Blockly作为代码编辑器的Android开发人员。假设他们熟悉Blockly的使用，并且基本了解使用Android Studio的Java和应用程序开发。
+主要步骤是：
+
+下载并构建库.Download and">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-9eb103dd8625e701.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-129cb2be93c54389.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://developers.google.com/blockly/images/AndroidStudio-AddModule.jpg">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-394d0961fc4fb6f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2016-12-06T05:14:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mimimomo的博客">
+<meta name="twitter:description" content="原文地址：https://developers.google.com/blockly/guides/get-started/android
+
+#开始本指南面向希望创建自己的应用程序并将Blockly作为代码编辑器的Android开发人员。假设他们熟悉Blockly的使用，并且基本了解使用Android Studio的Java和应用程序开发。
+主要步骤是：
+
+下载并构建库.Download and">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2433593-9eb103dd8625e701.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="mimimomo的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>mimimomo的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">xushun</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">xushun</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">xushun</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Get-Started---Android" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/06/Get-Started---Android/" class="article-date">
+      <time datetime="2016-12-06T05:14:15.000Z" itemprop="datePublished">2016-12-06</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <blockquote>
+<p>原文地址：<a href="https://developers.google.com/blockly/guides/get-started/android" target="_blank" rel="external">https://developers.google.com/blockly/guides/get-started/android</a></p>
+</blockquote>
+<p>#开始<br>本指南面向希望创建自己的应用程序并将Blockly作为代码编辑器的Android开发人员。假设他们熟悉Blockly的使用，并且基本了解使用Android Studio的Java和应用程序开发。</p>
+<p>主要步骤是：</p>
+<ol>
+<li>下载并构建库.<a href="https://developers.google.com/blockly/guides/get-started/android#get_the_code" target="_blank" rel="external">Download and build the library</a></li>
+<li>创建项目并配置Activity<a href="https://developers.google.com/blockly/guides/get-started/android#create_the_project_and_activity" target="_blank" rel="external">Create the project and configure the activity</a></li>
+<li>配置项目的依赖项<a href="https://developers.google.com/blockly/guides/get-started/android#configure_project_dependencies" target="_blank" rel="external">Configure the project’s dependencies</a></li>
+<li>扩展AbstractBlocklyActivity并实现必要的方法<a href="https://developers.google.com/blockly/guides/get-started/android#implement_the_activity_base_class" target="_blank" rel="external">Extend AbstractBlocklyActivity</a></li>
+</ol>
+<p>结果将是你自己的应用程序，看起来像Blockly Simple演示，一个工具箱充满块和一个大工作空间。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-9eb103dd8625e701.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>##Get the Code</p>
+<hr>
+<p>首先，从GitHub下载源代码。如果您知道如何使用Git或Subversion，我们强烈建议从我们的存储库同步，以便您的代码保持最新<br><a href="https://github.com/google/blockly-android/zipball/master" target="_blank" rel="external">ZIPfile</a><br><a href="https://github.com/google/blockly-android/tarball/master" target="_blank" rel="external">TAR Ball</a><br><a href="https://github.com/google/blockly-android" target="_blank" rel="external">GitHub</a></p>
+<p>一旦你有代码，通过导入项目的根目录在Android Studio中打开它。你应该看到四个模块，第一个是blocklydemo。构建并运行<code>blocklydemo</code>以验证您的安装。<br>一旦构建，您会发现以下库文件</p>
+<ol>
+<li><code>blockly-android/blocklylib-core/build/outputs/aar/blocklylib-core-release.aar</code></li>
+<li><code>blockly-android/blocklylib-core/build/outputs/aar/blocklylib-core-debug.aar</code></li>
+<li><code>blockly-android/blocklylib-vertical/build/outputs/aar/blocklylib-vertical-release.aar</code></li>
+<li><code>blockly-android/blocklylib-vertical/build/outputs/aar/blocklylib-vertical-debug.aar</code></li>
+</ol>
+<p><code>core</code>文件包括模型和控制器类，以及视图的基类。<code>vertical</code>文件包括垂直堆叠块视图，由VerticalBlockViewFactory和相关的视图类定义。您将在项目中至少包含一个。</p>
+<p>##创建项目和Activity</p>
+<hr>
+<p>如果您还没有应用程序项目，请使用“空活动”模板创建一个。Blockly需要16或更高的minSdkVersion。<br>如果使用现有应用程序，请向项目中添加“”Empty Activity”。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-129cb2be93c54389.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>在任一情况下，您不需要生成带有活动的布局文件。您的块式活动最初将使用Blockly库提供的布局。</p>
+<p>在<code>AndroidManifest.xml</code>文件的新<activity>中，将<code>windowSoftInputMode</code>设置如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;application ...    </div><div class="line">      android:windowSoftInputMode=&quot;stateHidden|adjustPan&quot;    </div><div class="line">/&gt;</div></pre></td></tr></table></figure></activity></p>
+<p>windowSoftInputMode确保键盘在关闭位置启动，即使有键盘输入字段。它还将确保工作区在键盘（或其他IME）打开时显示此类字段。</p>
+<p>在应用程序<code>AppTheme</code>中，在<code>res / values / styles.xml</code>中找到，将父主题设置为<code>BlocklyVerticalTheme</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;style name=&quot;AppTheme&quot; parent=&quot;BlocklyVerticalTheme&quot;&gt;   </div><div class="line">     &lt;!-- Customize your theme here. --&gt;    </div><div class="line">    ...</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure></p>
+<p>此父样式配置块和字段的多个默认值。您可以在<a href="https://github.com/google/blockly-android/blob/master/blocklylib-vertical/src/main/res/values/styles.xml" target="_blank" rel="external">the style’s definition</a>中找到更多详细信息。</p>
+<p>##Configure project dependencies</p>
+<hr>
+<p>在应用程序项目中，打开<code>File | Project Structure....</code>确保应用程序模块包含库依赖关系…</p>
+<ul>
+<li><code>com.android.support:support-v4</code></li>
+<li><code>com.android.support:appcompat-v7</code></li>
+<li><code>com.android.support:recyclerview-v7</code><br>用项目结构对话框中的“+”按钮将模块添加到项目中。选择“导入.JAR / .AAR软件包”模块模板，并从blockly-android项目目录中选择blocklylib-debug.aar或blocklylib-release.aar。然后，在应用程序模块依赖项中，将新模块添加为模块依赖项。<br><img src="https://developers.google.com/blockly/images/AndroidStudio-AddModule.jpg" alt=""><br>导入这些.aar文件将它们复制到以下位置的项目目录中：</li>
+<li><code>MyBlocklyApp/blocklylib-core-debug/blocklylib-core-debug.aar</code></li>
+<li><code>MyBlocklyApp/blocklylib-core-release/blocklylib-core-release.aar</code></li>
+<li><code>MyBlocklyApp/blocklylib-vertical-debug/blocklylib-vertical-debug.aar</code></li>
+<li><code>MyBlocklyApp/blocklylib-vertical-release/blocklylib-vertical-release.aar</code></li>
+</ul>
+<p>要更新项目中的Blockly库，只需将这些位置的副本替换为较新版本即可。</p>
+<p>你可以添加调试和发布版本.aar文件，如果你想只有你的应用程序的调试生成完全调试信息。如果这样做，请确保应用程序模块依赖关系中的范围分别是“Debug compile”和“Release compile”</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-394d0961fc4fb6f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>##实现活动基类<br><em>*</em>开发Android Blockly活动的最简单的方法是继承<a href="https://github.com/google/blockly-android/blob/master/blocklylib-core/src/main/java/com/google/blockly/android/AbstractBlocklyActivity.java" target="_blank" rel="external">AbstractBlocklyActivity</a>.我们强烈建议您将其用于您的第一个Blockly应用程序。该类有几个抽象方法，你需要重写，详细如下。下面的方法实现了<a href="https://github.com/google/blockly-android/blob/master/blocklydemo/src/main/java/com/google/blockly/android/demo/SimpleActivity.java" target="_blank" rel="external">SimpleActivity</a>中的方法实现，您可以使用它作为参考</p>
+<p>#####getToolboxContentsXmlPath()</p>
+<p>getBlockDefinitionsJsonPaths（）将assets /目录中的路径返回到块定义.json文件.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@Override protected String getToolboxContentsXmlPath() &#123;</div><div class="line">    return &quot;default/toolbox.xml&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>#####getBlockDefinitionsJsonPaths()<br>getBlockDefinitionsJsonPaths（）将assets /目录中的路径返回到块定义.json文件。下面的实现导入由Blockly库提供的默认块<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@Override protected List &lt; String &gt; getBlockDefinitionsJsonPaths() &#123;</div><div class="line">    return Arrays.asList(</div><div class="line">      &quot;default/list_blocks.json&quot;, </div><div class="line">      &quot;default/logic_blocks.json&quot;, </div><div class="line">      &quot;default/loop_blocks.json&quot;,</div><div class="line">      &quot;default/math_blocks.json&quot;, </div><div class="line">      &quot;default/text_blocks.json&quot;, </div><div class="line">      &quot;default/variable_blocks.json&quot;, </div><div class="line">      &quot;default/colour_blocks.json&quot;</div><div class="line">  );</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意：有关创建新块的详细信息，请参阅<a href="https://developers.google.com/blockly/guides/configure/android/add-custom-blocks" target="_blank" rel="external">Add Custom Blocks</a>。</p>
+</blockquote>
+<p>#####getGeneratorsJsPaths()<br>getGeneratorsJsPaths（）将assets /目录中的路径返回到定义块实现的生成器.js文件。当前的实现包括Blockly的默认块的所有JavaScript实现。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">private static final List &lt; String &gt; JAVASCRIPT_GENERATORS = Arrays.asList(</div><div class="line">// Custom block generators go here. Default blocks are already included.</div><div class="line">);</div><div class="line"></div><div class="line">@Override protected List &lt; String &gt; getGeneratorsJsPaths() &#123;</div><div class="line">    return JAVASCRIPT_GENERATORS;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意：详细了解使用<a href="https://developers.google.com/blockly/guides/configure/android/custom-generators" target="_blank" rel="external">Use Custom Generators</a>中的生成器。</p>
+</blockquote>
+<h5 id="getCodeGenerationCallback"><a href="#getCodeGenerationCallback" class="headerlink" title="getCodeGenerationCallback()"></a>getCodeGenerationCallback()</h5><p>getCodeGenerationCallback（）返回用于将生成的代码返回到应用程序的回调。这在用户点击操作栏中的运行/播放按钮后调用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">CodeGenerationRequest.CodeGeneratorCallback mCodeGeneratorCallback = new LoggingCodeGeneratorCallback(this, &quot;LoggingTag&quot;);</div><div class="line"></div><div class="line">@Override protected CodeGenerationRequest.CodeGeneratorCallback getCodeGenerationCallback() &#123;</div><div class="line">    // Uses the same callback for every generation call.</div><div class="line">    return mCodeGeneratorCallback;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>####onInitBlankWorkspace()<br>虽然不是一个抽象的方法，onInitBlankWorkspace（）是目前需要定义可用的变量，如果你的应用程序包括default / variable_blocks.json。可变支持目前正在开发中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@Override protected void onInitBlankWorkspace() &#123;</div><div class="line">    // Initialize available variable names.</div><div class="line">    getController().addVariable(&quot;item&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>##下一步<br>在这一点上，应用程序应该编译和运行类似于<a href="https://github.com/google/blockly-android/blob/master/blocklydemo/src/main/java/com/google/blockly/android/demo/SimpleActivity.java" target="_blank" rel="external">SimpleActivity
+</a>。从这里，发展可以在几个不同的方向前进。您可以…</p>
+<ol>
+<li><a href="https://developers.google.com/blockly/guides/configure/android/customize-layout" target="_blank" rel="external">Customize the activity layout</a>，为应用程序的导航和/或可视化留出空间。</li>
+<li>在新块.json文件中定义和添加自定义块。<a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks" target="_blank" rel="external">Define and add custom blocks</a></li>
+<li>自定义工具箱类别和块<a href="https://developers.google.com/blockly/guides/configure/android/toolbox" target="_blank" rel="external">Customize the toolbox categories and blocks</a></li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/12/06/Get-Started---Android/"></a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">xushun</a></p>
+        <p><span>发布时间:</span>2016-12-06, 13:14:15</p>
+        <p><span>最后更新:</span>2016-12-06, 13:14:15</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/12/06/Get-Started---Android/" title="">http://yoursite.com/2016/12/06/Get-Started---Android/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/12/06/Get-Started---Android/　　作者: xushun" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/12/06/创建自定义块---概述/">
+                    
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/12/06/创建自定义块---样式指南/">
+                    
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#getCodeGenerationCallback"><span class="toc-number">1.</span> <span class="toc-text">getCodeGenerationCallback()</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"　| mimimomo的博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/12/06/创建自定义块---概述/" title="上一篇: ">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/12/06/创建自定义块---样式指南/" title="下一篇: ">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---生成代码/">创建自定义块---生成代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/Overview/">Overview</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/Contents／目录/">Contents／目录</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/修改块---android---代码样式/">修改块---android---代码样式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/修改块---单元测试/">修改块---单元测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/修改块---blockly的未来/">修改块---blockly的未来</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/修改块---贡献/">修改块---贡献</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---块范例/">创建自定义块---块范例</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---块开发工具/">创建自定义块---块开发工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---定义块/">创建自定义块---定义块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---概述/">创建自定义块---概述</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/Get-Started---Android/">Get-Started---Android</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---样式指南/">创建自定义块---样式指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---类型检查/">创建自定义块---类型检查</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---缓存参数/">创建自定义块---缓存参数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---运算符优先级/">创建自定义块---运算符优先级</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/应用程序集成---生成和运行Javascript/">应用程序集成---生成和运行Javascript</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/百度/">百度</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/配置块---使用自定义JavaScript生成器/">配置块---使用自定义JavaScript生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/应用程序集成---自定义块：最佳实践/">应用程序集成---自定义块：最佳实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/配置块---工具箱/">配置块---工具箱</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/配置块---添加自定义块/">配置块---添加自定义块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/配置块---自定义活动布局/">配置块---自定义活动布局</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 xushun
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
