@@ -323,10 +323,10 @@
 
 
   
-    <article id="post-创建自定义块---生成代码" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-创建自定义块---概述" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/12/06/创建自定义块---生成代码/" class="article-date">
+      <a href="/2016/12/06/创建自定义块---概述/" class="article-date">
       <time datetime="2016-12-06T05:14:15.000Z" itemprop="datePublished">2016-12-06</time>
 </a>
 
@@ -341,46 +341,27 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Create Custom BlocksGenerating Code</p>
+        <p>Create Custom Blocks - Overview</p>
 <blockquote>
-<p>原文链接：<a href="https://developers.google.com/blockly/guides/create-custom-blocks/generating-code" target="_blank" rel="external">https://developers.google.com/blockly/guides/create-custom-blocks/generating-code</a></p>
+<p>原文链接：<a href="https://developers.google.com/blockly/guides/create-custom-blocks/overview" target="_blank" rel="external">https://developers.google.com/blockly/guides/create-custom-blocks/overview</a></p>
 </blockquote>
-<p>大多数Blockly应用程序需要将块转换为代码以供执行。本页介绍如何向自定义块添加代码生成器。</p>
-<p>首先，转到generators /目录并选择与要生成的语言（JavaScript，Python，PHP，Lua，Dart等）对应的子目录。假设您的块不适合现有类别，请创建一个新的JavaScript文件。这个新的JavaScript文件需要包含在编辑器的HTML文件中的<script ...="">标签列表中。</p>
-<p>典型的块的代码生成器如下所示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Blockly.JavaScript[&apos;text_indexOf&apos;] = function(block) &#123;</div><div class="line">  // Search the text for a substring.</div><div class="line">  var operator = block.getFieldValue(&apos;END&apos;) == &apos;FIRST&apos; ? &apos;indexOf&apos; : &apos;lastIndexOf&apos;;</div><div class="line">  var subString = Blockly.JavaScript.valueToCode(block, &apos;FIND&apos;,</div><div class="line">      Blockly.JavaScript.ORDER_NONE) || &apos;\&apos;\&apos;&apos;;</div><div class="line">  var text = Blockly.JavaScript.valueToCode(block, &apos;VALUE&apos;,</div><div class="line">      Blockly.JavaScript.ORDER_MEMBER) || &apos;\&apos;\&apos;&apos;;</div><div class="line">  var code = text + &apos;.&apos; + operator + &apos;(&apos; + subString + &apos;)&apos;;</div><div class="line">  return [code, Blockly.JavaScript.ORDER_MEMBER];</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<p>##收集参数 </p>
+<p>本文档面向希望在Blockly中创建新块的开发人员。假设有一个可以编辑的Blockly的本地副本，一个人通常熟悉Blockly的用法，并且有一个对JavaScript的基本理解。<br><img src="http://upload-images.jianshu.io/upload_images/2433593-5745fe01f15de093.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>Blockly带有大量的预定义块。从数学函数到循环结构的一切。然而，为了与外部应用程序接口，必须创建定制块以形成API。例如，当创建绘图程序时，可能需要创建“半径R的绘制圆”块。</p>
+<p>在大多数情况下，最简单的方法是找到一个已经存在的真正相似的块，复制它，并根据需要修改它。以下文档适用于需要更多帮助的人员。</p>
+<p>##定义块</p>
 <hr>
-<p>任何块的代码生成器的第一个任务是收集所有的参数和字段数据。这个任务通常有几个函数：</p>
+<p>第一步是创建一个块;指定其形状，字段和连接点。使用Blockly Developer Tools是编写此代码的最简单的方法。</p>
 <ul>
-<li><a href="https://developers.google.com/blockly/guides/create-custom-blocks/generating-code#getfieldvalue">getFieldValue</a></li>
-<li><a href="https://developers.google.com/blockly/guides/create-custom-blocks/generating-code#valuetocode">valueToCode</a></li>
-<li><a href="https://developers.google.com/blockly/guides/create-custom-blocks/generating-code#statementtocode">statementToCode</a></li>
+<li>→更多信息关于<a href="https://developers.google.com/blockly/guides/create-custom-blocks/blockly-developer-tools" target="_blank" rel="external">Blockly Developer Tools</a>…<br>或者，可以在学习API之后手动编写该代码。</li>
+<li>→更多信息<a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks" target="_blank" rel="external">Defining Blocks</a>…<br>高级块可以响应于用户或其他因素而动态地改变它们的形状。</li>
+<li>→更多信息关于<a href="https://developers.google.com/blockly/guides/create-custom-blocks/mutators" target="_blank" rel="external">Mutators</a> …</li>
 </ul>
-<p>####getFieldValue<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">block.getFieldValue(&apos;END&apos;)</div></pre></td></tr></table></figure></p>
-<p>此函数从指定名称的字段返回值。</p>
-<ul>
-<li>在文本字段的情况下，此函数返回键入的文本。例如。 “Hello World”。</li>
-<li>在下拉列表的情况下，此函数返回与所选选项相关联的与语言无关的文本。英语块可能有一个下拉菜单，选择了“first”，而德语中的下拉菜单将显示“erste”。代码生成器不必知道所有可能的人类语言，因此getFieldValue函数将返回创建下拉列表时指定的语言中性文本（Blockly的核心块通常使用大写英语单词，例如“FIRST”）。</li>
-<li>在变量下拉的情况下，此函数返回变量下拉的面向用户的名称。请注意，此名称不一定与生成的代码中使用的变量名称相同。例如，变量名“for”在Blockly中是合法的，但是在大多数语言中将与保留字冲突，因此将被重命名为“for2”。同样，阿拉伯语变量名“متغير”在Blockly中是合法的，但在大多数语言中是非法的，因此将被重命名为“_D9_85_D8_AA_D8_BA_D9_8A_D8_B1”。要获取Blockly变量名称为可用于生成代码的变量名称，请使用以下调用：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Blockly.JavaScript.variableDB_.getName(block.getFieldValue(&apos;VAR&apos;), Blockly.Variables.NAME_TYPE);</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>请注意，JavaScript应该更改为适当的语言（Python，PHP，Lua，Dart等），因为每种语言都有不同的保留字列表。</p>
-<p>####valueToCode<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Blockly.JavaScript.valueToCode(block, &apos;FROM&apos;, Blockly.JavaScript.ORDER_ADDITION) || &apos;0&apos;</div></pre></td></tr></table></figure></p>
-<p>此函数查找连接到命名值输入（“FROM”）的块，生成该块的代码，并将该代码作为字符串返回。如果输入未连接，则此函数返回null，这就是为什么通常使用布尔值“或”和默认值跟随函数的原因。因此，在上面的示例中，如果没有块附加到名为“FROM”的输入，则此输入的默认代码将为字符串’0’。</p>
-<p>第三个参数指定嵌入所需的操作信息的顺序。每个语言生成器都有一个有序的优先级列表。 valueToCode函数需要传递对应于将应用于返回的代码的最大力的顺序值。这允许valueToCode根据需要将代码括在括号中。有关详细信息，请参阅运营商优先级页面<a href="https://developers.google.com/blockly/guides/create-custom-blocks/operator-precedence">operator precedence</a>。</p>
-<p>请注意，JavaScript应该更改为适当的语言（Python，PHP，Lua，Dart等）。</p>
-<p>####statementToCode<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Blockly.JavaScript.statementToCode(block, &apos;DO&apos;)</div></pre></td></tr></table></figure></p>
-<p>此函数查找连接到指定语句输入的嵌套块的堆栈，生成该堆栈的代码，缩进代码，并将代码作为字符串返回。如果输入未连接，则此函数返回一个空字符串。<br>请注意，JavaScript应该更改为适当的语言（Python，PHP，Lua，Dart等）。</p>
-<p>##组装代码</p>
+<p>##代码生成</p>
 <hr>
-<p>一旦收集了所有参数，就可以组合最终的代码。这对于大多数块是直接的。这里是一个while循环的例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var code = &apos;while (&apos; + argument0 + &apos;) &#123;\n&apos; + branch0 + &apos;&#125;\n&apos;;</div></pre></td></tr></table></figure></p>
-<p>语句块（不返回值的那些块）然后可以返回代码，而不用费心：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">return code;</div></pre></td></tr></table></figure></p>
-<p>值块（返回值的那些块）有点复杂。这里是一个基本算术运算符（加号，减号等）的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var code = argument0 + &apos; &apos; + operator + &apos; &apos; + argument1;</div></pre></td></tr></table></figure></p>
-<p>此示例说明了操作顺序问题。考虑形成表达式（2 <em>（3 + 4））的两个连接的算术块的情况。使用上述代码剪切，加法块将返回字符串“3 + 4”，而乘法块将使用其作为输入以返回“2 </em> 3 + 4”。这个结果是不正确的，因为执行时3将更紧密地绑定到乘法。</p>
-<p>为了解决这个问题，值块必须返回一个包含两个值的列表：代码和适当的顺序值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">return [code, Blockly.JavaScript.ORDER_ADDITION];</div></pre></td></tr></table></figure></p>
-<p>每个语言生成器都有一个有序的优先级列表。返回的顺序值指定将代码绑定在一起的最小强制。有关详细信息，请参阅运营商优先级页面<a href="https://developers.google.com/blockly/guides/create-custom-blocks/operator-precedence">operator precedence</a>。</p>
-<p>如果生成的代码要求子块的代码被包括两次，则应该缓存参数<a href="https://developers.google.com/blockly/guides/create-custom-blocks/caching-arguments">cache the arguments</a>以提高效率并防止副作用。</p>
-</script></p>
+<p>第二步是创建生成器代码以将新块导出为编程语言（例如JavaScript，Python，PHP，Lua或Dart）。</p>
+<p>→更多信息关于生成代码<a href="https://developers.google.com/blockly/guides/create-custom-blocks/generating-code" target="_blank" rel="external">Generating Code</a>…<br>为了生成既干净又正确的代码，必须注意给定语言的操作列表顺序。<br>→关于运算符优先级<a href="https://developers.google.com/blockly/guides/create-custom-blocks/operator-precedence" target="_blank" rel="external">Operator Precedence</a>的更多信息…<br>创建更复杂的块需要使用临时变量和/或效用函数。当输入使用两次并需要缓存时，这是特别真实的。</p>
+<p>→关于缓存参数<a href="https://developers.google.com/blockly/guides/create-custom-blocks/caching-arguments" target="_blank" rel="external">Caching Arguments</a>的更多信息…</p>
+
       
     </div>
     
@@ -456,6 +437,157 @@
 <li><strong><a href="https://github.com/PencilCode/droplet" target="_blank" rel="external">Droplet:</a></strong>图形编程编辑器为Pencil Code提供了强大的功能，它的独特之处在于能够将代码转换为块。</li>
 <li><strong><a href="https://github.com/jmoenig/Snap--Build-Your-Own-Blocks" target="_blank" rel="external">Snap:</a></strong>一个Scratch-inspired图形编程语言，它不是一个库，而是一个完整的应用程序与集成执行环境。</li>
 </ol>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-修改块---android---代码样式" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/06/修改块---android---代码样式/" class="article-date">
+      <time datetime="2016-12-06T05:14:15.000Z" itemprop="datePublished">2016-12-06</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Code Style</p>
+<blockquote>
+<p>原文：<a href="https://developers.google.com/blockly/guides/modify/android/code-style" target="_blank" rel="external">https://developers.google.com/blockly/guides/modify/android/code-style</a></p>
+</blockquote>
+<p>##项目结构</p>
+<hr>
+<p>存储库分为四个模块。</p>
+<ul>
+<li><strong>blocklylib-core</strong>：中央库，以及在没有UI的情况下运行Blockly所需要的（例如，用于代码操作和生成）。</li>
+<li><strong>blocklylib-vertical</strong>：此模块包含VerticalBlockViewFactory和Blockly的默认垂直堆叠块的视觉样式。</li>
+<li><strong>blocklytest</strong>：该模块包含blocklylib-core和blocklylib-vertical的单元测试和仪器测试。</li>
+<li><strong>blocklydemo</strong>：这包含Blockly Demo应用程序与几个活动，演示使用Blockly for Android的基础。</li>
+</ul>
+<p>##Java风格</p>
+<hr>
+<p>Blockly for Android使用Android代码样式<a href="https://source.android.com/source/code-style.html" target="_blank" rel="external">Android code style</a>。大多数风格规则应该是大多数Java开发人员熟悉的:</p>
+<ul>
+<li>类名称大写和驼峰大小写。</li>
+<li>常量用大写字母表示。</li>
+<li>所有其他方法和变量都是驼峰式的，从小写字母开始</li>
+</ul>
+<p>此外，成员变量必须以小写“m”开头。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public abstract class AbstractBlocklyActivity extends AppCompatActivity &#123;</div><div class="line">    private static final String TAG = &quot;AbstractBlocklyActivity&quot;;</div><div class="line"></div><div class="line">    public static final String DEFAULT_WORKSPACE_FILENAME = &quot;workspace.xml&quot;;</div><div class="line"></div><div class="line">    protected ActionBar mActionBar;</div><div class="line">    protected DrawerLayout mDrawerLayout;</div><div class="line"></div><div class="line">    protected WorkspaceHelper mWorkspaceHelper;</div><div class="line">    protected BlockViewFactory mBlockViewFactory;</div><div class="line">    protected WorkspaceFragment mWorkspaceFragment;</div><div class="line">    protected ToolboxFragment mToolboxFragment;</div><div class="line">    protected TrashFragment mTrashFragment;</div></pre></td></tr></table></figure></p>
+<p>为了打印日志的目的，每个类可以具有私有的静态最终TAG字符串。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Log.i(TAG, &quot;No blocks in workspace. Skipping run request.&quot;);</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-修改块---blockly的未来" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/06/修改块---blockly的未来/" class="article-date">
+      <time datetime="2016-12-06T05:14:15.000Z" itemprop="datePublished">2016-12-06</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Future</p>
+<blockquote>
+<p>原文：<a href="https://developers.google.com/blockly/guides/modify/future" target="_blank" rel="external">https://developers.google.com/blockly/guides/modify/future</a></p>
+</blockquote>
+<p>lockly是积极的发展，每一天都在变化着。我们发现了许多缺陷，并正在努力解决它们。 Blockly的许多功能来自志愿者开发人员，因此请随时深入了解代码并向我们发送稿件<a href="https://developers.google.com/blockly/guides/modify/contributing" target="_blank" rel="external">send us contributions</a>。</p>
+<p>##无处不在的运行</p>
+<hr>
+<p>重要的是每个人都能够使用Blockly。这意味着在尽可能多的环境中运行：</p>
+<ul>
+<li>将Blockly翻译<a href="https://developers.google.com/blockly/guides/modify/web/translating" target="_blank" rel="external">Translating Blockly</a>成您的语言是非常有帮助的。世界上只有5％的人说英语。帮助我们覆盖失去的数十亿人。</li>
+<li>多点触控支持对平板电脑很重要。双指缩放，双指平移。</li>
+<li>支持盲人用户使用屏幕阅读器和可刷新的盲文显示器。</li>
+</ul>
+<p>##新块</p>
+<hr>
+<p>不同的应用程序需要不同的块。有几种类型的块被重复请求：</p>
+<ul>
+<li>2D网格。数组数组是笨拙的，很难可视化。需要处理网格数据（电子表格）的新类别的块。大多数现有列表块将具有网格等效。</li>
+<li>多行字符串。具有文本区域的块可以输入段落。同样有用的是字符选择器小部件，允许选择Unicode字符。</li>
+</ul>
+<p>##改进的UI</p>
+<hr>
+<p>Blockly被设计为干净和简单。我们不想增加杂乱。但是有很多方法可以改进UI：</p>
+<ul>
+<li>多块选择。按住shift以单击许多块，用于组移动，折叠，禁用或删除。</li>
+<li>游标控制的可访问性。许多用户由于残疾而没有良好的鼠标技能。添加键盘快捷键以操纵Blockly将使这些用户能够参与。同样的捷径也将有利于电力程序员。</li>
+<li>垃圾桶内容。点击垃圾桶可以打开一个包含已删除的所有内容的气泡。这些块可以从垃圾中拖出并回到工作空间中。</li>
+<li>改进的变量重命名对话框。显示有多少变量将被重命名，警告冲突等的预览。</li>
+</ul>
+<p>##可扩展性</p>
+<hr>
+<p>在大多数可视化编程环境中编写大型程序很麻烦。有许多有趣的问题允许编写大型程序（如果你感觉这样倾向，很多有挑战性的足以产生可发表的学术论文或论文）。 Blockly团队目前专注于小型教育应用程序，这意味着没有人正在追求这些：</p>
+<ul>
+<li>像Google地图一样放大和缩小。这不仅仅是缩放工作区，细节需要适当地出现和消失。</li>
+<li>调试工具。能够运行程序，前进和后退，检查变量，设置断点。</li>
+<li>搜索。查找函数，调用者，变量和其他代码搜索活动。同样，搜索和替换功能将允许更容易地维护代码。</li>
+<li>库。一个bundle如何代码到一个可重复使用的，可发布的模块，其他程序可能包括和依赖</li>
+<li>合作。实时编辑连接用户之间的块。</li>
+</ul>
+<p>但最重要的是，抓住一个Blockly的副本，将其与您的应用程序集成，并查看您的用户喜欢它。我们喜欢在现实世界中看到Blockly，从教学编程到学生，到控制工厂中的重型机械。</p>
 
       
     </div>
@@ -602,73 +734,6 @@
 
 
   
-    <article id="post-修改块---android---代码样式" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/06/修改块---android---代码样式/" class="article-date">
-      <time datetime="2016-12-06T05:14:15.000Z" itemprop="datePublished">2016-12-06</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>Code Style</p>
-<blockquote>
-<p>原文：<a href="https://developers.google.com/blockly/guides/modify/android/code-style" target="_blank" rel="external">https://developers.google.com/blockly/guides/modify/android/code-style</a></p>
-</blockquote>
-<p>##项目结构</p>
-<hr>
-<p>存储库分为四个模块。</p>
-<ul>
-<li><strong>blocklylib-core</strong>：中央库，以及在没有UI的情况下运行Blockly所需要的（例如，用于代码操作和生成）。</li>
-<li><strong>blocklylib-vertical</strong>：此模块包含VerticalBlockViewFactory和Blockly的默认垂直堆叠块的视觉样式。</li>
-<li><strong>blocklytest</strong>：该模块包含blocklylib-core和blocklylib-vertical的单元测试和仪器测试。</li>
-<li><strong>blocklydemo</strong>：这包含Blockly Demo应用程序与几个活动，演示使用Blockly for Android的基础。</li>
-</ul>
-<p>##Java风格</p>
-<hr>
-<p>Blockly for Android使用Android代码样式<a href="https://source.android.com/source/code-style.html" target="_blank" rel="external">Android code style</a>。大多数风格规则应该是大多数Java开发人员熟悉的:</p>
-<ul>
-<li>类名称大写和驼峰大小写。</li>
-<li>常量用大写字母表示。</li>
-<li>所有其他方法和变量都是驼峰式的，从小写字母开始</li>
-</ul>
-<p>此外，成员变量必须以小写“m”开头。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public abstract class AbstractBlocklyActivity extends AppCompatActivity &#123;</div><div class="line">    private static final String TAG = &quot;AbstractBlocklyActivity&quot;;</div><div class="line"></div><div class="line">    public static final String DEFAULT_WORKSPACE_FILENAME = &quot;workspace.xml&quot;;</div><div class="line"></div><div class="line">    protected ActionBar mActionBar;</div><div class="line">    protected DrawerLayout mDrawerLayout;</div><div class="line"></div><div class="line">    protected WorkspaceHelper mWorkspaceHelper;</div><div class="line">    protected BlockViewFactory mBlockViewFactory;</div><div class="line">    protected WorkspaceFragment mWorkspaceFragment;</div><div class="line">    protected ToolboxFragment mToolboxFragment;</div><div class="line">    protected TrashFragment mTrashFragment;</div></pre></td></tr></table></figure></p>
-<p>为了打印日志的目的，每个类可以具有私有的静态最终TAG字符串。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Log.i(TAG, &quot;No blocks in workspace. Skipping run request.&quot;);</div></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-修改块---单元测试" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -701,90 +766,6 @@
 <hr>
 <p>Android Studio也可以运行测试。在Project子窗口中，使用Project树视图，右键单击blocklytest模块并选择 <strong>Run</strong>。您也可以通过类似地右键单击测试文件并选择 <strong>Run</strong> 来运行各个测试用例。</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2433593-b2799bf9ed4142e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>Android Studio提供了一个对话框，用于选择连接的设备或启动仿真器。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-修改块---blockly的未来" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/06/修改块---blockly的未来/" class="article-date">
-      <time datetime="2016-12-06T05:14:15.000Z" itemprop="datePublished">2016-12-06</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>Future</p>
-<blockquote>
-<p>原文：<a href="https://developers.google.com/blockly/guides/modify/future" target="_blank" rel="external">https://developers.google.com/blockly/guides/modify/future</a></p>
-</blockquote>
-<p>lockly是积极的发展，每一天都在变化着。我们发现了许多缺陷，并正在努力解决它们。 Blockly的许多功能来自志愿者开发人员，因此请随时深入了解代码并向我们发送稿件<a href="https://developers.google.com/blockly/guides/modify/contributing" target="_blank" rel="external">send us contributions</a>。</p>
-<p>##无处不在的运行</p>
-<hr>
-<p>重要的是每个人都能够使用Blockly。这意味着在尽可能多的环境中运行：</p>
-<ul>
-<li>将Blockly翻译<a href="https://developers.google.com/blockly/guides/modify/web/translating" target="_blank" rel="external">Translating Blockly</a>成您的语言是非常有帮助的。世界上只有5％的人说英语。帮助我们覆盖失去的数十亿人。</li>
-<li>多点触控支持对平板电脑很重要。双指缩放，双指平移。</li>
-<li>支持盲人用户使用屏幕阅读器和可刷新的盲文显示器。</li>
-</ul>
-<p>##新块</p>
-<hr>
-<p>不同的应用程序需要不同的块。有几种类型的块被重复请求：</p>
-<ul>
-<li>2D网格。数组数组是笨拙的，很难可视化。需要处理网格数据（电子表格）的新类别的块。大多数现有列表块将具有网格等效。</li>
-<li>多行字符串。具有文本区域的块可以输入段落。同样有用的是字符选择器小部件，允许选择Unicode字符。</li>
-</ul>
-<p>##改进的UI</p>
-<hr>
-<p>Blockly被设计为干净和简单。我们不想增加杂乱。但是有很多方法可以改进UI：</p>
-<ul>
-<li>多块选择。按住shift以单击许多块，用于组移动，折叠，禁用或删除。</li>
-<li>游标控制的可访问性。许多用户由于残疾而没有良好的鼠标技能。添加键盘快捷键以操纵Blockly将使这些用户能够参与。同样的捷径也将有利于电力程序员。</li>
-<li>垃圾桶内容。点击垃圾桶可以打开一个包含已删除的所有内容的气泡。这些块可以从垃圾中拖出并回到工作空间中。</li>
-<li>改进的变量重命名对话框。显示有多少变量将被重命名，警告冲突等的预览。</li>
-</ul>
-<p>##可扩展性</p>
-<hr>
-<p>在大多数可视化编程环境中编写大型程序很麻烦。有许多有趣的问题允许编写大型程序（如果你感觉这样倾向，很多有挑战性的足以产生可发表的学术论文或论文）。 Blockly团队目前专注于小型教育应用程序，这意味着没有人正在追求这些：</p>
-<ul>
-<li>像Google地图一样放大和缩小。这不仅仅是缩放工作区，细节需要适当地出现和消失。</li>
-<li>调试工具。能够运行程序，前进和后退，检查变量，设置断点。</li>
-<li>搜索。查找函数，调用者，变量和其他代码搜索活动。同样，搜索和替换功能将允许更容易地维护代码。</li>
-<li>库。一个bundle如何代码到一个可重复使用的，可发布的模块，其他程序可能包括和依赖</li>
-<li>合作。实时编辑连接用户之间的块。</li>
-</ul>
-<p>但最重要的是，抓住一个Blockly的副本，将其与您的应用程序集成，并查看您的用户喜欢它。我们喜欢在现实世界中看到Blockly，从教学编程到学生，到控制工厂中的重型机械。</p>
 
       
     </div>
@@ -846,75 +827,6 @@
 <p>##告诉我们！</p>
 <hr>
 <p>lockly为开发人员提供了一个活动的新闻组<a href="https://groups.google.com/forum/#!forum/blockly" target="_blank" rel="external">newsgroup for developers</a>。请去，打个招呼。向我们提供您的原型;集体我们有很多经验，可以提供提示，这将节省您的时间。当我们第一次了解一些大的Blockly用户阅读新闻文章，并且他们的应用程序有一些本来可以避免的问题时，总是令人失望。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-创建自定义块---块范例" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/06/创建自定义块---块范例/" class="article-date">
-      <time datetime="2016-12-06T05:14:15.000Z" itemprop="datePublished">2016-12-06</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>Custom Blocks: Block Paradigms</p>
-<blockquote>
-<p>原文链接：<a href="https://developers.google.com/blockly/guides/create-custom-blocks/block-paradigms" target="_blank" rel="external">https://developers.google.com/blockly/guides/create-custom-blocks/block-paradigms</a></p>
-</blockquote>
-<p>在设计使用Blockly的应用程序时，有几个范例可供选择。应该尽早地考虑这些选择，因为它们影响用户将需要的块。</p>
-<p>##组态   Configuration</p>
-<hr>
-<p>许多Blockly应用程序用于描述配置，而不是可执行程序。配置应用程序通常通过初始化工作空间上的一个根级别块来开始。一个很好的例子是Blockly开发工具的Block Factory选项卡</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-288d123ff1b0b9f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var xml = &apos;&lt;xml&gt;&lt;block type=&quot;factory_base&quot; deletable=&quot;false&quot; movable=&quot;false&quot;&gt;&lt;/block&gt;&lt;/xml&gt;&apos;;</div><div class="line">Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);</div></pre></td></tr></table></figure>
-<p>这将创建一个不可删除的，不可移动的块，它保存所有用户的配置。工作空间可以随时导出为XML以确定当前配置。</p>
-<p>这样的应用程序可能希望自动禁用任何未连接到根块的块。这可以在Blockly的web版本上完成，一行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">workspace.addChangeListener(Blockly.Events.disableOrphans);</div></pre></td></tr></table></figure></p>
-<p>##串行程序Serial Program<br>大多数Blockly应用程序被设计为创建串行程序。用户将按顺序执行的块堆叠在一起。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-394ee19ec6abf5dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>工作区上的每个（非禁用）块都将构成程序的一部分。如果存在多个块的堆栈，则首先执行较高的堆栈。 （如果两个堆叠具有大致相同的高度，则向左（在RTL模式中右侧）的堆叠被赋予优先级。）<br>工作空间可以在任何时候导出到可执行代码。该代码可以在JavaScript中使用JavaScript（使用eval或JS解释器）执行，或者服务器端以任何语言执行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var code = Blockly.JavaScript.workspaceToCode(workspace);</div></pre></td></tr></table></figure></p>
-<p>##并行程序  Parallel Program<br>一些Blockly应用程序选择并行执行所有堆栈的块，而不是串行。一个例子是音乐应用程序，其中鼓循环与旋律同时运行。</p>
-<p>实现并行执行的一种方法是使用无头工作空间生成多个代码段：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var allXml = Blockly.Xml.workspaceToDom(workspace);</div><div class="line">var allCode = [];</div><div class="line">for (var i = 0, xml; xml = allXml[i]; i++) &#123;</div><div class="line">  var headless = new Blockly.Workspace();</div><div class="line">  Blockly.Xml.domToWorkspace(xml, headless);</div><div class="line">  allCode.push(Blockly.JavaScript.workspaceToCode(headless));</div><div class="line">  headless.dispose();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>目标语言是JavaScript，则allCode数组可以用于创建多个JS解释器以用于同时执行。如果目标语言类似于Python，那么allCode数组可以被组装成使用线程模块的单个程序。</p>
-<p>与任何并行程序一样，我必须仔细决定任何共享资源，如变量和函数。块特定的问题是，（当前）没有办法突出显示多个块来指示执行。</p>
-<p>##事件驱动程序</p>
-<hr>
-<p>事件处理程序只是被系统调用的函数，而不是程序调用的函数。这些块可以包围要执行的块的堆栈，或者它们可以是位于块的堆栈顶部的头部。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-beea39dc8e204941.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>一些开发人员喜欢在事件块的顶部添加一个“帽子”，以使它们看起来与其他块不同。这不是Blockly的默认外观，但可以通过设置<code>Blockly.BlockSvg.START_HAT = true</code>来添加;</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-1052686f586bc9e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>在事件驱动模型中，也可以为程序启动创建一个处理程序。在此模型下，工作空间中未连接到事件处理程序的任何块都将被忽略，并且不会执行。<br>在设计使用事件的系统时，请考虑是否可能或希望支持同一事件处理程序的多个实例。</p>
 
       
     </div>
@@ -1020,6 +932,75 @@
 <li>工具箱生成XML以指定您的工具箱。 </li>
 <li>工作区块生成可以加载到工作区中的XML。</li>
 </ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-创建自定义块---块范例" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/06/创建自定义块---块范例/" class="article-date">
+      <time datetime="2016-12-06T05:14:15.000Z" itemprop="datePublished">2016-12-06</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Custom Blocks: Block Paradigms</p>
+<blockquote>
+<p>原文链接：<a href="https://developers.google.com/blockly/guides/create-custom-blocks/block-paradigms" target="_blank" rel="external">https://developers.google.com/blockly/guides/create-custom-blocks/block-paradigms</a></p>
+</blockquote>
+<p>在设计使用Blockly的应用程序时，有几个范例可供选择。应该尽早地考虑这些选择，因为它们影响用户将需要的块。</p>
+<p>##组态   Configuration</p>
+<hr>
+<p>许多Blockly应用程序用于描述配置，而不是可执行程序。配置应用程序通常通过初始化工作空间上的一个根级别块来开始。一个很好的例子是Blockly开发工具的Block Factory选项卡</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-288d123ff1b0b9f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var xml = &apos;&lt;xml&gt;&lt;block type=&quot;factory_base&quot; deletable=&quot;false&quot; movable=&quot;false&quot;&gt;&lt;/block&gt;&lt;/xml&gt;&apos;;</div><div class="line">Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), workspace);</div></pre></td></tr></table></figure>
+<p>这将创建一个不可删除的，不可移动的块，它保存所有用户的配置。工作空间可以随时导出为XML以确定当前配置。</p>
+<p>这样的应用程序可能希望自动禁用任何未连接到根块的块。这可以在Blockly的web版本上完成，一行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">workspace.addChangeListener(Blockly.Events.disableOrphans);</div></pre></td></tr></table></figure></p>
+<p>##串行程序Serial Program<br>大多数Blockly应用程序被设计为创建串行程序。用户将按顺序执行的块堆叠在一起。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-394ee19ec6abf5dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>工作区上的每个（非禁用）块都将构成程序的一部分。如果存在多个块的堆栈，则首先执行较高的堆栈。 （如果两个堆叠具有大致相同的高度，则向左（在RTL模式中右侧）的堆叠被赋予优先级。）<br>工作空间可以在任何时候导出到可执行代码。该代码可以在JavaScript中使用JavaScript（使用eval或JS解释器）执行，或者服务器端以任何语言执行。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var code = Blockly.JavaScript.workspaceToCode(workspace);</div></pre></td></tr></table></figure></p>
+<p>##并行程序  Parallel Program<br>一些Blockly应用程序选择并行执行所有堆栈的块，而不是串行。一个例子是音乐应用程序，其中鼓循环与旋律同时运行。</p>
+<p>实现并行执行的一种方法是使用无头工作空间生成多个代码段：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var allXml = Blockly.Xml.workspaceToDom(workspace);</div><div class="line">var allCode = [];</div><div class="line">for (var i = 0, xml; xml = allXml[i]; i++) &#123;</div><div class="line">  var headless = new Blockly.Workspace();</div><div class="line">  Blockly.Xml.domToWorkspace(xml, headless);</div><div class="line">  allCode.push(Blockly.JavaScript.workspaceToCode(headless));</div><div class="line">  headless.dispose();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>目标语言是JavaScript，则allCode数组可以用于创建多个JS解释器以用于同时执行。如果目标语言类似于Python，那么allCode数组可以被组装成使用线程模块的单个程序。</p>
+<p>与任何并行程序一样，我必须仔细决定任何共享资源，如变量和函数。块特定的问题是，（当前）没有办法突出显示多个块来指示执行。</p>
+<p>##事件驱动程序</p>
+<hr>
+<p>事件处理程序只是被系统调用的函数，而不是程序调用的函数。这些块可以包围要执行的块的堆栈，或者它们可以是位于块的堆栈顶部的头部。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-beea39dc8e204941.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>一些开发人员喜欢在事件块的顶部添加一个“帽子”，以使它们看起来与其他块不同。这不是Blockly的默认外观，但可以通过设置<code>Blockly.BlockSvg.START_HAT = true</code>来添加;</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-1052686f586bc9e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>在事件驱动模型中，也可以为程序启动创建一个处理程序。在此模型下，工作空间中未连接到事件处理程序的任何块都将被忽略，并且不会执行。<br>在设计使用事件的系统时，请考虑是否可能或希望支持同一事件处理程序的多个实例。</p>
 
       
     </div>

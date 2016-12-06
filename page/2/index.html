@@ -259,6 +259,152 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-创建自定义块---样式指南" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/06/创建自定义块---样式指南/" class="article-date">
+      <time datetime="2016-12-06T05:14:15.000Z" itemprop="datePublished">2016-12-06</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Custom Blocks: Style Guide</p>
+<blockquote>
+<p>原文链接：<a href="https://developers.google.com/blockly/guides/create-custom-blocks/style-guide" target="_blank" rel="external">https://developers.google.com/blockly/guides/create-custom-blocks/style-guide</a></p>
+</blockquote>
+<p>多年来，Blockly和Blockly Games团队学到了许多适用于开发新块的课程。以下是我们所犯错误的集合，或者他人通常犯的错误。</p>
+<p>些是我们使用Blockly的视觉风格学到的一般教训，可能不适用于所有用例或设计。存在其他解决方案。这也不是用户可能遇到的问题和如何避免他们的问题的详尽列表。每个案例都有点不同，并有自己的权衡。</p>
+<p>##1. 条件与循环</p>
+<hr>
+<p>新用户最困难的块是条件和循环。许多基于块的环境将这两个块组合成相同的“控件”类别，两个块具有相同的形状和相同的颜色。这通常导致沮丧，因为新用户混淆两个块。阻止推荐将条件和循环移动到单独的“逻辑”和“循环”类别，每个类别具有不同的颜色。这清楚地表明，这些是不同的想法，行为不同，尽管具有类似的形状。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-23417add0a789fc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>建议：保持条件和循环分离。</p>
+</blockquote>
+<p>##2. 一个列表</p>
+<hr>
+<p>新手程序员在第一次遇到基于零的列表时反应不当。因此，Blockly通过使列表和字符串索引基于一个，跟随Lua和Lambda Moo的指导。</p>
+<p>对于Blockly的更高级使用，支持从零开始的列表，以便更容易转换到文本。对于年轻或更多的新手观众，仍然建议基于单一的索引。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-6b71c5ce0e5b7356.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>建议：1是第一个数字。</p>
+</blockquote>
+<p>##3. 用户输入</p>
+<hr>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-7fbd10e05555a5b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>有三种方法从用户获取参数。下拉是最严格的，适合简单的教程和练习。输入字段允许更多的自由，并且有利于更多的创造性活动。值块输入（通常带有阴影块）提供了计算值（例如，随机生成器）而不仅仅是静态值的机会。</p>
+<blockquote>
+<p>建议：选择适合您用户的输入方法。</p>
+</blockquote>
+<p>##4.实时图像块</p>
+<hr>
+<p>块的文档应包括它所引用的块的图像。拍摄截图很容易。但是如果有50个这样的图像，并且应用被翻译成50种语言，突然一个人维护2,500个静态图像。然后颜色方案改变，并且2,500个图像需要再次更新 -。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-dfc3a01ccf14a9be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>为了从这个维护噩梦中解脱出来，Blockly Games用只读模式下的Blockly实例替换了所有的屏幕截图。结果看起来与图片相同，但保证是最新的。只读模式使国际化成为可能。</p>
+<blockquote>
+<p>建议：如果您支持多种语言，请使用只读模式。</p>
+</blockquote>
+<p>##5. 表达左的另一种方法</p>
+<hr>
+<p>美国儿童的反馈（虽然有趣的是不是来自其他国家）显示左右之间的混乱。这通过添加箭头来解决。如果方向是相对的（例如，对于化身），箭头的风格是重要的。当化身朝向相反方向时，A→直箭头或↱箭头混乱。最有帮助的是圆形箭头，即使在转动的角度小于箭头指示的情况下。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-fdab18555eae669e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>建议：如果可能，补充文本与Unicode图标。</p>
+</blockquote>
+<p>##6. 高级块</p>
+<hr>
+<p>在可能的情况下，应该采用更高级别的方法，即使它降低了执行性能或灵活性。考虑使用此Apps脚本表达式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SpreadsheetApp.getActiveSheet().getDataRange().getValues()</div></pre></td></tr></table></figure></p>
+<p>在保留所有潜在能力的1：1映射下，上述表达式将使用四个块来构建。但Blockly的目标是更高级的，并提供一个封装整个表达式的块。目标是优化95％的情况，即使它使剩余的5％更困难。 Blockly不打算替代基于文本的语言，它旨在帮助用户覆盖初始学习曲线，以便他们可以使用基于文本的语言。</p>
+<blockquote>
+<p>建议：不要盲目地将整个API转换为块。</p>
+</blockquote>
+<p>##7.可选的返回值</p>
+<hr>
+<p>许多基于文本编程的函数执行一个操作，然后返回一个值。可以使用或不使用此返回值。一个例子是栈的pop（）函数。可以调用Pop来获取和删除最后一个元素，也可以调用它来删除返回值被忽略的最后一个元素。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var last = stack.pop();  // Get and remove last element.</div><div class="line">stack.pop();  // Just remove last element.</div></pre></td></tr></table></figure></p>
+<p>基于块的语言通常不利于忽略返回值。值块必须插入接受值的东西。有几个策略来处理这个问题。</p>
+<ul>
+<li>a）解决问题。大多数基于块的语言设计语言以避免这些情况。例如，Scratch没有任何具有副作用和返回值的块。</li>
+<li>b）提供两个块。如果工具箱中的空间不是问题，一个简单的解决方案是提供每种类型的块中的两个，一个具有和一个没有返回值。缺点是，这可能导致一个令人困惑的工具箱与许多几乎相同的块。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-355d176a32dda6a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ul>
+<li>c）变换一个块。使用下拉列表，复选框或其他控件，允许用户选择是否有返回值。然后，块根据其选项更改形状。在Blockly的列表访问块中可以看到一个例子。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-cab25bd0ae28be4f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>d）去掉值（eat the value）。第一个版本的App Inventor创建了一个特殊的管道块，可以管理任何连接的值。用户不了解此概念，第二版的App Inventor删除了管道块，建议用户将该值分配给一次性变量。<br><img src="http://upload-images.jianshu.io/upload_images/2433593-d1d83e879caf0242.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<blockquote>
+<p>建议：每个策略都有利弊，选择适合您的用户。</p>
+</blockquote>
+<p>##8. Growing blocks</p>
+<hr>
+<p>某些块可能需要可变数量的输入。示例是将任意数字集合相加的添加块，或者具有任意组的elseif子句的if / elseif / else块，或者具有任意数量的初始化元素的列表构造器。有几种策略，每种策略都有其优点和缺点。</p>
+<ul>
+<li>a）最简单的方法是使用户从较小的块中组成块。一个示例是通过嵌套两个两个数字加法块来添加三个数字。另一个例子是只提供if / else块，并让用户嵌套他们创建elseif条件。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-aa27fe5f946ccfef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这种方法的优点是其最初的简单性（对于用户和开发者）。缺点是在存在大量嵌套的情况下，代码变得非常麻烦并且对于用户来说难以阅读和维护。</p>
+<ul>
+<li>b）另一种方法是动态扩展块，以便在末端总有一个空闲输入。同样，如果在末尾有两个空闲输入，块将删除最后一个输入。这是App Inventor的第一个版本使用的方法</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-c98db981b001343b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>App Inventor的用户对于自动增长的块不喜欢几个原因。首先，总是有一个自由的输入，程序从来没有“完整”。第二，在堆栈中间插入一个元素是令人沮丧的，因为它涉及断开编辑下面的所有元素并重新连接它们。也就是说，如果顺序不重要，并且用户可以在他们的程序中感到空洞，这是一个非常方便的选择。</p>
+<ul>
+<li>c）为了解决孔问题，一些开发人员添加+/-按钮到手动添加或删除输入的块。打开Roberta使用两个这样的按钮从底部添加或删除输入。其他开发者在每行添加两个按钮，使得可以适应从堆栈的中间插入和删除。其他在每行添加两个向上/向下按钮，以便可以适应堆栈的重新排序。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-75f224a0bae510b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>这个策略是一系列选项，从每个块只有两个按钮，到每行四个按钮。一方面，用户无法执行他们所需的操作的危险，另一方面，用户界面中充满了按钮，它看起来像是企业号（he starship Enterprise.）。</p>
+<ul>
+<li>d）最灵活的方法是在块中添加一个mutator bubble。这表示为打开该块的配置对话框的单个按钮。元素可以随意添加，删除或重新排列。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-0411bc57493ae039.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这种方法的缺点是它的mutator对新手用户不直观。引入突变者需要某种形式的指令。面向年幼儿童的基于块的应用程序不应使用mutator。虽然一旦学到，他们对于高级用户是无价的。</p>
+<blockquote>
+<p>建议：每个策略都有利弊，选择适合您的用户。</p>
+</blockquote>
+<p>##9.整洁的代码的生成</p>
+<hr>
+<p>高级Blockly用户应该能够查看生成的代码（JavaScript，Python，PHP，Lua，Dart等）并立即识别他们编写的程序。这意味着需要额外的努力来保持这个机器生成的代码可读。多余的括号，数字变量，粉碎的空格和冗长的代码模板都会妨碍生成优雅的代码。生成的代码应包含注释，并且应符合Google的样式指南<a href="https://github.com/google/styleguide/blob/gh-pages/README.md" target="_blank" rel="external">Google’s style guides</a>。</p>
+<blockquote>
+<p>建议：为您生成的代码感到自豪。显示给用户。</p>
+</blockquote>
+<p>##10.语言依赖</p>
+<hr>
+<p>对整洁的代码的期望的副作用是Blockly的行为在很大程度上根据交叉编译语言的行为来定义。最常见的输出语言是JavaScript，但是如果Blockly被交叉编译为不同的语言，则不应进行不合理的尝试以保留两种语言的确切行为。例如，在JavaScript中，空字符串为false，而在Lua中为true。定义一个单独的行为模式，Blockly的代码执行，而不管目标语言如何，将导致看起来像从GWT编译器出来的不可维护的代码。</p>
+<blockquote>
+<p>建议：块式不是一种语言，允许现有语言影响行为。</p>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-创建自定义块---定义块" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -601,70 +747,6 @@
 
 
   
-    <article id="post-创建自定义块---概述" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/06/创建自定义块---概述/" class="article-date">
-      <time datetime="2016-12-06T05:14:15.000Z" itemprop="datePublished">2016-12-06</time>
-</a>
-
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>Create Custom Blocks - Overview</p>
-<blockquote>
-<p>原文链接：<a href="https://developers.google.com/blockly/guides/create-custom-blocks/overview" target="_blank" rel="external">https://developers.google.com/blockly/guides/create-custom-blocks/overview</a></p>
-</blockquote>
-<p>本文档面向希望在Blockly中创建新块的开发人员。假设有一个可以编辑的Blockly的本地副本，一个人通常熟悉Blockly的用法，并且有一个对JavaScript的基本理解。<br><img src="http://upload-images.jianshu.io/upload_images/2433593-5745fe01f15de093.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>Blockly带有大量的预定义块。从数学函数到循环结构的一切。然而，为了与外部应用程序接口，必须创建定制块以形成API。例如，当创建绘图程序时，可能需要创建“半径R的绘制圆”块。</p>
-<p>在大多数情况下，最简单的方法是找到一个已经存在的真正相似的块，复制它，并根据需要修改它。以下文档适用于需要更多帮助的人员。</p>
-<p>##定义块</p>
-<hr>
-<p>第一步是创建一个块;指定其形状，字段和连接点。使用Blockly Developer Tools是编写此代码的最简单的方法。</p>
-<ul>
-<li>→更多信息关于<a href="https://developers.google.com/blockly/guides/create-custom-blocks/blockly-developer-tools" target="_blank" rel="external">Blockly Developer Tools</a>…<br>或者，可以在学习API之后手动编写该代码。</li>
-<li>→更多信息<a href="https://developers.google.com/blockly/guides/create-custom-blocks/define-blocks" target="_blank" rel="external">Defining Blocks</a>…<br>高级块可以响应于用户或其他因素而动态地改变它们的形状。</li>
-<li>→更多信息关于<a href="https://developers.google.com/blockly/guides/create-custom-blocks/mutators" target="_blank" rel="external">Mutators</a> …</li>
-</ul>
-<p>##代码生成</p>
-<hr>
-<p>第二步是创建生成器代码以将新块导出为编程语言（例如JavaScript，Python，PHP，Lua或Dart）。</p>
-<p>→更多信息关于生成代码<a href="https://developers.google.com/blockly/guides/create-custom-blocks/generating-code" target="_blank" rel="external">Generating Code</a>…<br>为了生成既干净又正确的代码，必须注意给定语言的操作列表顺序。<br>→关于运算符优先级<a href="https://developers.google.com/blockly/guides/create-custom-blocks/operator-precedence" target="_blank" rel="external">Operator Precedence</a>的更多信息…<br>创建更复杂的块需要使用临时变量和/或效用函数。当输入使用两次并需要缓存时，这是特别真实的。</p>
-<p>→关于缓存参数<a href="https://developers.google.com/blockly/guides/create-custom-blocks/caching-arguments" target="_blank" rel="external">Caching Arguments</a>的更多信息…</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-Get-Started---Android" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -778,10 +860,10 @@
 
 
   
-    <article id="post-创建自定义块---样式指南" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-创建自定义块---生成代码" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/12/06/创建自定义块---样式指南/" class="article-date">
+      <a href="/2016/12/06/创建自定义块---生成代码/" class="article-date">
       <time datetime="2016-12-06T05:14:15.000Z" itemprop="datePublished">2016-12-06</time>
 </a>
 
@@ -796,109 +878,46 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Custom Blocks: Style Guide</p>
+        <p>Create Custom BlocksGenerating Code</p>
 <blockquote>
-<p>原文链接：<a href="https://developers.google.com/blockly/guides/create-custom-blocks/style-guide" target="_blank" rel="external">https://developers.google.com/blockly/guides/create-custom-blocks/style-guide</a></p>
+<p>原文链接：<a href="https://developers.google.com/blockly/guides/create-custom-blocks/generating-code" target="_blank" rel="external">https://developers.google.com/blockly/guides/create-custom-blocks/generating-code</a></p>
 </blockquote>
-<p>多年来，Blockly和Blockly Games团队学到了许多适用于开发新块的课程。以下是我们所犯错误的集合，或者他人通常犯的错误。</p>
-<p>些是我们使用Blockly的视觉风格学到的一般教训，可能不适用于所有用例或设计。存在其他解决方案。这也不是用户可能遇到的问题和如何避免他们的问题的详尽列表。每个案例都有点不同，并有自己的权衡。</p>
-<p>##1. 条件与循环</p>
+<p>大多数Blockly应用程序需要将块转换为代码以供执行。本页介绍如何向自定义块添加代码生成器。</p>
+<p>首先，转到generators /目录并选择与要生成的语言（JavaScript，Python，PHP，Lua，Dart等）对应的子目录。假设您的块不适合现有类别，请创建一个新的JavaScript文件。这个新的JavaScript文件需要包含在编辑器的HTML文件中的<script ...="">标签列表中。</p>
+<p>典型的块的代码生成器如下所示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Blockly.JavaScript[&apos;text_indexOf&apos;] = function(block) &#123;</div><div class="line">  // Search the text for a substring.</div><div class="line">  var operator = block.getFieldValue(&apos;END&apos;) == &apos;FIRST&apos; ? &apos;indexOf&apos; : &apos;lastIndexOf&apos;;</div><div class="line">  var subString = Blockly.JavaScript.valueToCode(block, &apos;FIND&apos;,</div><div class="line">      Blockly.JavaScript.ORDER_NONE) || &apos;\&apos;\&apos;&apos;;</div><div class="line">  var text = Blockly.JavaScript.valueToCode(block, &apos;VALUE&apos;,</div><div class="line">      Blockly.JavaScript.ORDER_MEMBER) || &apos;\&apos;\&apos;&apos;;</div><div class="line">  var code = text + &apos;.&apos; + operator + &apos;(&apos; + subString + &apos;)&apos;;</div><div class="line">  return [code, Blockly.JavaScript.ORDER_MEMBER];</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>##收集参数 </p>
 <hr>
-<p>新用户最困难的块是条件和循环。许多基于块的环境将这两个块组合成相同的“控件”类别，两个块具有相同的形状和相同的颜色。这通常导致沮丧，因为新用户混淆两个块。阻止推荐将条件和循环移动到单独的“逻辑”和“循环”类别，每个类别具有不同的颜色。这清楚地表明，这些是不同的想法，行为不同，尽管具有类似的形状。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-23417add0a789fc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<blockquote>
-<p>建议：保持条件和循环分离。</p>
-</blockquote>
-<p>##2. 一个列表</p>
-<hr>
-<p>新手程序员在第一次遇到基于零的列表时反应不当。因此，Blockly通过使列表和字符串索引基于一个，跟随Lua和Lambda Moo的指导。</p>
-<p>对于Blockly的更高级使用，支持从零开始的列表，以便更容易转换到文本。对于年轻或更多的新手观众，仍然建议基于单一的索引。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-6b71c5ce0e5b7356.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<blockquote>
-<p>建议：1是第一个数字。</p>
-</blockquote>
-<p>##3. 用户输入</p>
-<hr>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-7fbd10e05555a5b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>有三种方法从用户获取参数。下拉是最严格的，适合简单的教程和练习。输入字段允许更多的自由，并且有利于更多的创造性活动。值块输入（通常带有阴影块）提供了计算值（例如，随机生成器）而不仅仅是静态值的机会。</p>
-<blockquote>
-<p>建议：选择适合您用户的输入方法。</p>
-</blockquote>
-<p>##4.实时图像块</p>
-<hr>
-<p>块的文档应包括它所引用的块的图像。拍摄截图很容易。但是如果有50个这样的图像，并且应用被翻译成50种语言，突然一个人维护2,500个静态图像。然后颜色方案改变，并且2,500个图像需要再次更新 -。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-dfc3a01ccf14a9be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>为了从这个维护噩梦中解脱出来，Blockly Games用只读模式下的Blockly实例替换了所有的屏幕截图。结果看起来与图片相同，但保证是最新的。只读模式使国际化成为可能。</p>
-<blockquote>
-<p>建议：如果您支持多种语言，请使用只读模式。</p>
-</blockquote>
-<p>##5. 表达左的另一种方法</p>
-<hr>
-<p>美国儿童的反馈（虽然有趣的是不是来自其他国家）显示左右之间的混乱。这通过添加箭头来解决。如果方向是相对的（例如，对于化身），箭头的风格是重要的。当化身朝向相反方向时，A→直箭头或↱箭头混乱。最有帮助的是圆形箭头，即使在转动的角度小于箭头指示的情况下。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-fdab18555eae669e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<blockquote>
-<p>建议：如果可能，补充文本与Unicode图标。</p>
-</blockquote>
-<p>##6. 高级块</p>
-<hr>
-<p>在可能的情况下，应该采用更高级别的方法，即使它降低了执行性能或灵活性。考虑使用此Apps脚本表达式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SpreadsheetApp.getActiveSheet().getDataRange().getValues()</div></pre></td></tr></table></figure></p>
-<p>在保留所有潜在能力的1：1映射下，上述表达式将使用四个块来构建。但Blockly的目标是更高级的，并提供一个封装整个表达式的块。目标是优化95％的情况，即使它使剩余的5％更困难。 Blockly不打算替代基于文本的语言，它旨在帮助用户覆盖初始学习曲线，以便他们可以使用基于文本的语言。</p>
-<blockquote>
-<p>建议：不要盲目地将整个API转换为块。</p>
-</blockquote>
-<p>##7.可选的返回值</p>
-<hr>
-<p>许多基于文本编程的函数执行一个操作，然后返回一个值。可以使用或不使用此返回值。一个例子是栈的pop（）函数。可以调用Pop来获取和删除最后一个元素，也可以调用它来删除返回值被忽略的最后一个元素。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var last = stack.pop();  // Get and remove last element.</div><div class="line">stack.pop();  // Just remove last element.</div></pre></td></tr></table></figure></p>
-<p>基于块的语言通常不利于忽略返回值。值块必须插入接受值的东西。有几个策略来处理这个问题。</p>
+<p>任何块的代码生成器的第一个任务是收集所有的参数和字段数据。这个任务通常有几个函数：</p>
 <ul>
-<li>a）解决问题。大多数基于块的语言设计语言以避免这些情况。例如，Scratch没有任何具有副作用和返回值的块。</li>
-<li>b）提供两个块。如果工具箱中的空间不是问题，一个简单的解决方案是提供每种类型的块中的两个，一个具有和一个没有返回值。缺点是，这可能导致一个令人困惑的工具箱与许多几乎相同的块。</li>
+<li><a href="https://developers.google.com/blockly/guides/create-custom-blocks/generating-code#getfieldvalue">getFieldValue</a></li>
+<li><a href="https://developers.google.com/blockly/guides/create-custom-blocks/generating-code#valuetocode">valueToCode</a></li>
+<li><a href="https://developers.google.com/blockly/guides/create-custom-blocks/generating-code#statementtocode">statementToCode</a></li>
 </ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-355d176a32dda6a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>####getFieldValue<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">block.getFieldValue(&apos;END&apos;)</div></pre></td></tr></table></figure></p>
+<p>此函数从指定名称的字段返回值。</p>
 <ul>
-<li>c）变换一个块。使用下拉列表，复选框或其他控件，允许用户选择是否有返回值。然后，块根据其选项更改形状。在Blockly的列表访问块中可以看到一个例子。</li>
+<li>在文本字段的情况下，此函数返回键入的文本。例如。 “Hello World”。</li>
+<li>在下拉列表的情况下，此函数返回与所选选项相关联的与语言无关的文本。英语块可能有一个下拉菜单，选择了“first”，而德语中的下拉菜单将显示“erste”。代码生成器不必知道所有可能的人类语言，因此getFieldValue函数将返回创建下拉列表时指定的语言中性文本（Blockly的核心块通常使用大写英语单词，例如“FIRST”）。</li>
+<li>在变量下拉的情况下，此函数返回变量下拉的面向用户的名称。请注意，此名称不一定与生成的代码中使用的变量名称相同。例如，变量名“for”在Blockly中是合法的，但是在大多数语言中将与保留字冲突，因此将被重命名为“for2”。同样，阿拉伯语变量名“متغير”在Blockly中是合法的，但在大多数语言中是非法的，因此将被重命名为“_D9_85_D8_AA_D8_BA_D9_8A_D8_B1”。要获取Blockly变量名称为可用于生成代码的变量名称，请使用以下调用：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Blockly.JavaScript.variableDB_.getName(block.getFieldValue(&apos;VAR&apos;), Blockly.Variables.NAME_TYPE);</div></pre></td></tr></table></figure>
+</li>
 </ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-cab25bd0ae28be4f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>d）去掉值（eat the value）。第一个版本的App Inventor创建了一个特殊的管道块，可以管理任何连接的值。用户不了解此概念，第二版的App Inventor删除了管道块，建议用户将该值分配给一次性变量。<br><img src="http://upload-images.jianshu.io/upload_images/2433593-d1d83e879caf0242.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<blockquote>
-<p>建议：每个策略都有利弊，选择适合您的用户。</p>
-</blockquote>
-<p>##8. Growing blocks</p>
+<p>请注意，JavaScript应该更改为适当的语言（Python，PHP，Lua，Dart等），因为每种语言都有不同的保留字列表。</p>
+<p>####valueToCode<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Blockly.JavaScript.valueToCode(block, &apos;FROM&apos;, Blockly.JavaScript.ORDER_ADDITION) || &apos;0&apos;</div></pre></td></tr></table></figure></p>
+<p>此函数查找连接到命名值输入（“FROM”）的块，生成该块的代码，并将该代码作为字符串返回。如果输入未连接，则此函数返回null，这就是为什么通常使用布尔值“或”和默认值跟随函数的原因。因此，在上面的示例中，如果没有块附加到名为“FROM”的输入，则此输入的默认代码将为字符串’0’。</p>
+<p>第三个参数指定嵌入所需的操作信息的顺序。每个语言生成器都有一个有序的优先级列表。 valueToCode函数需要传递对应于将应用于返回的代码的最大力的顺序值。这允许valueToCode根据需要将代码括在括号中。有关详细信息，请参阅运营商优先级页面<a href="https://developers.google.com/blockly/guides/create-custom-blocks/operator-precedence">operator precedence</a>。</p>
+<p>请注意，JavaScript应该更改为适当的语言（Python，PHP，Lua，Dart等）。</p>
+<p>####statementToCode<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Blockly.JavaScript.statementToCode(block, &apos;DO&apos;)</div></pre></td></tr></table></figure></p>
+<p>此函数查找连接到指定语句输入的嵌套块的堆栈，生成该堆栈的代码，缩进代码，并将代码作为字符串返回。如果输入未连接，则此函数返回一个空字符串。<br>请注意，JavaScript应该更改为适当的语言（Python，PHP，Lua，Dart等）。</p>
+<p>##组装代码</p>
 <hr>
-<p>某些块可能需要可变数量的输入。示例是将任意数字集合相加的添加块，或者具有任意组的elseif子句的if / elseif / else块，或者具有任意数量的初始化元素的列表构造器。有几种策略，每种策略都有其优点和缺点。</p>
-<ul>
-<li>a）最简单的方法是使用户从较小的块中组成块。一个示例是通过嵌套两个两个数字加法块来添加三个数字。另一个例子是只提供if / else块，并让用户嵌套他们创建elseif条件。</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-aa27fe5f946ccfef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>这种方法的优点是其最初的简单性（对于用户和开发者）。缺点是在存在大量嵌套的情况下，代码变得非常麻烦并且对于用户来说难以阅读和维护。</p>
-<ul>
-<li>b）另一种方法是动态扩展块，以便在末端总有一个空闲输入。同样，如果在末尾有两个空闲输入，块将删除最后一个输入。这是App Inventor的第一个版本使用的方法</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-c98db981b001343b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>App Inventor的用户对于自动增长的块不喜欢几个原因。首先，总是有一个自由的输入，程序从来没有“完整”。第二，在堆栈中间插入一个元素是令人沮丧的，因为它涉及断开编辑下面的所有元素并重新连接它们。也就是说，如果顺序不重要，并且用户可以在他们的程序中感到空洞，这是一个非常方便的选择。</p>
-<ul>
-<li>c）为了解决孔问题，一些开发人员添加+/-按钮到手动添加或删除输入的块。打开Roberta使用两个这样的按钮从底部添加或删除输入。其他开发者在每行添加两个按钮，使得可以适应从堆栈的中间插入和删除。其他在每行添加两个向上/向下按钮，以便可以适应堆栈的重新排序。</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-75f224a0bae510b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>这个策略是一系列选项，从每个块只有两个按钮，到每行四个按钮。一方面，用户无法执行他们所需的操作的危险，另一方面，用户界面中充满了按钮，它看起来像是企业号（he starship Enterprise.）。</p>
-<ul>
-<li>d）最灵活的方法是在块中添加一个mutator bubble。这表示为打开该块的配置对话框的单个按钮。元素可以随意添加，删除或重新排列。</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-0411bc57493ae039.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>这种方法的缺点是它的mutator对新手用户不直观。引入突变者需要某种形式的指令。面向年幼儿童的基于块的应用程序不应使用mutator。虽然一旦学到，他们对于高级用户是无价的。</p>
-<blockquote>
-<p>建议：每个策略都有利弊，选择适合您的用户。</p>
-</blockquote>
-<p>##9.整洁的代码的生成</p>
-<hr>
-<p>高级Blockly用户应该能够查看生成的代码（JavaScript，Python，PHP，Lua，Dart等）并立即识别他们编写的程序。这意味着需要额外的努力来保持这个机器生成的代码可读。多余的括号，数字变量，粉碎的空格和冗长的代码模板都会妨碍生成优雅的代码。生成的代码应包含注释，并且应符合Google的样式指南<a href="https://github.com/google/styleguide/blob/gh-pages/README.md" target="_blank" rel="external">Google’s style guides</a>。</p>
-<blockquote>
-<p>建议：为您生成的代码感到自豪。显示给用户。</p>
-</blockquote>
-<p>##10.语言依赖</p>
-<hr>
-<p>对整洁的代码的期望的副作用是Blockly的行为在很大程度上根据交叉编译语言的行为来定义。最常见的输出语言是JavaScript，但是如果Blockly被交叉编译为不同的语言，则不应进行不合理的尝试以保留两种语言的确切行为。例如，在JavaScript中，空字符串为false，而在Lua中为true。定义一个单独的行为模式，Blockly的代码执行，而不管目标语言如何，将导致看起来像从GWT编译器出来的不可维护的代码。</p>
-<blockquote>
-<p>建议：块式不是一种语言，允许现有语言影响行为。</p>
-</blockquote>
-
+<p>一旦收集了所有参数，就可以组合最终的代码。这对于大多数块是直接的。这里是一个while循环的例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var code = &apos;while (&apos; + argument0 + &apos;) &#123;\n&apos; + branch0 + &apos;&#125;\n&apos;;</div></pre></td></tr></table></figure></p>
+<p>语句块（不返回值的那些块）然后可以返回代码，而不用费心：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">return code;</div></pre></td></tr></table></figure></p>
+<p>值块（返回值的那些块）有点复杂。这里是一个基本算术运算符（加号，减号等）的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var code = argument0 + &apos; &apos; + operator + &apos; &apos; + argument1;</div></pre></td></tr></table></figure></p>
+<p>此示例说明了操作顺序问题。考虑形成表达式（2 <em>（3 + 4））的两个连接的算术块的情况。使用上述代码剪切，加法块将返回字符串“3 + 4”，而乘法块将使用其作为输入以返回“2 </em> 3 + 4”。这个结果是不正确的，因为执行时3将更紧密地绑定到乘法。</p>
+<p>为了解决这个问题，值块必须返回一个包含两个值的列表：代码和适当的顺序值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">return [code, Blockly.JavaScript.ORDER_ADDITION];</div></pre></td></tr></table></figure></p>
+<p>每个语言生成器都有一个有序的优先级列表。返回的顺序值指定将代码绑定在一起的最小强制。有关详细信息，请参阅运营商优先级页面<a href="https://developers.google.com/blockly/guides/create-custom-blocks/operator-precedence">operator precedence</a>。</p>
+<p>如果生成的代码要求子块的代码被包括两次，则应该缓存参数<a href="https://developers.google.com/blockly/guides/create-custom-blocks/caching-arguments">cache the arguments</a>以提高效率并防止副作用。</p>
+</script></p>
       
     </div>
     
@@ -1301,10 +1320,10 @@
 
 
   
-    <article id="post-配置块---使用自定义JavaScript生成器" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-应用程序集成---自定义块：最佳实践" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/12/06/配置块---使用自定义JavaScript生成器/" class="article-date">
+      <a href="/2016/12/06/应用程序集成---自定义块：最佳实践/" class="article-date">
       <time datetime="2016-12-06T05:14:15.000Z" itemprop="datePublished">2016-12-06</time>
 </a>
 
@@ -1319,31 +1338,91 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Configure Blockly - Using custom JavaScript Generators</p>
+        <p>Custom Blocks: Best Practices</p>
 <blockquote>
-<p>原文链接;<a href="https://developers.google.com/blockly/guides/configure/android/custom-generators" target="_blank" rel="external">https://developers.google.com/blockly/guides/configure/android/custom-generators</a></p>
+<p>原文：<a href="https://developers.google.com/blockly/guides/app-integration/best-practices" target="_blank" rel="external">https://developers.google.com/blockly/guides/app-integration/best-practices</a></p>
 </blockquote>
-<p>#使用自定义JavaScript生成器</p>
-<p>生成器将块转换为文本字符串，通常是传统的编程语言。 Blockly for Android使用与原始网页Blockly相同的JavaScript生成器框架，并且默认情况下生成JavaScript。</p>
-<p>##加载生成器函数</p>
+<p>多年来，Blockly和Blockly Games团队学到了许多适用于那些开发基于Blockly的应用程序的课程。以下是我们所犯错误的集合，或者他人通常犯的错误。</p>
+<p>这些是我们使用Blockly的视觉风格学到的一般教训，可能不适用于所有用例或设计。可能存在其他解决方案。这也不是用户可能遇到的问题和如何避免他们的问题的详尽列表。每个案例都有点不同，可能有自己的权衡。</p>
+<p>##1. 边框样式</p>
 <hr>
-<p>对于继承 <code>AbstractBlocklyActivity</code>的activities，生成器文件通过重写<code>AbstractBlocklyActivity.getGeneratorsJsPaths（）</code>来提供。活动必须实现此方法，返回指向所需生成器的应用程序资产路径的列表。除了Blockly的标准块的JavaScript语言核心生成器文件之外，还会加载这些文件。此方法在每次触发代码生成时调用，因此列表可以是动态的或上下文的。</p>
-<p>就像块定义文件一样，可以加载多个.js文件。文件按顺序加载，因此重复的ID（指块定义）将导致替换以前的生成器定义。</p>
-<p>##示例JavaScript块实现</p>
+<p>在21世纪初，“Aqua”的外观是主流的，每个屏幕上的对象都装饰着突出和阴影。在2010年的“材料设计”外观是流行的，每个屏幕对象简化为一个干净，平坦，无边框的形状。大多数块编程环境在每个块周围都有突出显示和阴影，所以当今天的平面设计师看到这些时，它们总是消除这些过时的装饰。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-bd7a4d3948ed3bbd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>从上面的五个块（来自scriptr.io）的示例中可以看出，这些“过时的装饰”对于区分相同颜色的连接块是至关重要的。</p>
+<blockquote>
+<p>建议：如果美化你的 Blockly，（原文：<em>If reskinning Blockly, don’t let today’s fashions break your app.</em> 感觉是谷歌打字错了,或者其他语言吧）不要让今天的方式打破你的应用程序。</p>
+</blockquote>
+<p>##2. 嵌套子堆栈</p>
 <hr>
-<p>以下是Turtle demo 中使用的生成器的示例。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Blockly.JavaScript[&apos;turtle_width&apos;] = function(block) &#123;</div><div class="line">  // Generate JavaScript for setting the width.</div><div class="line">  var width = Blockly.JavaScript.valueToCode(block, &apos;WIDTH&apos;,</div><div class="line">      Blockly.JavaScript.ORDER_NONE) || &apos;1&apos;;</div><div class="line">  return &apos;Turtle.penWidth(&apos; + width + &apos;);\n&apos;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<p>该代码位于<a href="https://github.com/google/blockly-android/blob/master/blocklydemo/src/main/assets/turtle/generators.js" target="_blank" rel="external">blocklydemo/assets/turtle/generators.js
-</a>中的匹配块定义旁边的<a href="https://github.com/google/blockly-android/blob/master/blocklydemo/src/main/java/com/google/blockly/android/demo/TurtleActivity.java#L161" target="_blank" rel="external">TurtleActivity.getGeneratorsJsPaths
-</a>中。 <a href="https://github.com/google/blockly-android/blob/master/blocklydemo/src/main/java/com/google/blockly/android/demo/TurtleActivity.java#L161" target="_blank" rel="external">TurtleActivity.getGeneratorsJsPaths
-</a>通过常量<a href="https://github.com/google/blockly-android/blob/master/blocklydemo/src/main/java/com/google/blockly/android/demo/TurtleActivity.java#L52" target="_blank" rel="external">TURTLE_BLOCK_GENERATORS
-</a>返回此路径。</p>
-<p>该函数生成turtle_width块的代码，接收为其WIDTH输入生成的代码字符串（如果未设置，则为’1’），并包装在Turtle.penWidth（..）函数调用中。结果可能看起来像这些：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Turtle.penWidth(3);</div><div class="line">Turtle.penWidth(x);</div><div class="line">Turtle.penWidth(x / 2);</div></pre></td></tr></table></figure>
-<p>或关于写生成器的更多细节，请参阅<a href="https://developers.google.com/blockly/guides/create-custom-blocks/generating-code" target="_blank" rel="external">Generating Code</a>。</p>
-<p>####使用其他语言<br><em>*</em>截至2016年5月，Blockly for Android假定目标语言是JavaScript。如果要使用其他语言，则需要使用您自己的语言生成核心替换<a href="https://github.com/google/blockly-android/blob/master/blocklylib-core/src/main/assets/javascript_compressed.js" target="_blank" rel="external">javascript_compressed.js</a>的引用。主Blockly库具有用于几种流行语言的<a href="https://github.com/google/blockly/tree/master/generators" target="_blank" rel="external">generators</a></p>
-<p>####代码生成器如何运行</p>
+<p>“C”形块在内侧顶部上总是具有连接器，但是一些环境在内侧底部具有连接器（例如，Wonder Workshop），而其他环境则不具有连接器（例如Blockly和Scratch）。由于大多数语句块都有顶部和底部连接器，一些用户不会立即看到该语句将适合没有底部连接器的“C”。<br><img src="http://upload-images.jianshu.io/upload_images/2433593-63d2e530417606fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>一旦用户确定一个语句块适合在’C’内，他们然后需要找出更多的一个语句也适合。一些环境将第一个语句的低级连接嵌套到“C”的底部（例如Wonder Workshop和Scratch），而其他语言留下一个小间隙（例如Blockly）。嵌套嵌套没有暗示更多的块可以堆叠。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-0ed2260de6c57dea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这两个问题彼此互相影响很大。如果内部底层连接器存在（Wonder Workshop），则初始语句的连接变得更加明显，但是以发现堆栈的能力为代价</p>
+<p>如果没有内部底部连接器存在（阻塞），则初始语句的连接不明显，但堆叠是可发现的。没有内部底部连接器和嵌套语句的底部连接器（Scratch）在使用Blockly测试时遇到了最糟糕的视觉效果（// 原文：discoverability 。翻译的可能不恰当）。</p>
+<p>我们的经验是，初始语句的连接对用户来说是一个较小的挑战，而不是发现堆栈。一旦发现，前者从来不被遗忘，而后者需要提示。</p>
+<p>Blockly尝试了Wonder Workshop和Scratch方法，直到有一天出现一个渲染错误，这增加了小的差距。我们看到由于这个错误（现在是我们感到自豪的“功能”）的Blockly用户学习中有明显的改善。</p>
+<blockquote>
+<p>建议：如果reskinning Blockly，保留现有的堆叠UI。</p>
+</blockquote>
+<p>##3.对称连接</p>
 <hr>
-<p>Blockly for Android在后台服务中维护一个WebView以运行用JavaScript编写的生成器。 代码在<a href="https://github.com/google/blockly-android/blob/master/blocklylib-core/src/main/java/com/google/blockly/android/codegen/CodeGeneratorService.java" target="_blank" rel="external">CodeGeneratorService</a>类中。大多数应用程序开发人员应该只需要通过扩展AbstractBlocklyActivity提供的更高级别的API，并且可以忽略此详细信息。</p>
+<p>Blockly有两种不同的连接类型：水平拼图形状和垂直堆叠凹槽。良好的用户界面应努力使设计元素的数量最小化。因此，许多设计者试图使两种连接类型看起来相同（如下所示）。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-ca6d80fcbf3c53fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>结果造成新用户之间的混乱，因为他们搜索旋转块的方式，以便它们可以适应不兼容的连接。阻止使编程元素视觉和有形，所以人们必须注意不经意地建议不支持的用户交互。<br>因此，Blockly使用紧配合的拼图形状用于值连接，以及用于语句堆叠的视觉上不同的对齐凹口。</p>
+<blockquote>
+<p>建议：如果reskinning Blockly，确保水平和垂直连接看起来不同。</p>
+</blockquote>
+<p>##4.变量和函数名称</p>
+<hr>
+<p>新手程序员不希望location_X和location_x是不同的变量。因此，Blockly通过使变量和函数不区分大小写遵循BASIC和HTML的规范。 Scratch使用更微妙的方法（如右侧所示），并且对变量名称区分大小写，但不对等式检查。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-7f63c3e49e7957b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>此外，Blockly不要求变量和函数符合典型的[_A-Za-z] [_A-Za-z0-9] *方案。如果想要命名一个变量列表的邮政编码或רשימתמיקודים完全没关系。</p>
+<blockquote>
+<p>建议：忽略大小写，允许任何名称。</p>
+</blockquote>
+<p>##5.全局变量</p>
+<hr>
+<p>新手程序员也很难理解范围。因此，Blockly通过使所有变量为全局跟随Scratch的线索。全局变量的唯一缺点是递归比较难（必须将变量推入和弹出到列表中），但这是一个超出Blockly目标用户范围的编程技术。</p>
+<p>建议：范围超出范围，留待以后使用。</p>
+<p>##6. 说明</p>
+<hr>
+<p>Blockly Games专门设计为自学，不需要教师或课程计划。为了做到这一点，Blockly游戏的第一个版本在每个级别有说明。大多数学生不会读他们。我们将它们缩减为一个句子，增加字体大小，并在黄色气泡中突出显示。大多数学生不会读他们。我们使用说明创建了模态弹出窗口。大多数学生本能地关闭弹出窗口而没有阅读它们，然后就没有然后了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-2e47a594fcb7c765.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>最后，我们创建了无法关闭的弹出窗口。它们被编程以监视学生的行为，并且仅在学生已经执行禁止的动作时闭合自己。这些上下文感知弹出窗口是有挑战性的程序，但相当有效。对他们来说也是重要的，在视野中不干扰工作空间。</p>
+<blockquote>
+<p>建议：说明书应该短而持久，但不要令人讨厌。</p>
+</blockquote>
+<p>##7.代码所有权</p>
+<hr>
+<p>设计用于教授特定概念的练习通常提供部分解决方案，学生需要修改以达到期望的效果。在Blockly中创建了一类不可编辑，不可移动，不可删除的块来支持它。然而，学生讨厌这些填空题练习。他们对解决方案没有主人翁感。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-bcc1485c9a07c33c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>设计教授相同概念的自由形式练习更具挑战性。已经证明成功的一种技术是使用学生自己的解决方案作为下一次练习的起点。</p>
+<p>建议：不要为用户编写代码。</p>
+<p>##8.工作区布局</p>
+<hr>
+<p>有两种合理的方法从左到右布局屏幕。一种方法是从左侧的工具栏开始，中间的工作区，右侧的输出可视化。此布局由Scratch的版本1以及Made with Code使用。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-d775f34e7054a88f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>另一种方式从左侧的输出可视化，中间的工具栏和右侧的工作区开始。此布局由Scratch的版本2以及大多数Blockly应用程序使用。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2433593-d4f106e3c639d9ba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>在任一情况下，工作空间应该伸展到占用可用的屏幕大小 - 用户需要尽可能多的空间来编程，因为他们可以得到。从上面的截图中可以看出，第一个布局在宽屏幕上表现不佳，因为用户的代码和输出可视化是分开的。而第二布局允许用于较大程序的额外空间，同时仍然保持所有三个部分靠近在一起。</p>
+<p>对于用户来说，首先考虑他们试图解决的问题，然后查看提供的工具，然后才开始编程也是合乎逻辑的。</p>
+<p>当然，整个指令需要翻译为阿拉伯语和希伯来语翻译。</p>
+<p>在一些情况下，例如当使用少量简单块时，工具箱在工作空间上方或下方可能是有意义的。在这些情况下，在工具箱中阻止支持水平滚动，但应谨慎使用。</p>
+<p>建议：将程序可视化放在工具栏旁边。</p>
+<p>##9.谢幕的策略</p>
+<hr>
+<p>基于块的编程通常是编程的起点。在教授计算机编程的情况下，它是一种网关药物，让学生上瘾，在他们去学习更难的东西之前。这个基于块的编程周期应该持续多长时间给学生激烈的争论，但如果你的目标是教程序，它应该是暂时的.</p>
+<p>鉴于此，用于教学编程的基于块的编程环境必须具有适合于他们的学生的偏离坡道。 Blockly Games有四种策略：</p>
+<ol>
+<li>块上的所有文本（例如“if”，“while”）是小写以匹配基于文本的编程语言。</li>
+<li>学生代码的JavaScript版本始终显示在每个级别之后，以提高熟悉程度。</li>
+<li>在倒数第二个游戏中，块文本被替换为实际的JavaScript（如右所示）。此时学生正在使用JavaScript进行编程。</li>
+<li>在终极游戏中，块编辑器被替换为文本编辑器。</li>
+</ol>
+<p>基于块的编程环境用于教学编程需要有一个具体的计划，以毕业他们的学生。一个坚实的退出策略也将大大有助于那些认为基于块的编程不是“真正的编程”的人。</p>
+<blockquote>
+<p>建议：适当考虑用户的目标和设计。</p>
+</blockquote>
 
       
     </div>

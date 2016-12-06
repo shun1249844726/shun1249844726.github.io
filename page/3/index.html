@@ -259,10 +259,10 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-应用程序集成---自定义块：最佳实践" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-配置块---使用自定义JavaScript生成器" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/12/06/应用程序集成---自定义块：最佳实践/" class="article-date">
+      <a href="/2016/12/06/配置块---使用自定义JavaScript生成器/" class="article-date">
       <time datetime="2016-12-06T05:14:15.000Z" itemprop="datePublished">2016-12-06</time>
 </a>
 
@@ -277,91 +277,31 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Custom Blocks: Best Practices</p>
+        <p>Configure Blockly - Using custom JavaScript Generators</p>
 <blockquote>
-<p>原文：<a href="https://developers.google.com/blockly/guides/app-integration/best-practices" target="_blank" rel="external">https://developers.google.com/blockly/guides/app-integration/best-practices</a></p>
+<p>原文链接;<a href="https://developers.google.com/blockly/guides/configure/android/custom-generators" target="_blank" rel="external">https://developers.google.com/blockly/guides/configure/android/custom-generators</a></p>
 </blockquote>
-<p>多年来，Blockly和Blockly Games团队学到了许多适用于那些开发基于Blockly的应用程序的课程。以下是我们所犯错误的集合，或者他人通常犯的错误。</p>
-<p>这些是我们使用Blockly的视觉风格学到的一般教训，可能不适用于所有用例或设计。可能存在其他解决方案。这也不是用户可能遇到的问题和如何避免他们的问题的详尽列表。每个案例都有点不同，可能有自己的权衡。</p>
-<p>##1. 边框样式</p>
+<p>#使用自定义JavaScript生成器</p>
+<p>生成器将块转换为文本字符串，通常是传统的编程语言。 Blockly for Android使用与原始网页Blockly相同的JavaScript生成器框架，并且默认情况下生成JavaScript。</p>
+<p>##加载生成器函数</p>
 <hr>
-<p>在21世纪初，“Aqua”的外观是主流的，每个屏幕上的对象都装饰着突出和阴影。在2010年的“材料设计”外观是流行的，每个屏幕对象简化为一个干净，平坦，无边框的形状。大多数块编程环境在每个块周围都有突出显示和阴影，所以当今天的平面设计师看到这些时，它们总是消除这些过时的装饰。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-bd7a4d3948ed3bbd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>从上面的五个块（来自scriptr.io）的示例中可以看出，这些“过时的装饰”对于区分相同颜色的连接块是至关重要的。</p>
-<blockquote>
-<p>建议：如果美化你的 Blockly，（原文：<em>If reskinning Blockly, don’t let today’s fashions break your app.</em> 感觉是谷歌打字错了,或者其他语言吧）不要让今天的方式打破你的应用程序。</p>
-</blockquote>
-<p>##2. 嵌套子堆栈</p>
+<p>对于继承 <code>AbstractBlocklyActivity</code>的activities，生成器文件通过重写<code>AbstractBlocklyActivity.getGeneratorsJsPaths（）</code>来提供。活动必须实现此方法，返回指向所需生成器的应用程序资产路径的列表。除了Blockly的标准块的JavaScript语言核心生成器文件之外，还会加载这些文件。此方法在每次触发代码生成时调用，因此列表可以是动态的或上下文的。</p>
+<p>就像块定义文件一样，可以加载多个.js文件。文件按顺序加载，因此重复的ID（指块定义）将导致替换以前的生成器定义。</p>
+<p>##示例JavaScript块实现</p>
 <hr>
-<p>“C”形块在内侧顶部上总是具有连接器，但是一些环境在内侧底部具有连接器（例如，Wonder Workshop），而其他环境则不具有连接器（例如Blockly和Scratch）。由于大多数语句块都有顶部和底部连接器，一些用户不会立即看到该语句将适合没有底部连接器的“C”。<br><img src="http://upload-images.jianshu.io/upload_images/2433593-63d2e530417606fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>一旦用户确定一个语句块适合在’C’内，他们然后需要找出更多的一个语句也适合。一些环境将第一个语句的低级连接嵌套到“C”的底部（例如Wonder Workshop和Scratch），而其他语言留下一个小间隙（例如Blockly）。嵌套嵌套没有暗示更多的块可以堆叠。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-0ed2260de6c57dea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>这两个问题彼此互相影响很大。如果内部底层连接器存在（Wonder Workshop），则初始语句的连接变得更加明显，但是以发现堆栈的能力为代价</p>
-<p>如果没有内部底部连接器存在（阻塞），则初始语句的连接不明显，但堆叠是可发现的。没有内部底部连接器和嵌套语句的底部连接器（Scratch）在使用Blockly测试时遇到了最糟糕的视觉效果（// 原文：discoverability 。翻译的可能不恰当）。</p>
-<p>我们的经验是，初始语句的连接对用户来说是一个较小的挑战，而不是发现堆栈。一旦发现，前者从来不被遗忘，而后者需要提示。</p>
-<p>Blockly尝试了Wonder Workshop和Scratch方法，直到有一天出现一个渲染错误，这增加了小的差距。我们看到由于这个错误（现在是我们感到自豪的“功能”）的Blockly用户学习中有明显的改善。</p>
-<blockquote>
-<p>建议：如果reskinning Blockly，保留现有的堆叠UI。</p>
-</blockquote>
-<p>##3.对称连接</p>
+<p>以下是Turtle demo 中使用的生成器的示例。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Blockly.JavaScript[&apos;turtle_width&apos;] = function(block) &#123;</div><div class="line">  // Generate JavaScript for setting the width.</div><div class="line">  var width = Blockly.JavaScript.valueToCode(block, &apos;WIDTH&apos;,</div><div class="line">      Blockly.JavaScript.ORDER_NONE) || &apos;1&apos;;</div><div class="line">  return &apos;Turtle.penWidth(&apos; + width + &apos;);\n&apos;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>该代码位于<a href="https://github.com/google/blockly-android/blob/master/blocklydemo/src/main/assets/turtle/generators.js" target="_blank" rel="external">blocklydemo/assets/turtle/generators.js
+</a>中的匹配块定义旁边的<a href="https://github.com/google/blockly-android/blob/master/blocklydemo/src/main/java/com/google/blockly/android/demo/TurtleActivity.java#L161" target="_blank" rel="external">TurtleActivity.getGeneratorsJsPaths
+</a>中。 <a href="https://github.com/google/blockly-android/blob/master/blocklydemo/src/main/java/com/google/blockly/android/demo/TurtleActivity.java#L161" target="_blank" rel="external">TurtleActivity.getGeneratorsJsPaths
+</a>通过常量<a href="https://github.com/google/blockly-android/blob/master/blocklydemo/src/main/java/com/google/blockly/android/demo/TurtleActivity.java#L52" target="_blank" rel="external">TURTLE_BLOCK_GENERATORS
+</a>返回此路径。</p>
+<p>该函数生成turtle_width块的代码，接收为其WIDTH输入生成的代码字符串（如果未设置，则为’1’），并包装在Turtle.penWidth（..）函数调用中。结果可能看起来像这些：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Turtle.penWidth(3);</div><div class="line">Turtle.penWidth(x);</div><div class="line">Turtle.penWidth(x / 2);</div></pre></td></tr></table></figure>
+<p>或关于写生成器的更多细节，请参阅<a href="https://developers.google.com/blockly/guides/create-custom-blocks/generating-code" target="_blank" rel="external">Generating Code</a>。</p>
+<p>####使用其他语言<br><em>*</em>截至2016年5月，Blockly for Android假定目标语言是JavaScript。如果要使用其他语言，则需要使用您自己的语言生成核心替换<a href="https://github.com/google/blockly-android/blob/master/blocklylib-core/src/main/assets/javascript_compressed.js" target="_blank" rel="external">javascript_compressed.js</a>的引用。主Blockly库具有用于几种流行语言的<a href="https://github.com/google/blockly/tree/master/generators" target="_blank" rel="external">generators</a></p>
+<p>####代码生成器如何运行</p>
 <hr>
-<p>Blockly有两种不同的连接类型：水平拼图形状和垂直堆叠凹槽。良好的用户界面应努力使设计元素的数量最小化。因此，许多设计者试图使两种连接类型看起来相同（如下所示）。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-ca6d80fcbf3c53fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>结果造成新用户之间的混乱，因为他们搜索旋转块的方式，以便它们可以适应不兼容的连接。阻止使编程元素视觉和有形，所以人们必须注意不经意地建议不支持的用户交互。<br>因此，Blockly使用紧配合的拼图形状用于值连接，以及用于语句堆叠的视觉上不同的对齐凹口。</p>
-<blockquote>
-<p>建议：如果reskinning Blockly，确保水平和垂直连接看起来不同。</p>
-</blockquote>
-<p>##4.变量和函数名称</p>
-<hr>
-<p>新手程序员不希望location_X和location_x是不同的变量。因此，Blockly通过使变量和函数不区分大小写遵循BASIC和HTML的规范。 Scratch使用更微妙的方法（如右侧所示），并且对变量名称区分大小写，但不对等式检查。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-7f63c3e49e7957b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>此外，Blockly不要求变量和函数符合典型的[_A-Za-z] [_A-Za-z0-9] *方案。如果想要命名一个变量列表的邮政编码或רשימתמיקודים完全没关系。</p>
-<blockquote>
-<p>建议：忽略大小写，允许任何名称。</p>
-</blockquote>
-<p>##5.全局变量</p>
-<hr>
-<p>新手程序员也很难理解范围。因此，Blockly通过使所有变量为全局跟随Scratch的线索。全局变量的唯一缺点是递归比较难（必须将变量推入和弹出到列表中），但这是一个超出Blockly目标用户范围的编程技术。</p>
-<p>建议：范围超出范围，留待以后使用。</p>
-<p>##6. 说明</p>
-<hr>
-<p>Blockly Games专门设计为自学，不需要教师或课程计划。为了做到这一点，Blockly游戏的第一个版本在每个级别有说明。大多数学生不会读他们。我们将它们缩减为一个句子，增加字体大小，并在黄色气泡中突出显示。大多数学生不会读他们。我们使用说明创建了模态弹出窗口。大多数学生本能地关闭弹出窗口而没有阅读它们，然后就没有然后了。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-2e47a594fcb7c765.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>最后，我们创建了无法关闭的弹出窗口。它们被编程以监视学生的行为，并且仅在学生已经执行禁止的动作时闭合自己。这些上下文感知弹出窗口是有挑战性的程序，但相当有效。对他们来说也是重要的，在视野中不干扰工作空间。</p>
-<blockquote>
-<p>建议：说明书应该短而持久，但不要令人讨厌。</p>
-</blockquote>
-<p>##7.代码所有权</p>
-<hr>
-<p>设计用于教授特定概念的练习通常提供部分解决方案，学生需要修改以达到期望的效果。在Blockly中创建了一类不可编辑，不可移动，不可删除的块来支持它。然而，学生讨厌这些填空题练习。他们对解决方案没有主人翁感。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-bcc1485c9a07c33c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>设计教授相同概念的自由形式练习更具挑战性。已经证明成功的一种技术是使用学生自己的解决方案作为下一次练习的起点。</p>
-<p>建议：不要为用户编写代码。</p>
-<p>##8.工作区布局</p>
-<hr>
-<p>有两种合理的方法从左到右布局屏幕。一种方法是从左侧的工具栏开始，中间的工作区，右侧的输出可视化。此布局由Scratch的版本1以及Made with Code使用。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-d775f34e7054a88f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>另一种方式从左侧的输出可视化，中间的工具栏和右侧的工作区开始。此布局由Scratch的版本2以及大多数Blockly应用程序使用。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2433593-d4f106e3c639d9ba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>在任一情况下，工作空间应该伸展到占用可用的屏幕大小 - 用户需要尽可能多的空间来编程，因为他们可以得到。从上面的截图中可以看出，第一个布局在宽屏幕上表现不佳，因为用户的代码和输出可视化是分开的。而第二布局允许用于较大程序的额外空间，同时仍然保持所有三个部分靠近在一起。</p>
-<p>对于用户来说，首先考虑他们试图解决的问题，然后查看提供的工具，然后才开始编程也是合乎逻辑的。</p>
-<p>当然，整个指令需要翻译为阿拉伯语和希伯来语翻译。</p>
-<p>在一些情况下，例如当使用少量简单块时，工具箱在工作空间上方或下方可能是有意义的。在这些情况下，在工具箱中阻止支持水平滚动，但应谨慎使用。</p>
-<p>建议：将程序可视化放在工具栏旁边。</p>
-<p>##9.谢幕的策略</p>
-<hr>
-<p>基于块的编程通常是编程的起点。在教授计算机编程的情况下，它是一种网关药物，让学生上瘾，在他们去学习更难的东西之前。这个基于块的编程周期应该持续多长时间给学生激烈的争论，但如果你的目标是教程序，它应该是暂时的.</p>
-<p>鉴于此，用于教学编程的基于块的编程环境必须具有适合于他们的学生的偏离坡道。 Blockly Games有四种策略：</p>
-<ol>
-<li>块上的所有文本（例如“if”，“while”）是小写以匹配基于文本的编程语言。</li>
-<li>学生代码的JavaScript版本始终显示在每个级别之后，以提高熟悉程度。</li>
-<li>在倒数第二个游戏中，块文本被替换为实际的JavaScript（如右所示）。此时学生正在使用JavaScript进行编程。</li>
-<li>在终极游戏中，块编辑器被替换为文本编辑器。</li>
-</ol>
-<p>基于块的编程环境用于教学编程需要有一个具体的计划，以毕业他们的学生。一个坚实的退出策略也将大大有助于那些认为基于块的编程不是“真正的编程”的人。</p>
-<blockquote>
-<p>建议：适当考虑用户的目标和设计。</p>
-</blockquote>
+<p>Blockly for Android在后台服务中维护一个WebView以运行用JavaScript编写的生成器。 代码在<a href="https://github.com/google/blockly-android/blob/master/blocklylib-core/src/main/java/com/google/blockly/android/codegen/CodeGeneratorService.java" target="_blank" rel="external">CodeGeneratorService</a>类中。大多数应用程序开发人员应该只需要通过扩展AbstractBlocklyActivity提供的更高级别的API，并且可以忽略此详细信息。</p>
 
       
     </div>
@@ -410,7 +350,7 @@
 <blockquote>
 <p>原文链接：<a href="https://developers.google.com/blockly/guides/configure/android/toolbox" target="_blank" rel="external">https://developers.google.com/blockly/guides/configure/android/toolbox</a></p>
 </blockquote>
-<p>工具箱是从用户可以创建新块的侧面菜单。工具箱的结构使用XML指定，可以是节点树或字符串表示形式。如果您不喜欢手动输入XML，我们建议您查看Blockly开发人员工具<a href="https://developers.google.com/blockly/guides/create-custom-blocks/blockly-developer-tools" target="_blank" rel="external">Blockly Developer Tools</a>。使用它，您可以构造一个工具箱，并使用可视化界面自动生成其工具箱XML。此XML资产路径在构造时传递给<code>BlocklyController</code>。如果你的activity 继承了<code>AbstractBlocklyActivity</code>，这是使用<code>getToolboxContentsXmlPath（）</code>返回的asset路径自动完成的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@Override protected String getToolboxContentsXmlPath() &#123;</div><div class="line">    return &quot;default/toolbox.xml&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>工具箱是从用户可以创建新块的侧面菜单。工具箱的结构使用XML指定，可以是节点树或字符串表示形式。如果您不喜欢手动输入XML，我们建议您查看Blockly开发人员工具<a href="https://developers.google.com/blockly/guides/create-custom-blocks/blockly-developer-tools" target="_blank" rel="external">Blockly Developer Tools</a>。使用它，您可以构造一个工具箱，并使用可视化界面自动生成其工具箱XML。此XML资产路径在构造时传递给<code>BlocklyController</code>。如果你的activity 继承了<code>AbstractBlocklyActivity</code>，这是使用<code>getToolboxContentsXmlPath（）</code>返回的asset路径自动完成的：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span> <span class="function"><span class="keyword">protected</span> String <span class="title">getToolboxContentsXmlPath</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">"default/toolbox.xml"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>这里是一个最小的例子，使用节点树：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;toolbox&gt;</div><div class="line">   &lt;block type = &quot;controls_if&quot; &gt; &lt;/block&gt;</div><div class="line">   &lt;block type=&quot;controls_whileUntil&quot;&gt;&lt;/block &gt; </div><div class="line">&lt;/toolbox&gt;</div></pre></td></tr></table></figure></p>
 <p>此工具箱加载这些块：</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2433593-dd574a9cac481684.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>如果存在少量的块，则可以在没有任何类别的情况下显示它们（如在上面的最小示例中）。在这种简单模式下，所有可用的块都显示在工具箱中。</p>

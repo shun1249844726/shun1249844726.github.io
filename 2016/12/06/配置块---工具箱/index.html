@@ -36,7 +36,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-4ee2315e149b09e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-91d7afad53ffd567.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2433593-712930d6039f37e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2016-12-06T05:14:15.000Z">
+<meta property="og:updated_time" content="2016-12-06T06:54:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mimimomo的博客">
 <meta name="twitter:description" content="Configure Blockly - Toolbox
@@ -298,7 +298,7 @@
 <blockquote>
 <p>原文链接：<a href="https://developers.google.com/blockly/guides/configure/android/toolbox" target="_blank" rel="external">https://developers.google.com/blockly/guides/configure/android/toolbox</a></p>
 </blockquote>
-<p>工具箱是从用户可以创建新块的侧面菜单。工具箱的结构使用XML指定，可以是节点树或字符串表示形式。如果您不喜欢手动输入XML，我们建议您查看Blockly开发人员工具<a href="https://developers.google.com/blockly/guides/create-custom-blocks/blockly-developer-tools" target="_blank" rel="external">Blockly Developer Tools</a>。使用它，您可以构造一个工具箱，并使用可视化界面自动生成其工具箱XML。此XML资产路径在构造时传递给<code>BlocklyController</code>。如果你的activity 继承了<code>AbstractBlocklyActivity</code>，这是使用<code>getToolboxContentsXmlPath（）</code>返回的asset路径自动完成的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@Override protected String getToolboxContentsXmlPath() &#123;</div><div class="line">    return &quot;default/toolbox.xml&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>工具箱是从用户可以创建新块的侧面菜单。工具箱的结构使用XML指定，可以是节点树或字符串表示形式。如果您不喜欢手动输入XML，我们建议您查看Blockly开发人员工具<a href="https://developers.google.com/blockly/guides/create-custom-blocks/blockly-developer-tools" target="_blank" rel="external">Blockly Developer Tools</a>。使用它，您可以构造一个工具箱，并使用可视化界面自动生成其工具箱XML。此XML资产路径在构造时传递给<code>BlocklyController</code>。如果你的activity 继承了<code>AbstractBlocklyActivity</code>，这是使用<code>getToolboxContentsXmlPath（）</code>返回的asset路径自动完成的：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span> <span class="function"><span class="keyword">protected</span> String <span class="title">getToolboxContentsXmlPath</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">"default/toolbox.xml"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>这里是一个最小的例子，使用节点树：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;toolbox&gt;</div><div class="line">   &lt;block type = &quot;controls_if&quot; &gt; &lt;/block&gt;</div><div class="line">   &lt;block type=&quot;controls_whileUntil&quot;&gt;&lt;/block &gt; </div><div class="line">&lt;/toolbox&gt;</div></pre></td></tr></table></figure></p>
 <p>此工具箱加载这些块：</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/2433593-dd574a9cac481684.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>如果存在少量的块，则可以在没有任何类别的情况下显示它们（如在上面的最小示例中）。在这种简单模式下，所有可用的块都显示在工具箱中。</p>
@@ -342,7 +342,7 @@
         <p><span>本文标题:</span><a href="/2016/12/06/配置块---工具箱/"></a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">xushun</a></p>
         <p><span>发布时间:</span>2016-12-06, 13:14:15</p>
-        <p><span>最后更新:</span>2016-12-06, 13:14:15</p>
+        <p><span>最后更新:</span>2016-12-06, 14:54:02</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/12/06/配置块---工具箱/" title="">http://yoursite.com/2016/12/06/配置块---工具箱/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/12/06/配置块---工具箱/　　作者: xushun" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -358,7 +358,7 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/12/06/应用程序集成---自定义块：最佳实践/">
+                <a href="/2016/12/06/配置块---使用自定义JavaScript生成器/">
                     
                 </a>
             </div>
@@ -434,7 +434,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/12/06/应用程序集成---自定义块：最佳实践/" title="上一篇: ">
+            <a href="/2016/12/06/配置块---使用自定义JavaScript生成器/" title="上一篇: ">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -448,7 +448,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---生成代码/">创建自定义块---生成代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/Overview/">Overview</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/Contents／目录/">Contents／目录</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/修改块---android---代码样式/">修改块---android---代码样式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/修改块---单元测试/">修改块---单元测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/修改块---blockly的未来/">修改块---blockly的未来</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/修改块---贡献/">修改块---贡献</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---块范例/">创建自定义块---块范例</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---块开发工具/">创建自定义块---块开发工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---定义块/">创建自定义块---定义块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---概述/">创建自定义块---概述</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/Get-Started---Android/">Get-Started---Android</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---样式指南/">创建自定义块---样式指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---类型检查/">创建自定义块---类型检查</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---缓存参数/">创建自定义块---缓存参数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---运算符优先级/">创建自定义块---运算符优先级</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/应用程序集成---生成和运行Javascript/">应用程序集成---生成和运行Javascript</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/百度/">百度</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/配置块---使用自定义JavaScript生成器/">配置块---使用自定义JavaScript生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/应用程序集成---自定义块：最佳实践/">应用程序集成---自定义块：最佳实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/配置块---工具箱/">配置块---工具箱</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/配置块---添加自定义块/">配置块---添加自定义块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/配置块---自定义活动布局/">配置块---自定义活动布局</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---概述/">创建自定义块---概述</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/Overview/">Overview</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/修改块---android---代码样式/">修改块---android---代码样式</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/修改块---blockly的未来/">修改块---blockly的未来</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/Contents／目录/">Contents／目录</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/修改块---单元测试/">修改块---单元测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/修改块---贡献/">修改块---贡献</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---块开发工具/">创建自定义块---块开发工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---块范例/">创建自定义块---块范例</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---样式指南/">创建自定义块---样式指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---定义块/">创建自定义块---定义块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/Get-Started---Android/">Get-Started---Android</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---生成代码/">创建自定义块---生成代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---类型检查/">创建自定义块---类型检查</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---缓存参数/">创建自定义块---缓存参数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/创建自定义块---运算符优先级/">创建自定义块---运算符优先级</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/应用程序集成---生成和运行Javascript/">应用程序集成---生成和运行Javascript</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/百度/">百度</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/应用程序集成---自定义块：最佳实践/">应用程序集成---自定义块：最佳实践</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/配置块---使用自定义JavaScript生成器/">配置块---使用自定义JavaScript生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/配置块---工具箱/">配置块---工具箱</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/配置块---添加自定义块/">配置块---添加自定义块</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/06/配置块---自定义活动布局/">配置块---自定义活动布局</a></li></ul>
 
 
 
