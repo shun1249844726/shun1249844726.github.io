@@ -2,74 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8d9761d-109d-4c7c-86e6-94d02ca3621f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/Contents／目录/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/Get-Started---Android/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/Overview/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/hello-world/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/修改块---android---代码样式/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/修改块---blockly的未来/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/修改块---单元测试/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/修改块---贡献/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/创建自定义块---块开发工具/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/创建自定义块---块范例/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/创建自定义块---定义块/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/创建自定义块---样式指南/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/创建自定义块---概述/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/创建自定义块---生成代码/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/创建自定义块---类型检查/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/创建自定义块---缓存参数/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/创建自定义块---运算符优先级/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/应用程序集成---生成和运行Javascript/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/应用程序集成---自定义块：最佳实践/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/百度/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/配置块---使用自定义JavaScript生成器/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/配置块---工具箱/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/配置块---添加自定义块/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016/12/06/配置块---自定义活动布局/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/apple-touch-icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/archives/2016/12/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/archives/2016/12/page/2/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/archives/2016/12/page/3/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/archives/2016/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/archives/2016/page/2/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/archives/2016/page/3/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/archives/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/archives/page/2/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/archives/page/3/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/background/backup/bg-1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/background/backup/bg-2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/background/backup/bg-3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/background/backup/bg-4.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/background/bg-1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/background/bg-2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/background/bg-3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/background/bg-4.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/background/bg-5.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/background/bg-6.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/AcFun.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/CSDN.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/Coding.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/LOFTER.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/Plunker.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/Quora.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/SegmentFault.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/TiddlyWiki.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/V2EX.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/avatar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/bilibili.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/niconico.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/scrollbar_arrow.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/博客园.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/新浪微博.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/知乎.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/简书.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/网易云音乐.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/虾米音乐.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/豆瓣.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/page/2/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/page/3/index.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/style.css" afterPath="$PROJECT_DIR$/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -87,18 +20,18 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="22" selection-end-column="84" />
+            <state relative-caret-position="532">
+              <caret line="38" column="108" lean-forward="false" selection-start-line="38" selection-start-column="108" selection-end-line="38" selection-end-column="108" />
               <folding>
                 <element signature="e#1131#1137#0" expanded="true" />
                 <element signature="e#1160#1166#0" expanded="true" />
-                <element signature="e#2259#2265#0" expanded="true" />
-                <element signature="e#2271#2277#0" expanded="true" />
-                <element signature="e#2288#2294#0" expanded="true" />
+                <element signature="e#2265#2271#0" expanded="true" />
+                <element signature="e#2277#2283#0" expanded="true" />
+                <element signature="e#2294#2300#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -124,8 +57,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="82" />
-    <option name="y" value="334" />
+    <option name="x" value="557" />
+    <option name="y" value="185" />
     <option name="width" value="1784" />
     <option name="height" value="1051" />
   </component>
@@ -144,7 +77,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -174,6 +106,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -216,6 +149,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -249,33 +188,34 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1489730623993</updated>
-      <workItem from="1489730631299" duration="2745000" />
+      <workItem from="1489730631299" duration="3235000" />
+      <workItem from="1489734305289" duration="583000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2745000" />
+    <option name="totallyTimeSpent" value="3818000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="82" y="334" width="1784" height="1051" extended-state="0" />
+    <frame x="557" y="185" width="1784" height="1051" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19618835" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -289,6 +229,20 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#1131#1137#0" expanded="true" />
+            <element signature="e#1160#1166#0" expanded="true" />
+            <element signature="e#2265#2271#0" expanded="true" />
+            <element signature="e#2277#2283#0" expanded="true" />
+            <element signature="e#2294#2300#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -315,14 +269,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="22" selection-end-column="84" />
+        <state relative-caret-position="532">
+          <caret line="38" column="108" lean-forward="false" selection-start-line="38" selection-start-column="108" selection-end-line="38" selection-end-column="108" />
           <folding>
             <element signature="e#1131#1137#0" expanded="true" />
             <element signature="e#1160#1166#0" expanded="true" />
-            <element signature="e#2259#2265#0" expanded="true" />
-            <element signature="e#2271#2277#0" expanded="true" />
-            <element signature="e#2288#2294#0" expanded="true" />
+            <element signature="e#2265#2271#0" expanded="true" />
+            <element signature="e#2277#2283#0" expanded="true" />
+            <element signature="e#2294#2300#0" expanded="true" />
           </folding>
         </state>
       </provider>
